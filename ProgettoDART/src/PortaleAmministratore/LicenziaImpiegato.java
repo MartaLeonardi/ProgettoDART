@@ -5,12 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import RilevazionePresenza.RivPre_IN;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -50,12 +55,12 @@ public class LicenziaImpiegato extends JFrame {
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-		
+
 		JLabel licenziaImpiegatoLabel = new JLabel("Licenzia Impiegato");
 		licenziaImpiegatoLabel.setFont(new Font("Impact", Font.PLAIN, 30));
 		GridBagConstraints gbc_licenziaImpiegatoLabel = new GridBagConstraints();
@@ -63,7 +68,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_licenziaImpiegatoLabel.gridx = 1;
 		gbc_licenziaImpiegatoLabel.gridy = 1;
 		contentPane.add(licenziaImpiegatoLabel, gbc_licenziaImpiegatoLabel);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
 		GridBagConstraints gbc_separator = new GridBagConstraints();
@@ -72,7 +77,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_separator.gridx = 1;
 		gbc_separator.gridy = 2;
 		contentPane.add(separator, gbc_separator);
-		
+
 		JLabel lblNewLabel = new JLabel("Inserisci dati impiegato:");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -81,7 +86,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_lblNewLabel.gridx = 1;
 		gbc_lblNewLabel.gridy = 3;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		JLabel matricolaLabel = new JLabel("Matricola:");
 		matricolaLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_matricolaLabel = new GridBagConstraints();
@@ -90,7 +95,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_matricolaLabel.gridx = 2;
 		gbc_matricolaLabel.gridy = 4;
 		contentPane.add(matricolaLabel, gbc_matricolaLabel);
-		
+
 		matricolaTextField = new JTextField();
 		matricolaTextField.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_matricolaTextField = new GridBagConstraints();
@@ -100,7 +105,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_matricolaTextField.gridy = 4;
 		contentPane.add(matricolaTextField, gbc_matricolaTextField);
 		matricolaTextField.setColumns(15);
-		
+
 		JLabel nomeLabel = new JLabel("Nome:");
 		nomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_nomeLabel = new GridBagConstraints();
@@ -109,7 +114,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_nomeLabel.gridx = 2;
 		gbc_nomeLabel.gridy = 5;
 		contentPane.add(nomeLabel, gbc_nomeLabel);
-		
+
 		textField = new JTextField();
 		textField.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
@@ -119,7 +124,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_textField.gridy = 5;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(15);
-		
+
 		JLabel cognomeLabel = new JLabel("Cognome:");
 		cognomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_cognomeLabel = new GridBagConstraints();
@@ -128,7 +133,7 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_cognomeLabel.gridx = 2;
 		gbc_cognomeLabel.gridy = 6;
 		contentPane.add(cognomeLabel, gbc_cognomeLabel);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
@@ -138,13 +143,21 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_textField_1.gridy = 6;
 		contentPane.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(15);
-		
+
 		JButton LicenziaButtom = new JButton("Licenzia");
 		LicenziaButtom.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_LicenziaButtom = new GridBagConstraints();
 		gbc_LicenziaButtom.gridx = 4;
 		gbc_LicenziaButtom.gridy = 7;
 		contentPane.add(LicenziaButtom, gbc_LicenziaButtom);
+
+		LicenziaButtom.addActionListener(new ActionListener() {											//Quando viene premuto il bottone Licenzia, si apre un popUp di conferma
+			public void actionPerformed(ActionEvent e) {
+				PopUpLicenziaImpiegato popUpLicenzia = new PopUpLicenziaImpiegato();
+				popUpLicenzia.setVisible(true);
+			}
+		});
+
 	}
 
 }

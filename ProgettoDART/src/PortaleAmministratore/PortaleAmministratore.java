@@ -96,7 +96,7 @@ public class PortaleAmministratore {
 		gbc_lblNewLabel_1.gridy = 2;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Matricola");
+		JLabel lblNewLabel_2 = new JLabel("Matricolaa");
 		lblNewLabel_2.setFont(new Font("Impact", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
