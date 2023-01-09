@@ -218,14 +218,14 @@ public class AssumiImpiegato extends JFrame {
 		
 		
 		String ruolo[]= {"Ruolo 1", "Ruolo 2", "Ruolo 3", "Ruolo 4"};
-		JComboBox RuolocomboBox = new JComboBox(ruolo);
-		RuolocomboBox.setToolTipText("");
-		GridBagConstraints gbc_RuolocomboBox = new GridBagConstraints();
-		gbc_RuolocomboBox.anchor = GridBagConstraints.WEST;
-		gbc_RuolocomboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_RuolocomboBox.gridx = 3;
-		gbc_RuolocomboBox.gridy = 12;
-		contentPane.add(RuolocomboBox, gbc_RuolocomboBox);
+		JComboBox ruoloComboBox = new JComboBox(ruolo);
+		ruoloComboBox.setToolTipText("");
+		GridBagConstraints gbc_ruoloComboBox = new GridBagConstraints();
+		gbc_ruoloComboBox.anchor = GridBagConstraints.WEST;
+		gbc_ruoloComboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_ruoloComboBox.gridx = 3;
+		gbc_ruoloComboBox.gridy = 12;
+		contentPane.add(ruoloComboBox, gbc_ruoloComboBox);
 		
 		JLabel stipendioLabel = new JLabel("Stipendio:");
 		stipendioLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -252,6 +252,26 @@ public class AssumiImpiegato extends JFrame {
 		gbc_assumiButtom.gridx = 2;
 		gbc_assumiButtom.gridy = 15;
 		contentPane.add(assumiButtom, gbc_assumiButtom);
+		
+		
+		assumiButtom.addActionListener((ActionListener) new ActionListener() {			//Premendo il bottone ASSUMI, si salvano nelle rispettive variabili i dati inseriti nei campi
+			public void actionPerformed(ActionEvent e) {
+				String nome = nomeTextField.getText();
+				String congome = cognomeTextField.getText();
+				String residenza = residenzaTextField.getText();
+				String email = emailTextField.getText();
+				String matricola = matricolaTextField.getText();
+				String telefono = telefonoTextField.getText();
+				String stipendio = stipendioTextField.getText();
+				String ruolo = (String) ruoloComboBox.getItemAt(ruoloComboBox.getSelectedIndex());		//Si forza il cast a String perche' l'item selezionato sarebbe un Object
+				
+			
+			}
+			
+		});
+		
+		
+		
 	}
 
 }
