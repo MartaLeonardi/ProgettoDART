@@ -1,4 +1,4 @@
-package PortaleAmministrartore;
+package PortaleAmministratore;
 
 import java.awt.EventQueue;
 
