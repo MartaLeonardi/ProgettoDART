@@ -63,7 +63,7 @@ public class PortaleImpiegato extends JFrame {
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{236, 932, 0};
+		gbl_contentPane.columnWidths = new int[]{254, 932, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
@@ -94,14 +94,14 @@ public class PortaleImpiegato extends JFrame {
 		panel_2.setBackground(new Color(175, 238, 238));
 		panel.add(panel_2, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] {10, 0};
-		gbl_panel_2.rowHeights = new int[] {0, 29, 0, 0, 0};
+		gbl_panel_2.columnWidths = new int[] {10, 102};
+		gbl_panel_2.rowHeights = new int[] {130};
 		gbl_panel_2.columnWeights = new double[]{1.0, 1.0};
-		gbl_panel_2.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0};
+		gbl_panel_2.rowWeights = new double[]{1.0};
 		panel_2.setLayout(gbl_panel_2);
 		
 		JLabel UserImg = new JLabel("");
-		Image imgUser = new ImageIcon (this.getClass().getResource("/utenteRid.png")).getImage();
+		Image imgUser = new ImageIcon (this.getClass().getResource("/utenteRid100.png")).getImage();
 		UserImg.setIcon(new ImageIcon(imgUser));
 		
 		
@@ -112,15 +112,15 @@ public class PortaleImpiegato extends JFrame {
 		
 		
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_2.add(UserImg, gbc_lblNewLabel_1);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(175, 238, 238));
+		panel_3.setLayout(null);
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_3.fill = GridBagConstraints.BOTH;
 		gbc_panel_3.gridx = 1;
 		gbc_panel_3.gridy = 0;
@@ -128,34 +128,26 @@ public class PortaleImpiegato extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Nome:");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		panel_2.add(lblNewLabel, gbc_lblNewLabel);
+		lblNewLabel.setBounds(0, 10, 66, 30);
+		panel_3.add(lblNewLabel);
 		
 		JLabel lblCognome = new JLabel("Cognome:");
 		lblCognome.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblCognome = new GridBagConstraints();
-		gbc_lblCognome.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCognome.gridx = 0;
-		gbc_lblCognome.gridy = 2;
-		panel_2.add(lblCognome, gbc_lblCognome);
+		lblCognome.setBounds(0, 50, 102, 30);
+		panel_3.add(lblCognome);
 		
 		JLabel lblMatricola = new JLabel("Matricola:");
 		lblMatricola.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblMatricola = new GridBagConstraints();
-		gbc_lblMatricola.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMatricola.gridx = 0;
-		gbc_lblMatricola.gridy = 3;
-		panel_2.add(lblMatricola, gbc_lblMatricola);
+		lblMatricola.setBounds(0, 90, 105, 30);
+		panel_3.add(lblMatricola);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(175, 238, 238));
+		panel.add(panel_4, BorderLayout.CENTER);
+		panel_4.setLayout(new BorderLayout(0, 0));
 		
 		JSeparator separator = new JSeparator();
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.insets = new Insets(0, 0, 0, 5);
-		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 4;
-		panel_2.add(separator, gbc_separator);
+		panel_4.add(separator, BorderLayout.NORTH);
 	
 		
 		
