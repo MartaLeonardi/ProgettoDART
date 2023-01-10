@@ -23,9 +23,9 @@ import javax.swing.JButton;
 public class LicenziaImpiegato extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField matricolaTextField;
-	private JTextField textField;
-	private JTextField textField_1;
+	public JTextField matricolaTextField;
+	private JTextField nomeTextField;
+	private JTextField cognomeTextField;
 
 	/**
 	 * Launch the application.
@@ -97,14 +97,14 @@ public class LicenziaImpiegato extends JFrame {
 		contentPane.add(matricolaLabel, gbc_matricolaLabel);
 
 		matricolaTextField = new JTextField();
-		matricolaTextField.setFont(new Font("Arial", Font.PLAIN, 11));
+		getMatricolaTextField().setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_matricolaTextField = new GridBagConstraints();
 		gbc_matricolaTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_matricolaTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_matricolaTextField.gridx = 3;
 		gbc_matricolaTextField.gridy = 4;
-		contentPane.add(matricolaTextField, gbc_matricolaTextField);
-		matricolaTextField.setColumns(15);
+		contentPane.add(getMatricolaTextField(), gbc_matricolaTextField);
+		getMatricolaTextField().setColumns(15);
 
 		JLabel nomeLabel = new JLabel("Nome:");
 		nomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -115,15 +115,15 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_nomeLabel.gridy = 5;
 		contentPane.add(nomeLabel, gbc_nomeLabel);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 11));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 5;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(15);
+		nomeTextField = new JTextField();
+		nomeTextField.setFont(new Font("Arial", Font.PLAIN, 11));
+		GridBagConstraints gbc_nomeTextField = new GridBagConstraints();
+		gbc_nomeTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_nomeTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_nomeTextField.gridx = 3;
+		gbc_nomeTextField.gridy = 5;
+		contentPane.add(nomeTextField, gbc_nomeTextField);
+		nomeTextField.setColumns(15);
 
 		JLabel cognomeLabel = new JLabel("Cognome:");
 		cognomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -134,15 +134,15 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_cognomeLabel.gridy = 6;
 		contentPane.add(cognomeLabel, gbc_cognomeLabel);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 11));
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 3;
-		gbc_textField_1.gridy = 6;
-		contentPane.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(15);
+		cognomeTextField = new JTextField();
+		cognomeTextField.setFont(new Font("Arial", Font.PLAIN, 11));
+		GridBagConstraints gbc_cognomeTextField = new GridBagConstraints();
+		gbc_cognomeTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_cognomeTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cognomeTextField.gridx = 3;
+		gbc_cognomeTextField.gridy = 6;
+		contentPane.add(cognomeTextField, gbc_cognomeTextField);
+		cognomeTextField.setColumns(15);
 
 		JButton LicenziaButtom = new JButton("Licenzia");
 		LicenziaButtom.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -151,13 +151,21 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_LicenziaButtom.gridy = 7;
 		contentPane.add(LicenziaButtom, gbc_LicenziaButtom);
 
-		LicenziaButtom.addActionListener(new ActionListener() {											//Quando viene premuto il bottone Licenzia, si apre un popUp di conferma
+		LicenziaButtom.addActionListener(new ActionListener() { // Quando viene premuto il bottone Licenzia, si apre un
+																// popUp di conferma
 			public void actionPerformed(ActionEvent e) {
 				PopUpLicenziaImpiegato popUpLicenzia = new PopUpLicenziaImpiegato();
+				String matricola = matricolaTextField.getText();
+				String nome = nomeTextField.getText();
+				String congome = cognomeTextField.getText();
 				popUpLicenzia.setVisible(true);
 			}
 		});
 
+	}
+
+	public JTextField getMatricolaTextField() {
+		return matricolaTextField;
 	}
 
 }

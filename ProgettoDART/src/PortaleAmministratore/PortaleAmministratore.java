@@ -62,22 +62,22 @@ public class PortaleAmministratore {
 		frmPortaleAmministratore.setBounds(100, 100, 1483, 804);
 		frmPortaleAmministratore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPortaleAmministratore.getContentPane().setLayout(new BorderLayout(0, 0));
-		
+
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.setForeground(Color.LIGHT_GRAY);
 		frmPortaleAmministratore.getContentPane().add(btnNewButton, BorderLayout.CENTER);
-		
+
 		JPanel panel = new JPanel();
 		frmPortaleAmministratore.getContentPane().add(panel, BorderLayout.WEST);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] {30, 0, 180};
-		gbl_panel.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 30, 0, 180 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblNewLabel = new JLabel("Nome");
 		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 25));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -86,7 +86,7 @@ public class PortaleAmministratore {
 		gbc_lblNewLabel.gridx = 1;
 		gbc_lblNewLabel.gridy = 1;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Cognome");
 		lblNewLabel_1.setFont(new Font("Impact", Font.PLAIN, 25));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -95,16 +95,16 @@ public class PortaleAmministratore {
 		gbc_lblNewLabel_1.gridx = 1;
 		gbc_lblNewLabel_1.gridy = 2;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Matricolaa");
-		lblNewLabel_2.setFont(new Font("Impact", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_2.gridx = 1;
-		gbc_lblNewLabel_2.gridy = 3;
-		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
+
+		JLabel MatricolaLabel = new JLabel("Matricola");
+		MatricolaLabel.setFont(new Font("Impact", Font.PLAIN, 20));
+		GridBagConstraints gbc_MatricolaLabel = new GridBagConstraints();
+		gbc_MatricolaLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_MatricolaLabel.anchor = GridBagConstraints.WEST;
+		gbc_MatricolaLabel.gridx = 1;
+		gbc_MatricolaLabel.gridy = 3;
+		panel.add(MatricolaLabel, gbc_MatricolaLabel);
+
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
 		GridBagConstraints gbc_separator = new GridBagConstraints();
@@ -116,7 +116,7 @@ public class PortaleAmministratore {
 		gbc_separator.gridx = 0;
 		gbc_separator.gridy = 4;
 		panel.add(separator, gbc_separator);
-		
+
 		JButton btnNewButton_1 = new JButton("Gestione Personale");
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setForeground(Color.BLACK);

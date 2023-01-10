@@ -50,9 +50,11 @@ public class PopUpLicenziaImpiegato extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {							//Quando viene premuto il bottone OK, ATTUALMENTE si chiude il popUp
+				okButton.addActionListener(new ActionListener() { // Quando viene premuto il bottone OK, ATTUALMENTE si
+																	// chiude il popUp
 					public void actionPerformed(ActionEvent e) {
 						dispose();
+
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -61,7 +63,8 @@ public class PopUpLicenziaImpiegato extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {						//Quando viene premuto il bottone Cancel, ATTUALMENTE si chiude il popUp
+				cancelButton.addActionListener(new ActionListener() { // Quando viene premuto il bottone Cancel,
+																		// ATTUALMENTE si chiude il popUp
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
