@@ -65,7 +65,7 @@ public class PortaleImpiegato extends JFrame {
 		setBounds(100, 100, 1280, 800);
 		PortaleImp = new JPanel();
 		PortaleImp.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);															//TUTTO SCHERMO
+		setExtendedState(JFrame.MAXIMIZED_BOTH);															//TUTTO SCHERMO
 
 		setContentPane(PortaleImp);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
