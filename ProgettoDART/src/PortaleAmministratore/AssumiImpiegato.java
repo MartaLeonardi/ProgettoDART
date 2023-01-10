@@ -24,6 +24,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.SoftBevelBorder;
+import java.awt.SystemColor;
 
 public class AssumiImpiegato extends JFrame {
 
@@ -43,8 +49,8 @@ public class AssumiImpiegato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AssumiImpiegato frame = new AssumiImpiegato();
-					frame.setVisible(true);
+					AssumiImpiegato assumiImpiegato = new AssumiImpiegato();
+					assumiImpiegato.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,17 +64,17 @@ public class AssumiImpiegato extends JFrame {
 	public AssumiImpiegato() {
 		setTitle("Assumi Impiegato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1293, 709);
+		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
 		contentPane.setEnabled(false);
 
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new CompoundBorder());
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 205, 0, 500, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWidths = new int[] { 0, 205, 0, 500, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
@@ -80,6 +86,21 @@ public class AssumiImpiegato extends JFrame {
 		gbc_assumiImpiegatoLabel.gridx = 1;
 		gbc_assumiImpiegatoLabel.gridy = 1;
 		contentPane.add(assumiImpiegatoLabel, gbc_assumiImpiegatoLabel);
+
+		JButton indietroButtom = new JButton("Indietro");
+		indietroButtom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PortaleAmministratore portaleAmm = new PortaleAmministratore();
+				portaleAmm.setVisible(true);
+				dispose();
+			}
+		});
+		indietroButtom.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_indietroButtom = new GridBagConstraints();
+		gbc_indietroButtom.insets = new Insets(0, 0, 5, 5);
+		gbc_indietroButtom.gridx = 6;
+		gbc_indietroButtom.gridy = 1;
+		contentPane.add(indietroButtom, gbc_indietroButtom);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));

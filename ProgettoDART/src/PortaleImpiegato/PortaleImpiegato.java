@@ -66,8 +66,17 @@ public class PortaleImpiegato extends JFrame {
 		PortaleImp = new JPanel();
 		PortaleImp.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setExtendedState(JFrame.MAXIMIZED_BOTH); // TUTTO SCHERMO
+
 		setContentPane(PortaleImp);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
+
+		gbl_contentPane.columnWidths = new int[] { 204, 1039, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
+		PortaleImp.setLayout(gbl_contentPane);
+
 		gbl_contentPane.columnWidths = new int[] { 204, 1039, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
@@ -148,26 +157,87 @@ public class PortaleImpiegato extends JFrame {
 
 		JButton FirmaIngressoButton = new JButton("Firma ingresso");
 
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// FIRMA INGRESSO > FirmaIngresso.java
+		FirmaIngressoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				FirmaIngresso FirmaIngresso = new FirmaIngresso();
+				FirmaIngresso.setVisible(true);
+
+			}
+		});
+
 		FirmaIngressoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(FirmaIngressoButton);
 
 		JButton VisualizzaStipendioButton = new JButton("Visualizza stipendio");
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// VISUALIZZA STIPENDIO> VisualizzaStipendio.java
+		VisualizzaStipendioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				VisualizzaStipendio visualizzaStipendio = new VisualizzaStipendio();
+				visualizzaStipendio.setVisible(true);
+
+			}
+		});
 		VisualizzaStipendioButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(VisualizzaStipendioButton);
 
 		JButton VisualizzaOrarioButton = new JButton("Visualizza orario");
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// VISUALIZZA ORARIO > VisualizzaOrario.java
+		VisualizzaOrarioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				VisualizzaOrario visualizzaOrario = new VisualizzaOrario();
+				visualizzaOrario.setVisible(true);
+
+			}
+		});
 		VisualizzaOrarioButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(VisualizzaOrarioButton);
 
 		JButton RichiediPermessoButton = new JButton("Richiedi permesso");
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// RICHIEDI PERMESSO > RichiediPermesso.java
+		RichiediPermessoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				RichiediPermesso richiediPermesso = new RichiediPermesso();
+				richiediPermesso.setVisible(true);
+
+			}
+		});
 		RichiediPermessoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(RichiediPermessoButton);
 
 		JButton RichiediScioperoButton = new JButton("Richiedi sciopero");
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// RICHIEDI SCIOPERO > RichiediSciopero.java
+		RichiediScioperoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				RichiediSciopero richiediSciopero = new RichiediSciopero();
+				richiediSciopero.setVisible(true);
+
+			}
+		});
 		RichiediScioperoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(RichiediScioperoButton);
 
 		JButton RichiediFerieButton = new JButton("Richiedi ferie");
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// RICHIEDI FERIE > RichiediFerie.java
+		RichiediFerieButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				RichiediFerie richiediFerie = new RichiediFerie();
+				richiediFerie.setVisible(true);
+
+			}
+		});
 		RichiediFerieButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(RichiediFerieButton);
 

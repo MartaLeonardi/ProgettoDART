@@ -49,15 +49,16 @@ public class LicenziaImpiegato extends JFrame {
 	public LicenziaImpiegato() {
 		setTitle("Licenzia Impiegato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1020, 980);
+		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
@@ -68,6 +69,22 @@ public class LicenziaImpiegato extends JFrame {
 		gbc_licenziaImpiegatoLabel.gridx = 1;
 		gbc_licenziaImpiegatoLabel.gridy = 1;
 		contentPane.add(licenziaImpiegatoLabel, gbc_licenziaImpiegatoLabel);
+
+		JButton indietrobuttom = new JButton("Indietro");
+		indietrobuttom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PortaleAmministratore portaleAmm = new PortaleAmministratore();
+				portaleAmm.setVisible(true);
+				dispose();
+			}
+		});
+		indietrobuttom.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_indietrobuttom = new GridBagConstraints();
+		gbc_indietrobuttom.fill = GridBagConstraints.VERTICAL;
+		gbc_indietrobuttom.insets = new Insets(0, 0, 5, 0);
+		gbc_indietrobuttom.gridx = 10;
+		gbc_indietrobuttom.gridy = 1;
+		contentPane.add(indietrobuttom, gbc_indietrobuttom);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
@@ -147,6 +164,7 @@ public class LicenziaImpiegato extends JFrame {
 		JButton LicenziaButtom = new JButton("Licenzia");
 		LicenziaButtom.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_LicenziaButtom = new GridBagConstraints();
+		gbc_LicenziaButtom.insets = new Insets(0, 0, 0, 5);
 		gbc_LicenziaButtom.gridx = 4;
 		gbc_LicenziaButtom.gridy = 7;
 		contentPane.add(LicenziaButtom, gbc_LicenziaButtom);

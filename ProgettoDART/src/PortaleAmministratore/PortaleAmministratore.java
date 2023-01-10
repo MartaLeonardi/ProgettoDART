@@ -64,6 +64,7 @@ public class PortaleAmministratore extends JFrame {
 		setTitle("Portale amministratore");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		PortaleAmm = new JPanel();
 		PortaleAmm.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -143,18 +144,52 @@ public class PortaleAmministratore extends JFrame {
 		MenuUtente.add(FunzioniUtenteMenu, BorderLayout.CENTER);
 		GridBagLayout gbl_FunzioniUtenteMenu = new GridBagLayout();
 		gbl_FunzioniUtenteMenu.columnWidths = new int[] { 208, 0 };
-		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0 };
+		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0 };
 		gbl_FunzioniUtenteMenu.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		FunzioniUtenteMenu.setLayout(gbl_FunzioniUtenteMenu);
 
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();
+		gbc_separator.insets = new Insets(0, 0, 5, 0);
 		gbc_separator.anchor = GridBagConstraints.NORTH;
 		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
 		gbc_separator.gridx = 0;
 		gbc_separator.gridy = 0;
 		FunzioniUtenteMenu.add(separator, gbc_separator);
+
+		JButton AssumiImpiegatoButton = new JButton("Assumi Impiegato");
+		AssumiImpiegatoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AssumiImpiegato assumiImpiegato = new AssumiImpiegato();
+				assumiImpiegato.setVisible(true);
+				dispose();
+			}
+		});
+		AssumiImpiegatoButton.setFont(new Font("Arial", Font.PLAIN, 15));
+		GridBagConstraints gbc_AssumiImpiegatoButton = new GridBagConstraints();
+		gbc_AssumiImpiegatoButton.insets = new Insets(0, 0, 5, 0);
+		gbc_AssumiImpiegatoButton.ipady = 10;
+		gbc_AssumiImpiegatoButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_AssumiImpiegatoButton.gridx = 0;
+		gbc_AssumiImpiegatoButton.gridy = 1;
+		FunzioniUtenteMenu.add(AssumiImpiegatoButton, gbc_AssumiImpiegatoButton);
+
+		JButton licenziaImpiegato = new JButton("Licenzia Impiegato");
+		licenziaImpiegato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LicenziaImpiegato licenziaImpiegato = new LicenziaImpiegato();
+				licenziaImpiegato.setVisible(true);
+				dispose();
+			}
+		});
+		licenziaImpiegato.setFont(new Font("Arial", Font.PLAIN, 15));
+		GridBagConstraints gbc_licenziaImpiegato = new GridBagConstraints();
+		gbc_licenziaImpiegato.ipady = 10;
+		gbc_licenziaImpiegato.fill = GridBagConstraints.BOTH;
+		gbc_licenziaImpiegato.gridx = 0;
+		gbc_licenziaImpiegato.gridy = 2;
+		FunzioniUtenteMenu.add(licenziaImpiegato, gbc_licenziaImpiegato);
 
 		JPanel Pannello = new JPanel();
 		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -189,6 +224,7 @@ public class PortaleAmministratore extends JFrame {
 		CampanellaButton.setBorder(null);
 		CampanellaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 		CampanellaButton.setForeground(new Color(0, 0, 0));
