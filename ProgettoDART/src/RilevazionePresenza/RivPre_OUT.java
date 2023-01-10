@@ -98,7 +98,7 @@ public class RivPre_OUT extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//--------------------------------------------------------------------		EVENTO BOTTONE INDIETRO -> torna al frame RivPre
-				FormOUT.setVisible(false);
+				dispose();
 				RivPre_HOME window = new RivPre_HOME();
 				window.FirstFrame.setVisible(true);
 				//--------------------------------------------------------------------
