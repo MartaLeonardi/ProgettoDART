@@ -10,9 +10,6 @@ import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
-import java.awt.Container;
-
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
@@ -20,21 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import javax.swing.Box;
 import javax.swing.JSeparator;
-import java.awt.Component;
-import javax.swing.JSplitPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JDesktopPane;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import RilevazionePresenza.RivPre_IN;
-
-import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 
 public class PortaleImpiegato extends JFrame {

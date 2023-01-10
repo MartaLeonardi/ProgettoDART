@@ -1,10 +1,10 @@
 package PortaleImpiegato;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
 
 public class RichiediPermesso extends JFrame {
 
@@ -36,6 +36,7 @@ public class RichiediPermesso extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);	
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 	}
 
 }

@@ -2,7 +2,6 @@ package PortaleImpiegato;
 
 import java.awt.EventQueue;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,16 +17,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
-import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
-import javax.swing.JFormattedTextField;
 import java.awt.Insets;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
-import java.awt.GridLayout;
-import javax.swing.JSeparator;
-import java.awt.Color;
 
 public class RichiediSciopero extends JFrame {
 
