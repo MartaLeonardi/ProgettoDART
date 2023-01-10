@@ -31,12 +31,15 @@ import javax.swing.JDesktopPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import RilevazionePresenza.RivPre_IN;
+
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 
 public class PortaleImpiegato extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel PortaleImp;
 
 	/**
 	 * Launch the application.
@@ -45,8 +48,8 @@ public class PortaleImpiegato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PortaleImpiegato frame = new PortaleImpiegato();
-					frame.setVisible(true);
+					PortaleImpiegato PortaleImpiegato = new PortaleImpiegato();
+					PortaleImpiegato.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,16 +63,16 @@ public class PortaleImpiegato extends JFrame {
 	public PortaleImpiegato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		PortaleImp = new JPanel();
+		PortaleImp.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
+		setContentPane(PortaleImp);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{204, 1039, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		PortaleImp.setLayout(gbl_contentPane);
 		
 		JPanel MenuUtente = new JPanel();
 		MenuUtente.setBackground(new Color(175, 238, 238));
@@ -78,7 +81,7 @@ public class PortaleImpiegato extends JFrame {
 		gbc_MenuUtente.fill = GridBagConstraints.BOTH;
 		gbc_MenuUtente.gridx = 0;
 		gbc_MenuUtente.gridy = 0;
-		contentPane.add(MenuUtente, gbc_MenuUtente);
+		PortaleImp.add(MenuUtente, gbc_MenuUtente);
 		MenuUtente.setLayout(new BorderLayout(0, 0));
 		
 		JButton logoutButton = new JButton("LOGOUT");
@@ -146,6 +149,7 @@ public class PortaleImpiegato extends JFrame {
 		FunzioniUtenteMenu.add(separator);
 		
 		JButton FirmaIngressoButton = new JButton("Firma ingresso");
+	
 		FirmaIngressoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(FirmaIngressoButton);
 		
@@ -182,7 +186,7 @@ public class PortaleImpiegato extends JFrame {
 		gbc_Pannello.fill = GridBagConstraints.BOTH;
 		gbc_Pannello.gridx = 1;
 		gbc_Pannello.gridy = 0;
-		contentPane.add(Pannello, gbc_Pannello);
+		PortaleImp.add(Pannello, gbc_Pannello);
 		Pannello.setLayout(new BorderLayout(0, 0));
 		
 		JPanel IntestazioneLogoCampana = new JPanel();
