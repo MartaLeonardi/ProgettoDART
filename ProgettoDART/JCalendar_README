@@ -1,0 +1,14 @@
+README JCALENDAR.JAR
+
+SOLO DOPO AVER INSTALLATO IL PLUGIN WindowBuilder
+
+**PER INSTALLARE JCALENDAR.JAR ALL'INTERNO DI ECLIPSE (interfacciandosi al plugin WindowBuilder)
+	1.	Aprire una qualunque interfaccia già creata, e andare su "Design" come per modificarla normalmente
+	2.	Tasto destro su "Components" pesente nella "Palette"
+	3.	Scegliere "Import JAR"
+	4.	Accanto al campo relativo alla directory, è presente l'icona di una cartella,
+		cliccarci su e selezionare "Workspace" poichè il file JAR è presente nel progetto
+	5.	Scegliere poi il percorso file
+	6.	Selezionare tutte le componenti presenti nel file e cliccare "OK"
+	7.	Restart di Eclipse per apportare le modifiche
+	

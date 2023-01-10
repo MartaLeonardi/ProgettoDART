@@ -22,6 +22,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.Insets;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import com.toedter.calendar.JDateChooser;
 
 public class RichiediSciopero extends JFrame {
 
@@ -103,16 +104,8 @@ public class RichiediSciopero extends JFrame {
 		gbl_panel_3.columnWidths = new int[]{158, 315, 809, 0};
 		gbl_panel_3.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_panel_3.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
-		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 1;
-		panel_3.add(comboBox, gbc_comboBox);
 		
 		
 	}
