@@ -1,11 +1,12 @@
 package PortaleImpiegato;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class FirmaIngresso extends JFrame {
+public class RichiediSciopero extends JFrame {
 
 	private JPanel contentPane;
 
@@ -16,8 +17,8 @@ public class FirmaIngresso extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FirmaIngresso FirmaIngresso = new FirmaIngresso();
-					FirmaIngresso.setVisible(true);
+					RichiediSciopero frame = new RichiediSciopero();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -28,12 +29,12 @@ public class FirmaIngresso extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FirmaIngresso() {
+	public RichiediSciopero() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,1280, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);															//TUTTO SCHERMO
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);	
 		setContentPane(contentPane);
 	}
 
