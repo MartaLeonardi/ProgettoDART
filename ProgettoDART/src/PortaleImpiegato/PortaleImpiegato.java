@@ -31,6 +31,8 @@ import javax.swing.JDesktopPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
 
 public class PortaleImpiegato extends JFrame {
 
@@ -57,114 +59,166 @@ public class PortaleImpiegato extends JFrame {
 	 */
 	public PortaleImpiegato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1158, 751);
+		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{236, 932, 0};
+		gbl_contentPane.columnWidths = new int[]{204, 1039, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(175, 238, 238));
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		contentPane.add(panel, gbc_panel);
-		panel.setLayout(new BorderLayout(0, 0));
+		JPanel MenuUtente = new JPanel();
+		MenuUtente.setBackground(new Color(175, 238, 238));
+		GridBagConstraints gbc_MenuUtente = new GridBagConstraints();
+		gbc_MenuUtente.insets = new Insets(0, 0, 0, 5);
+		gbc_MenuUtente.fill = GridBagConstraints.BOTH;
+		gbc_MenuUtente.gridx = 0;
+		gbc_MenuUtente.gridy = 0;
+		contentPane.add(MenuUtente, gbc_MenuUtente);
+		MenuUtente.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton = new JButton("LOGOUT");
-		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		btnNewButton.setBackground(new Color(173, 216, 230));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton logoutButton = new JButton("LOGOUT");
+		logoutButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		logoutButton.setBackground(new Color(173, 216, 230));
+		logoutButton.addActionListener(new ActionListener() {
 			
 			
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel.add(btnNewButton, BorderLayout.SOUTH);
+		MenuUtente.add(logoutButton, BorderLayout.SOUTH);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(175, 238, 238));
-		panel.add(panel_2, BorderLayout.NORTH);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] {10, 0};
-		gbl_panel_2.rowHeights = new int[] {0, 29, 0, 0, 0};
-		gbl_panel_2.columnWeights = new double[]{1.0, 1.0};
-		gbl_panel_2.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0};
-		panel_2.setLayout(gbl_panel_2);
+		JPanel AnagraficaUtenteMenu = new JPanel();
+		AnagraficaUtenteMenu.setBackground(new Color(175, 238, 238));
+		MenuUtente.add(AnagraficaUtenteMenu, BorderLayout.NORTH);
+		GridBagLayout gbl_AnagraficaUtenteMenu = new GridBagLayout();
+		gbl_AnagraficaUtenteMenu.columnWidths = new int[] {10, 102};
+		gbl_AnagraficaUtenteMenu.rowHeights = new int[] {130};
+		gbl_AnagraficaUtenteMenu.columnWeights = new double[]{1.0, 1.0};
+		gbl_AnagraficaUtenteMenu.rowWeights = new double[]{1.0};
+		AnagraficaUtenteMenu.setLayout(gbl_AnagraficaUtenteMenu);
 		
 		JLabel UserImg = new JLabel("");
-		Image imgUser = new ImageIcon (this.getClass().getResource("/utenteRid.png")).getImage();
+		Image imgUser = new ImageIcon (this.getClass().getResource("/utenteRid100.png")).getImage();
 		UserImg.setIcon(new ImageIcon(imgUser));
 		
 		
-		
-		
-		
-		
-		
-		
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 0;
-		panel_2.add(UserImg, gbc_lblNewLabel_1);
+		AnagraficaUtenteMenu.add(UserImg, gbc_lblNewLabel_1);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(175, 238, 238));
+		panel_3.setLayout(null);
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_3.fill = GridBagConstraints.BOTH;
 		gbc_panel_3.gridx = 1;
 		gbc_panel_3.gridy = 0;
-		panel_2.add(panel_3, gbc_panel_3);
+		AnagraficaUtenteMenu.add(panel_3, gbc_panel_3);
 		
-		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		panel_2.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel nomeValue = new JLabel("Nome:");
+		nomeValue.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		nomeValue.setBounds(0, 10, 66, 30);
+		panel_3.add(nomeValue);
 		
-		JLabel lblCognome = new JLabel("Cognome:");
-		lblCognome.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblCognome = new GridBagConstraints();
-		gbc_lblCognome.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCognome.gridx = 0;
-		gbc_lblCognome.gridy = 2;
-		panel_2.add(lblCognome, gbc_lblCognome);
+		JLabel cognomeValue = new JLabel("Cognome:");
+		cognomeValue.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		cognomeValue.setBounds(0, 50, 102, 30);
+		panel_3.add(cognomeValue);
 		
-		JLabel lblMatricola = new JLabel("Matricola:");
-		lblMatricola.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblMatricola = new GridBagConstraints();
-		gbc_lblMatricola.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMatricola.gridx = 0;
-		gbc_lblMatricola.gridy = 3;
-		panel_2.add(lblMatricola, gbc_lblMatricola);
+		JLabel matricolaValue = new JLabel("Matricola:");
+		matricolaValue.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		matricolaValue.setBounds(0, 90, 105, 30);
+		panel_3.add(matricolaValue);
+		
+		JPanel FunzioniUtenteMenu = new JPanel();
+		FunzioniUtenteMenu.setBackground(new Color(175, 238, 238));
+		MenuUtente.add(FunzioniUtenteMenu, BorderLayout.CENTER);
+		FunzioniUtenteMenu.setLayout(new GridLayout(13, 1, 10, 5));
 		
 		JSeparator separator = new JSeparator();
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.insets = new Insets(0, 0, 0, 5);
-		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 4;
-		panel_2.add(separator, gbc_separator);
+		FunzioniUtenteMenu.add(separator);
+		
+		JButton FirmaIngressoButton = new JButton("Firma ingresso");
+		FirmaIngressoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(FirmaIngressoButton);
+		
+		JButton VisualizzaStipendioButton = new JButton("Visualizza stipendio");
+		VisualizzaStipendioButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(VisualizzaStipendioButton);
+		
+		JButton VisualizzaOrarioButton = new JButton("Visualizza orario");
+		VisualizzaOrarioButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(VisualizzaOrarioButton);
+		
+		JButton RichiediPermessoButton = new JButton("Richiedi permesso");
+		RichiediPermessoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(RichiediPermessoButton);
+		
+		JButton RichiediScioperoButton = new JButton("Richiedi sciopero");
+		RichiediScioperoButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(RichiediScioperoButton);
+		
+		JButton RichiediFerieButton = new JButton("Richiedi ferie");
+		RichiediFerieButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(RichiediFerieButton);
+		
+		JButton ModificaAccountButton = new JButton("Modifica account");
+		ModificaAccountButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		FunzioniUtenteMenu.add(ModificaAccountButton);
 	
 		
 		
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 1;
-		gbc_panel_1.gridy = 0;
-		contentPane.add(panel_1, gbc_panel_1);
+		JPanel Pannello = new JPanel();
+		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));
+		GridBagConstraints gbc_Pannello = new GridBagConstraints();
+		gbc_Pannello.fill = GridBagConstraints.BOTH;
+		gbc_Pannello.gridx = 1;
+		gbc_Pannello.gridy = 0;
+		contentPane.add(Pannello, gbc_Pannello);
+		Pannello.setLayout(new BorderLayout(0, 0));
+		
+		JPanel IntestazioneLogoCampana = new JPanel();
+		Pannello.add(IntestazioneLogoCampana, BorderLayout.NORTH);
+		GridBagLayout gbl_IntestazioneLogoCampana = new GridBagLayout();
+		gbl_IntestazioneLogoCampana.columnWidths = new int[] {0, 10};
+		gbl_IntestazioneLogoCampana.rowHeights = new int[] {0};
+		gbl_IntestazioneLogoCampana.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_IntestazioneLogoCampana.rowWeights = new double[]{0.0};
+		IntestazioneLogoCampana.setLayout(gbl_IntestazioneLogoCampana);
+		
+		JLabel LogoImg = new JLabel("");
+		Image imgLogo = new ImageIcon (this.getClass().getResource("/logo.png")).getImage();
+		LogoImg.setIcon(new ImageIcon(imgLogo));
+		
+		GridBagConstraints gbc_LogoImg = new GridBagConstraints();
+		gbc_LogoImg.insets = new Insets(0, 0, 0, 5);
+		gbc_LogoImg.gridx = 0;
+		gbc_LogoImg.gridy = 0;
+		IntestazioneLogoCampana.add(LogoImg, gbc_LogoImg);
+		
+		JButton CampanellaButton = new JButton(" ");
+		CampanellaButton.setBackground(new Color(240, 240, 240));
+		CampanellaButton.setBorder(null);
+		CampanellaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		CampanellaButton.setForeground(new Color(0, 0, 0));
+		Image imgCampanella = new ImageIcon (this.getClass().getResource("/campanellaRid50.png")).getImage();
+		CampanellaButton.setIcon(new ImageIcon(imgCampanella));
+		
+		GridBagConstraints gbc_CampanellaButton = new GridBagConstraints();
+		gbc_CampanellaButton.anchor = GridBagConstraints.NORTHEAST;
+		gbc_CampanellaButton.gridx = 1;
+		gbc_CampanellaButton.gridy = 0;
+		IntestazioneLogoCampana.add(CampanellaButton, gbc_CampanellaButton);
 	}
 }
