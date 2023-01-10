@@ -3,32 +3,43 @@ package PortaleAmministratore;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
+import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
-import java.awt.Font;
 import java.awt.Insets;
-import javax.swing.JSeparator;
 import java.awt.Color;
-import javax.swing.JComboBox;
-import javax.swing.JToggleButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
+import java.awt.Container;
+
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import javax.swing.Box;
+import javax.swing.JSeparator;
 import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JMenu;
-import javax.swing.JList;
-import javax.swing.UIManager;
+import javax.swing.JSplitPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JDesktopPane;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
-public class PortaleAmministratore {
+import RilevazionePresenza.RivPre_IN;
 
-	private JFrame frmPortaleAmministratore;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
+
+public class PortaleAmministratore extends JFrame {
+
+	private JPanel PortaleAmm;
 
 	/**
 	 * Launch the application.
@@ -37,8 +48,8 @@ public class PortaleAmministratore {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PortaleAmministratore window = new PortaleAmministratore();
-					window.frmPortaleAmministratore.setVisible(true);
+					PortaleAmministratore portaleAmministratore = new PortaleAmministratore();
+					portaleAmministratore.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,87 +58,148 @@ public class PortaleAmministratore {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public PortaleAmministratore() {
-		initialize();
-	}
+		setTitle("Portale amministratore");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1280, 800);
+		PortaleAmm = new JPanel();
+		PortaleAmm.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmPortaleAmministratore = new JFrame();
-		frmPortaleAmministratore.setTitle("Portale Amministratore");
-		frmPortaleAmministratore.setBounds(100, 100, 1483, 804);
-		frmPortaleAmministratore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmPortaleAmministratore.getContentPane().setLayout(new BorderLayout(0, 0));
+		setContentPane(PortaleAmm);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[] { 204, 1039, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
+		PortaleAmm.setLayout(gbl_contentPane);
+		JPanel MenuUtente = new JPanel();
+		MenuUtente.setBackground(new Color(175, 238, 238));
+		GridBagConstraints gbc_MenuUtente = new GridBagConstraints();
+		gbc_MenuUtente.insets = new Insets(0, 0, 0, 5);
+		gbc_MenuUtente.fill = GridBagConstraints.BOTH;
+		gbc_MenuUtente.gridx = 0;
+		gbc_MenuUtente.gridy = 0;
+		PortaleAmm.add(MenuUtente, gbc_MenuUtente);
+		MenuUtente.setLayout(new BorderLayout(0, 0));
 
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
-		btnNewButton.setForeground(Color.LIGHT_GRAY);
-		frmPortaleAmministratore.getContentPane().add(btnNewButton, BorderLayout.CENTER);
+		JButton logoutButton = new JButton("LOGOUT");
+		logoutButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		logoutButton.setBackground(new Color(173, 216, 230));
+		logoutButton.addActionListener(new ActionListener() {
 
-		JPanel panel = new JPanel();
-		frmPortaleAmministratore.getContentPane().add(panel, BorderLayout.WEST);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 30, 0, 180 };
-		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20 };
-		gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
-		panel.setLayout(gbl_panel);
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		MenuUtente.add(logoutButton, BorderLayout.SOUTH);
 
-		JLabel lblNewLabel = new JLabel("Nome");
-		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 1;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		JPanel AnagraficaUtenteMenu = new JPanel();
+		AnagraficaUtenteMenu.setBackground(new Color(175, 238, 238));
+		MenuUtente.add(AnagraficaUtenteMenu, BorderLayout.NORTH);
+		GridBagLayout gbl_AnagraficaUtenteMenu = new GridBagLayout();
+		gbl_AnagraficaUtenteMenu.columnWidths = new int[] { 10, 102 };
+		gbl_AnagraficaUtenteMenu.rowHeights = new int[] { 130 };
+		gbl_AnagraficaUtenteMenu.columnWeights = new double[] { 1.0, 1.0 };
+		gbl_AnagraficaUtenteMenu.rowWeights = new double[] { 1.0 };
+		AnagraficaUtenteMenu.setLayout(gbl_AnagraficaUtenteMenu);
 
-		JLabel lblNewLabel_1 = new JLabel("Cognome");
-		lblNewLabel_1.setFont(new Font("Impact", Font.PLAIN, 25));
+		JLabel UserImg = new JLabel("");
+		Image imgUser = new ImageIcon(this.getClass().getResource("/utenteRid100.png")).getImage();
+		UserImg.setIcon(new ImageIcon(imgUser));
+
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 2;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 0;
+		AnagraficaUtenteMenu.add(UserImg, gbc_lblNewLabel_1);
 
-		JLabel MatricolaLabel = new JLabel("Matricola");
-		MatricolaLabel.setFont(new Font("Impact", Font.PLAIN, 20));
-		GridBagConstraints gbc_MatricolaLabel = new GridBagConstraints();
-		gbc_MatricolaLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_MatricolaLabel.anchor = GridBagConstraints.WEST;
-		gbc_MatricolaLabel.gridx = 1;
-		gbc_MatricolaLabel.gridy = 3;
-		panel.add(MatricolaLabel, gbc_MatricolaLabel);
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(175, 238, 238));
+		panel_3.setLayout(null);
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.gridx = 1;
+		gbc_panel_3.gridy = 0;
+		AnagraficaUtenteMenu.add(panel_3, gbc_panel_3);
+
+		JLabel nomeValue = new JLabel("Nome:");
+		nomeValue.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		nomeValue.setBounds(0, 10, 66, 30);
+		panel_3.add(nomeValue);
+
+		JLabel cognomeValue = new JLabel("Cognome:");
+		cognomeValue.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		cognomeValue.setBounds(0, 50, 102, 30);
+		panel_3.add(cognomeValue);
+
+		JLabel matricolaValue = new JLabel("Matricola:");
+		matricolaValue.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		matricolaValue.setBounds(0, 90, 105, 30);
+		panel_3.add(matricolaValue);
+
+		JPanel FunzioniUtenteMenu = new JPanel();
+		FunzioniUtenteMenu.setBackground(new Color(175, 238, 238));
+		MenuUtente.add(FunzioniUtenteMenu, BorderLayout.CENTER);
+		GridBagLayout gbl_FunzioniUtenteMenu = new GridBagLayout();
+		gbl_FunzioniUtenteMenu.columnWidths = new int[] { 208, 0 };
+		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0 };
+		gbl_FunzioniUtenteMenu.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		FunzioniUtenteMenu.setLayout(gbl_FunzioniUtenteMenu);
 
 		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(0, 0, 0));
 		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.ipady = 1;
-		gbc_separator.ipadx = 1;
-		gbc_separator.fill = GridBagConstraints.BOTH;
-		gbc_separator.gridwidth = 4;
-		gbc_separator.insets = new Insets(1, 1, 5, 8);
+		gbc_separator.anchor = GridBagConstraints.NORTH;
+		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
 		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 4;
-		panel.add(separator, gbc_separator);
+		gbc_separator.gridy = 0;
+		FunzioniUtenteMenu.add(separator, gbc_separator);
 
-		JButton btnNewButton_1 = new JButton("Gestione Personale");
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setForeground(Color.BLACK);
-		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton_1.setToolTipText("");
-		btnNewButton_1.setBackground(new Color(240, 240, 240));
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_1.gridx = 1;
-		gbc_btnNewButton_1.gridy = 6;
-		panel.add(btnNewButton_1, gbc_btnNewButton_1);
+		JPanel Pannello = new JPanel();
+		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));
+		GridBagConstraints gbc_Pannello = new GridBagConstraints();
+		gbc_Pannello.fill = GridBagConstraints.BOTH;
+		gbc_Pannello.gridx = 1;
+		gbc_Pannello.gridy = 0;
+		PortaleAmm.add(Pannello, gbc_Pannello);
+		Pannello.setLayout(new BorderLayout(0, 0));
+
+		JPanel IntestazioneLogoCampana = new JPanel();
+		Pannello.add(IntestazioneLogoCampana, BorderLayout.NORTH);
+		GridBagLayout gbl_IntestazioneLogoCampana = new GridBagLayout();
+		gbl_IntestazioneLogoCampana.columnWidths = new int[] { 0, 10 };
+		gbl_IntestazioneLogoCampana.rowHeights = new int[] { 0 };
+		gbl_IntestazioneLogoCampana.columnWeights = new double[] { Double.MIN_VALUE };
+		gbl_IntestazioneLogoCampana.rowWeights = new double[] { 0.0 };
+		IntestazioneLogoCampana.setLayout(gbl_IntestazioneLogoCampana);
+
+		JLabel LogoImg = new JLabel("");
+		Image imgLogo = new ImageIcon(this.getClass().getResource("/logo.png")).getImage();
+		LogoImg.setIcon(new ImageIcon(imgLogo));
+
+		GridBagConstraints gbc_LogoImg = new GridBagConstraints();
+		gbc_LogoImg.insets = new Insets(0, 0, 0, 5);
+		gbc_LogoImg.gridx = 0;
+		gbc_LogoImg.gridy = 0;
+		IntestazioneLogoCampana.add(LogoImg, gbc_LogoImg);
+
+		JButton CampanellaButton = new JButton(" ");
+		CampanellaButton.setBackground(new Color(240, 240, 240));
+		CampanellaButton.setBorder(null);
+		CampanellaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		CampanellaButton.setForeground(new Color(0, 0, 0));
+		Image imgCampanella = new ImageIcon(this.getClass().getResource("/campanellaRid50.png")).getImage();
+		CampanellaButton.setIcon(new ImageIcon(imgCampanella));
+
+		GridBagConstraints gbc_CampanellaButton = new GridBagConstraints();
+		gbc_CampanellaButton.anchor = GridBagConstraints.NORTHEAST;
+		gbc_CampanellaButton.gridx = 1;
+		gbc_CampanellaButton.gridy = 0;
+		IntestazioneLogoCampana.add(CampanellaButton, gbc_CampanellaButton);
 	}
 
 }

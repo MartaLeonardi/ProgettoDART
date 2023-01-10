@@ -98,12 +98,11 @@ public class RivPre_IN extends JFrame {
 		JButton btnNewButton = new JButton("INDIETRO");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// -------------------------------------------------------------------- EVENTO
-				// BOTTONE INDIETRO -> torna al frame RivPre
-				FormIN.setVisible(false);
+				//--------------------------------------------------------------------		EVENTO BOTTONE INDIETRO -> torna al frame RivPre
+				dispose();
 				RivPre_HOME window = new RivPre_HOME();
 				window.FirstFrame.setVisible(true);
-				// --------------------------------------------------------------------
+				//--------------------------------------------------------------------
 			}
 		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
