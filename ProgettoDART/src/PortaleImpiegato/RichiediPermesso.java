@@ -252,4 +252,5 @@ public class RichiediPermesso extends JFrame {
 		panel_5.add(btnNewButton);
 	}
 
+	
 }

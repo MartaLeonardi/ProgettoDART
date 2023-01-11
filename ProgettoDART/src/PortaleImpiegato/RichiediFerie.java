@@ -183,4 +183,5 @@ public class RichiediFerie extends JFrame {
 		panel_3.add(btnNewButton, gbc_btnNewButton);
 	}
 
+	
 }
