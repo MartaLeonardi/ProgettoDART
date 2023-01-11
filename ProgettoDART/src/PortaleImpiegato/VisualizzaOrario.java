@@ -62,7 +62,7 @@ public class VisualizzaOrario extends JFrame {
 		setBounds(100, 100,1280, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);	
+		setExtendedState(JFrame.MAXIMIZED_BOTH);	
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		

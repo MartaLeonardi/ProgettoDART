@@ -15,6 +15,12 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import javax.swing.JTable;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
 
 public class VisualizzaStipendio extends JFrame {
 
@@ -70,6 +76,15 @@ public class VisualizzaStipendio extends JFrame {
 		IndietroButton.setHorizontalAlignment(SwingConstants.LEFT);
 		IndietroButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		panel_1.add(IndietroButton);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] {300, 667, 300};
+		gbl_panel.rowHeights = new int[]{72, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0};
+		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 	}
 
 }

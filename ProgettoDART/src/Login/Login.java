@@ -7,7 +7,10 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.CardLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
@@ -70,14 +73,17 @@ public class Login {
 		frmLogin.setTitle("Login");
 		frmLogin.getContentPane().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		frmLogin.getContentPane().setFont(new Font("Impact", Font.PLAIN, 30));
-		frmLogin.setBounds(100, 100, 905, 476);
+		frmLogin.setBounds(100, 100, 1280, 800);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(new BorderLayout(200, 10));
 		
-		JLabel loginLabel = new JLabel("LOGIN");
-		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		loginLabel.setFont(new Font("Impact", Font.PLAIN, 30));
-		frmLogin.getContentPane().add(loginLabel, BorderLayout.NORTH);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH); // TUTTO SCHERMO
+
+		
+		JLabel LogoImg = new JLabel("");
+		LogoImg.setHorizontalAlignment(SwingConstants.CENTER);
+		Image imgLogo = new ImageIcon (this.getClass().getResource("/logo.png")).getImage();
+		frmLogin.getContentPane().add(LogoImg, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
