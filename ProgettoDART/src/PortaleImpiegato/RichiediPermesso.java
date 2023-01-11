@@ -125,6 +125,7 @@ public class RichiediPermesso extends JFrame {
 		panel_3_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Malattia", "Congedo parentale"}));
 		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
