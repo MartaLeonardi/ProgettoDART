@@ -146,9 +146,9 @@ public class PortaleAmministratore extends JFrame {
 		MenuUtente.add(FunzioniUtenteMenu, BorderLayout.CENTER);
 		GridBagLayout gbl_FunzioniUtenteMenu = new GridBagLayout();
 		gbl_FunzioniUtenteMenu.columnWidths = new int[] { 208, 0 };
-		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0, 0 };
-		gbl_FunzioniUtenteMenu.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
-		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0, 0, 0 };
+		gbl_FunzioniUtenteMenu.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		FunzioniUtenteMenu.setLayout(gbl_FunzioniUtenteMenu);
 
 		JSeparator separator = new JSeparator();
@@ -208,7 +208,7 @@ public class PortaleAmministratore extends JFrame {
 		visSchedaImpiegato.setMaximumSize(new Dimension(121, 23));
 		visSchedaImpiegato.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_visSchedaImpiegato = new GridBagConstraints();
-		gbc_visSchedaImpiegato.ipady = 10;
+		gbc_visSchedaImpiegato.ipady = 15;
 		gbc_visSchedaImpiegato.insets = new Insets(0, 0, 5, 0);
 		gbc_AssumiImpiegatoButton.insets = new Insets(0, 0, 5, 0);
 		gbc_AssumiImpiegatoButton.ipady = 10;
@@ -216,6 +216,26 @@ public class PortaleAmministratore extends JFrame {
 		gbc_visSchedaImpiegato.gridx = 0;
 		gbc_visSchedaImpiegato.gridy = 3;
 		FunzioniUtenteMenu.add(visSchedaImpiegato, gbc_visSchedaImpiegato);
+
+		JButton visTurniButtom = new JButton("Visualizza Turni");
+		visTurniButtom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualizzaTurni visTurni = new VisualizzaTurni();
+				visTurni.setVisible(true);
+				dispose();
+			}
+		});
+		visTurniButtom.setPreferredSize(new Dimension(121, 23));
+		visTurniButtom.setMinimumSize(new Dimension(121, 23));
+		visTurniButtom.setMaximumSize(new Dimension(121, 23));
+		visTurniButtom.setFont(new Font("Arial", Font.PLAIN, 15));
+		visTurniButtom.setBounds(new Rectangle(0, 0, 0, 4));
+		GridBagConstraints gbc_visTurniButtom = new GridBagConstraints();
+		gbc_visTurniButtom.fill = GridBagConstraints.HORIZONTAL;
+		gbc_visTurniButtom.ipady = 15;
+		gbc_visTurniButtom.gridx = 0;
+		gbc_visTurniButtom.gridy = 4;
+		FunzioniUtenteMenu.add(visTurniButtom, gbc_visTurniButtom);
 
 		JPanel Pannello = new JPanel();
 		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));
