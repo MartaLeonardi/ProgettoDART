@@ -32,6 +32,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import Login.LoginJFrame;
 import RilevazionePresenza.RivPre_IN;
 
 import javax.swing.SwingConstants;
@@ -99,6 +100,9 @@ public class PortaleImpiegato extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				LoginJFrame login = new LoginJFrame();
+				login.setVisible(true);
+				dispose();
 			}
 		});
 		MenuUtente.add(logoutButton, BorderLayout.SOUTH);
