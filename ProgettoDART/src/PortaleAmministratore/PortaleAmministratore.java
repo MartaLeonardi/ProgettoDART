@@ -32,10 +32,13 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import Login.LoginJFrame;
 import RilevazionePresenza.RivPre_IN;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
 public class PortaleAmministratore extends JFrame {
 
@@ -91,6 +94,9 @@ public class PortaleAmministratore extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				LoginJFrame login = new LoginJFrame();
+				login.setVisible(true);
+				dispose();
 			}
 		});
 		MenuUtente.add(logoutButton, BorderLayout.SOUTH);
@@ -144,9 +150,9 @@ public class PortaleAmministratore extends JFrame {
 		MenuUtente.add(FunzioniUtenteMenu, BorderLayout.CENTER);
 		GridBagLayout gbl_FunzioniUtenteMenu = new GridBagLayout();
 		gbl_FunzioniUtenteMenu.columnWidths = new int[] { 208, 0 };
-		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0 };
+		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0, 0, 0 };
 		gbl_FunzioniUtenteMenu.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		FunzioniUtenteMenu.setLayout(gbl_FunzioniUtenteMenu);
 
 		JSeparator separator = new JSeparator();
@@ -185,11 +191,55 @@ public class PortaleAmministratore extends JFrame {
 		});
 		licenziaImpiegato.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_licenziaImpiegato = new GridBagConstraints();
+		gbc_licenziaImpiegato.insets = new Insets(0, 0, 5, 0);
 		gbc_licenziaImpiegato.ipady = 10;
 		gbc_licenziaImpiegato.fill = GridBagConstraints.BOTH;
 		gbc_licenziaImpiegato.gridx = 0;
 		gbc_licenziaImpiegato.gridy = 2;
 		FunzioniUtenteMenu.add(licenziaImpiegato, gbc_licenziaImpiegato);
+
+		JButton visSchedaImpiegato = new JButton("Visualizza Scheda Imp.");
+		visSchedaImpiegato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualizzaSchedaImpiegato visSchedaImp = new VisualizzaSchedaImpiegato();
+				visSchedaImp.setVisible(true);
+				dispose();
+			}
+		});
+		visSchedaImpiegato.setBounds(new Rectangle(0, 0, 0, 4));
+		visSchedaImpiegato.setPreferredSize(new Dimension(121, 23));
+		visSchedaImpiegato.setMinimumSize(new Dimension(121, 23));
+		visSchedaImpiegato.setMaximumSize(new Dimension(121, 23));
+		visSchedaImpiegato.setFont(new Font("Arial", Font.PLAIN, 15));
+		GridBagConstraints gbc_visSchedaImpiegato = new GridBagConstraints();
+		gbc_visSchedaImpiegato.ipady = 15;
+		gbc_visSchedaImpiegato.insets = new Insets(0, 0, 5, 0);
+		gbc_AssumiImpiegatoButton.insets = new Insets(0, 0, 5, 0);
+		gbc_AssumiImpiegatoButton.ipady = 10;
+		gbc_visSchedaImpiegato.fill = GridBagConstraints.BOTH;
+		gbc_visSchedaImpiegato.gridx = 0;
+		gbc_visSchedaImpiegato.gridy = 3;
+		FunzioniUtenteMenu.add(visSchedaImpiegato, gbc_visSchedaImpiegato);
+
+		JButton visTurniButtom = new JButton("Visualizza Turni");
+		visTurniButtom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualizzaTurni visTurni = new VisualizzaTurni();
+				visTurni.setVisible(true);
+				dispose();
+			}
+		});
+		visTurniButtom.setPreferredSize(new Dimension(121, 23));
+		visTurniButtom.setMinimumSize(new Dimension(121, 23));
+		visTurniButtom.setMaximumSize(new Dimension(121, 23));
+		visTurniButtom.setFont(new Font("Arial", Font.PLAIN, 15));
+		visTurniButtom.setBounds(new Rectangle(0, 0, 0, 4));
+		GridBagConstraints gbc_visTurniButtom = new GridBagConstraints();
+		gbc_visTurniButtom.fill = GridBagConstraints.HORIZONTAL;
+		gbc_visTurniButtom.ipady = 15;
+		gbc_visTurniButtom.gridx = 0;
+		gbc_visTurniButtom.gridy = 4;
+		FunzioniUtenteMenu.add(visTurniButtom, gbc_visTurniButtom);
 
 		JPanel Pannello = new JPanel();
 		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));

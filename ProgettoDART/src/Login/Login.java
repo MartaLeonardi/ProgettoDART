@@ -7,10 +7,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.CardLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
@@ -80,10 +77,10 @@ public class Login {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH); // TUTTO SCHERMO
 
 		
-		JLabel LogoImg = new JLabel("");
-		LogoImg.setHorizontalAlignment(SwingConstants.CENTER);
-		Image imgLogo = new ImageIcon (this.getClass().getResource("/logo.png")).getImage();
-		frmLogin.getContentPane().add(LogoImg, BorderLayout.NORTH);
+		JLabel loginLabel = new JLabel("LOGIN");
+		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		loginLabel.setFont(new Font("Impact", Font.PLAIN, 30));
+		frmLogin.getContentPane().add(loginLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));

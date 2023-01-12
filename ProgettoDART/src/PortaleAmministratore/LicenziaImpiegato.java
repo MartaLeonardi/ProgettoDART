@@ -17,8 +17,16 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 public class LicenziaImpiegato extends JFrame {
 
@@ -54,120 +62,105 @@ public class LicenziaImpiegato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		contentPane.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel = new JPanel();
+		contentPane.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[] { 0, 260, 0, 180, 0, 119, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0 };
+		gbl_panel_1.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		contentPane.setLayout(gbl_contentPane);
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		panel_1.setLayout(gbl_panel_1);
 
 		JLabel licenziaImpiegatoLabel = new JLabel("Licenzia Impiegato");
-		licenziaImpiegatoLabel.setFont(new Font("Impact", Font.PLAIN, 30));
 		GridBagConstraints gbc_licenziaImpiegatoLabel = new GridBagConstraints();
 		gbc_licenziaImpiegatoLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_licenziaImpiegatoLabel.gridx = 1;
-		gbc_licenziaImpiegatoLabel.gridy = 1;
-		contentPane.add(licenziaImpiegatoLabel, gbc_licenziaImpiegatoLabel);
-
-		JButton indietrobuttom = new JButton("Indietro");
-		indietrobuttom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PortaleAmministratore portaleAmm = new PortaleAmministratore();
-				portaleAmm.setVisible(true);
-				dispose();
-			}
-		});
-		indietrobuttom.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_indietrobuttom = new GridBagConstraints();
-		gbc_indietrobuttom.fill = GridBagConstraints.VERTICAL;
-		gbc_indietrobuttom.insets = new Insets(0, 0, 5, 0);
-		gbc_indietrobuttom.gridx = 10;
-		gbc_indietrobuttom.gridy = 1;
-		contentPane.add(indietrobuttom, gbc_indietrobuttom);
-
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(0, 0, 0));
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.insets = new Insets(0, 0, 5, 5);
-		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
-		gbc_separator.gridx = 1;
-		gbc_separator.gridy = 2;
-		contentPane.add(separator, gbc_separator);
+		gbc_licenziaImpiegatoLabel.gridy = 4;
+		panel_1.add(licenziaImpiegatoLabel, gbc_licenziaImpiegatoLabel);
+		licenziaImpiegatoLabel.setFont(new Font("Impact", Font.PLAIN, 30));
 
 		JLabel lblNewLabel = new JLabel("Inserisci dati impiegato:");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 3;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		gbc_lblNewLabel.gridy = 5;
+		panel_1.add(lblNewLabel, gbc_lblNewLabel);
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		JLabel matricolaLabel = new JLabel("Matricola:");
-		matricolaLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_matricolaLabel = new GridBagConstraints();
 		gbc_matricolaLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_matricolaLabel.anchor = GridBagConstraints.WEST;
 		gbc_matricolaLabel.gridx = 2;
-		gbc_matricolaLabel.gridy = 4;
-		contentPane.add(matricolaLabel, gbc_matricolaLabel);
+		gbc_matricolaLabel.gridy = 6;
+		panel_1.add(matricolaLabel, gbc_matricolaLabel);
+		matricolaLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		matricolaTextField = new JTextField();
-		getMatricolaTextField().setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_matricolaTextField = new GridBagConstraints();
-		gbc_matricolaTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_matricolaTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_matricolaTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_matricolaTextField.gridx = 3;
-		gbc_matricolaTextField.gridy = 4;
-		contentPane.add(getMatricolaTextField(), gbc_matricolaTextField);
+		gbc_matricolaTextField.gridy = 6;
+		panel_1.add(matricolaTextField, gbc_matricolaTextField);
+		getMatricolaTextField().setFont(new Font("Arial", Font.PLAIN, 11));
 		getMatricolaTextField().setColumns(15);
 
 		JLabel nomeLabel = new JLabel("Nome:");
-		nomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_nomeLabel = new GridBagConstraints();
-		gbc_nomeLabel.anchor = GridBagConstraints.WEST;
 		gbc_nomeLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_nomeLabel.gridx = 2;
-		gbc_nomeLabel.gridy = 5;
-		contentPane.add(nomeLabel, gbc_nomeLabel);
+		gbc_nomeLabel.gridy = 7;
+		panel_1.add(nomeLabel, gbc_nomeLabel);
+		nomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		nomeTextField = new JTextField();
-		nomeTextField.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_nomeTextField = new GridBagConstraints();
-		gbc_nomeTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_nomeTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_nomeTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_nomeTextField.gridx = 3;
-		gbc_nomeTextField.gridy = 5;
-		contentPane.add(nomeTextField, gbc_nomeTextField);
+		gbc_nomeTextField.gridy = 7;
+		panel_1.add(nomeTextField, gbc_nomeTextField);
+		nomeTextField.setFont(new Font("Arial", Font.PLAIN, 11));
 		nomeTextField.setColumns(15);
 
 		JLabel cognomeLabel = new JLabel("Cognome:");
-		cognomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		GridBagConstraints gbc_cognomeLabel = new GridBagConstraints();
-		gbc_cognomeLabel.anchor = GridBagConstraints.WEST;
 		gbc_cognomeLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_cognomeLabel.gridx = 2;
-		gbc_cognomeLabel.gridy = 6;
-		contentPane.add(cognomeLabel, gbc_cognomeLabel);
+		gbc_cognomeLabel.gridy = 8;
+		panel_1.add(cognomeLabel, gbc_cognomeLabel);
+		cognomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		cognomeTextField = new JTextField();
-		cognomeTextField.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_cognomeTextField = new GridBagConstraints();
-		gbc_cognomeTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_cognomeTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cognomeTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_cognomeTextField.gridx = 3;
-		gbc_cognomeTextField.gridy = 6;
-		contentPane.add(cognomeTextField, gbc_cognomeTextField);
+		gbc_cognomeTextField.gridy = 8;
+		panel_1.add(cognomeTextField, gbc_cognomeTextField);
+		cognomeTextField.setFont(new Font("Arial", Font.PLAIN, 11));
 		cognomeTextField.setColumns(15);
 
 		JButton LicenziaButtom = new JButton("Licenzia");
-		LicenziaButtom.setFont(new Font("Arial", Font.PLAIN, 11));
 		GridBagConstraints gbc_LicenziaButtom = new GridBagConstraints();
-		gbc_LicenziaButtom.insets = new Insets(0, 0, 0, 5);
-		gbc_LicenziaButtom.gridx = 4;
-		gbc_LicenziaButtom.gridy = 7;
-		contentPane.add(LicenziaButtom, gbc_LicenziaButtom);
+		gbc_LicenziaButtom.insets = new Insets(0, 0, 5, 5);
+		gbc_LicenziaButtom.gridx = 5;
+		gbc_LicenziaButtom.gridy = 9;
+		panel_1.add(LicenziaButtom, gbc_LicenziaButtom);
+		LicenziaButtom.setFont(new Font("Arial", Font.PLAIN, 11));
+
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(0, 0, 0));
+		panel.add(separator, BorderLayout.NORTH);
 
 		LicenziaButtom.addActionListener(new ActionListener() { // Quando viene premuto il bottone Licenzia, si apre un
 																// popUp di conferma
@@ -179,6 +172,35 @@ public class LicenziaImpiegato extends JFrame {
 				popUpLicenzia.setVisible(true);
 			}
 		});
+
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.NORTH);
+		panel_2.setLayout(new BorderLayout(0, 0));
+
+		JLabel logoImg = new JLabel("");
+		logoImg.setHorizontalAlignment(SwingConstants.CENTER);
+		Image imgLogo = new ImageIcon(this.getClass().getResource("/logo.png")).getImage();
+		logoImg.setIcon(new ImageIcon(imgLogo));
+		panel_2.add(logoImg);
+		panel_2.add(logoImg);
+		logoImg.setAlignmentX(Component.CENTER_ALIGNMENT);
+		logoImg.setFont(new Font("Arial", Font.PLAIN, 30));
+
+		JPanel panel_3 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		contentPane.add(panel_3, BorderLayout.SOUTH);
+
+		JButton indietrobuttom = new JButton("Indietro");
+		panel_3.add(indietrobuttom);
+		indietrobuttom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PortaleAmministratore portaleAmm = new PortaleAmministratore();
+				portaleAmm.setVisible(true);
+				dispose();
+			}
+		});
+		indietrobuttom.setFont(new Font("Arial", Font.PLAIN, 18));
 
 	}
 
