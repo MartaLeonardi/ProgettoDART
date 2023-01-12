@@ -83,12 +83,18 @@ public class VisualizzaTurni extends JFrame {
 		contentPane.add(panel, BorderLayout.NORTH);
 
 		JLabel logoImg = new JLabel("");
+		logoImg.setHorizontalAlignment(SwingConstants.CENTER);
 		Image imgLogo = new ImageIcon(this.getClass().getResource("/logo.png")).getImage();
+		panel.setLayout(new BorderLayout(0, 0));
 		logoImg.setIcon(new ImageIcon(imgLogo));
 		panel.add(logoImg);
 		panel.add(logoImg);
 		logoImg.setAlignmentX(Component.CENTER_ALIGNMENT);
 		logoImg.setFont(new Font("Arial", Font.PLAIN, 30));
+
+		JSeparator separator = new JSeparator();
+		panel.add(separator, BorderLayout.SOUTH);
+		separator.setForeground(new Color(0, 0, 0));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(null);
@@ -101,19 +107,10 @@ public class VisualizzaTurni extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 191, 740, 108, 0 };
-		gbl_panel_1.rowHeights = new int[] { 98, 84, 0, 77, 0, 84, 0, 0, 0, 18, 0 };
+		gbl_panel_1.rowHeights = new int[] { 27, 84, 0, 77, 92, -53, 0 };
 		gbl_panel_1.columnWeights = new double[] { 1.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
-
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(0, 0, 0));
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
-		gbc_separator.insets = new Insets(0, 0, 5, 5);
-		gbc_separator.gridx = 1;
-		gbc_separator.gridy = 0;
-		panel_1.add(separator, gbc_separator);
 
 		JLabel servizioUnoLabel = new JLabel("Servizio uno");
 		servizioUnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
