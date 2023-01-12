@@ -18,22 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
-<<<<<<< HEAD
-=======
-import java.awt.Component;
-import javax.swing.JSplitPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JDesktopPane;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
 import Login.LoginJFrame;
-import RilevazionePresenza.RivPre_IN;
-
-import javax.swing.SwingConstants;
->>>>>>> branch 'master' of https://github.com/MartaLeonardi/ProgettoDART.git
 import java.awt.GridLayout;
 
 public class PortaleImpiegato extends JFrame {
