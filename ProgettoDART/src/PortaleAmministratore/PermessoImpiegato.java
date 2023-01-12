@@ -1,37 +1,38 @@
-package PortaleImpiegato;
+package PortaleAmministratore;
 
-import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JSeparator;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class RichiediPermesso extends JFrame {
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
+
+import PortaleImpiegato.PortaleImpiegato;
+import javax.swing.JTextField;
+
+public class PermessoImpiegato extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField campoMatricola;
 
 	/**
 	 * Launch the application.
@@ -40,7 +41,7 @@ public class RichiediPermesso extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RichiediPermesso frame = new RichiediPermesso();
+					PermessoImpiegato frame = new PermessoImpiegato();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +53,7 @@ public class RichiediPermesso extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RichiediPermesso() {
+	public PermessoImpiegato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,1280, 800);
 		contentPane = new JPanel();
@@ -79,8 +80,8 @@ public class RichiediPermesso extends JFrame {
 		IndietroButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				PortaleImpiegato portaleImpiegato = new PortaleImpiegato();
-				portaleImpiegato.setVisible(true);
+				PortaleAmministratore portaleAmministratore = new PortaleAmministratore();
+				portaleAmministratore.setVisible(true);
 
 			}
 		});
@@ -102,21 +103,32 @@ public class RichiediPermesso extends JFrame {
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_3_1 = new JPanel();
-		panel_4.add(panel_3_1, BorderLayout.CENTER);
+		panel_4.add(panel_3_1, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_3_1 = new GridBagLayout();
 		gbl_panel_3_1.columnWidths = new int[]{0, 468, 248, 525, 0};
-		gbl_panel_3_1.rowHeights = new int[] {30};
+		gbl_panel_3_1.rowHeights = new int[] {30, 0, 0};
 		gbl_panel_3_1.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_3_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		gbl_panel_3_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panel_3_1.setLayout(gbl_panel_3_1);
 		
-		JLabel lblNewLabel = new JLabel(" ");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 23));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 1;
-		panel_3_1.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel lblNewLabel_4 = new JLabel("Matricola impiegato:");
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 1;
+		gbc_lblNewLabel_4.gridy = 1;
+		panel_3_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		campoMatricola = new JTextField();
+		campoMatricola.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		GridBagConstraints gbc_campoMatricola = new GridBagConstraints();
+		gbc_campoMatricola.insets = new Insets(0, 0, 5, 5);
+		gbc_campoMatricola.fill = GridBagConstraints.HORIZONTAL;
+		gbc_campoMatricola.gridx = 2;
+		gbc_campoMatricola.gridy = 1;
+		panel_3_1.add(campoMatricola, gbc_campoMatricola);
+		campoMatricola.setColumns(10);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Motivazione:");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -125,7 +137,7 @@ public class RichiediPermesso extends JFrame {
 		gbc_lblNewLabel_1_2.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1_2.gridx = 1;
-		gbc_lblNewLabel_1_2.gridy = 2;
+		gbc_lblNewLabel_1_2.gridy = 4;
 		panel_3_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
 		JComboBox motivazioni = new JComboBox();
@@ -136,16 +148,8 @@ public class RichiediPermesso extends JFrame {
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 2;
+		gbc_comboBox.gridy = 4;
 		panel_3_1.add(motivazioni, gbc_comboBox);
-		
-		JLabel lblNewLabel_2 = new JLabel(" ");
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 2;
-		gbc_lblNewLabel_2.gridy = 3;
-		panel_3_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Scegli il giorno di inizio permesso:");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -154,7 +158,7 @@ public class RichiediPermesso extends JFrame {
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 4;
+		gbc_lblNewLabel_1.gridy = 6;
 		panel_3_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JDateChooser dataInizio = new JDateChooser();
@@ -163,7 +167,7 @@ public class RichiediPermesso extends JFrame {
 		gbc_dataInizio.fill = GridBagConstraints.BOTH;
 		gbc_dataInizio.insets = new Insets(0, 0, 5, 5);
 		gbc_dataInizio.gridx = 2;
-		gbc_dataInizio.gridy = 4;
+		gbc_dataInizio.gridy = 6;
 		panel_3_1.add(dataInizio, gbc_dataInizio);
 		
 		JLabel ProvaInserimentoInizio = new JLabel(" ");
@@ -171,7 +175,7 @@ public class RichiediPermesso extends JFrame {
 		GridBagConstraints gbc_ProvaInserimentoInizio = new GridBagConstraints();
 		gbc_ProvaInserimentoInizio.insets = new Insets(0, 0, 5, 5);
 		gbc_ProvaInserimentoInizio.gridx = 2;
-		gbc_ProvaInserimentoInizio.gridy = 5;
+		gbc_ProvaInserimentoInizio.gridy = 7;
 		panel_3_1.add(ProvaInserimentoInizio, gbc_ProvaInserimentoInizio);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Scegli il giorno di fine permesso:");
@@ -181,7 +185,7 @@ public class RichiediPermesso extends JFrame {
 		gbc_lblNewLabel_1_1.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1_1.gridx = 1;
-		gbc_lblNewLabel_1_1.gridy = 6;
+		gbc_lblNewLabel_1_1.gridy = 8;
 		panel_3_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
 		JDateChooser dataFine = new JDateChooser();
@@ -190,7 +194,7 @@ public class RichiediPermesso extends JFrame {
 		gbc_dataFine.fill = GridBagConstraints.BOTH;
 		gbc_dataFine.insets = new Insets(0, 0, 5, 5);
 		gbc_dataFine.gridx = 2;
-		gbc_dataFine.gridy = 6;
+		gbc_dataFine.gridy = 8;
 		panel_3_1.add(dataFine, gbc_dataFine);
 		
 		JLabel ProvaInserimentoFine = new JLabel(" ");
@@ -198,7 +202,7 @@ public class RichiediPermesso extends JFrame {
 		GridBagConstraints gbc_ProvaInserimentoFine = new GridBagConstraints();
 		gbc_ProvaInserimentoFine.insets = new Insets(0, 0, 5, 5);
 		gbc_ProvaInserimentoFine.gridx = 2;
-		gbc_ProvaInserimentoFine.gridy = 7;
+		gbc_ProvaInserimentoFine.gridy = 9;
 		panel_3_1.add(ProvaInserimentoFine, gbc_ProvaInserimentoFine);
 		
 		JCheckBox giornateComplete = new JCheckBox("Giornate complete");
@@ -208,7 +212,7 @@ public class RichiediPermesso extends JFrame {
 		gbc_giornateComplete.anchor = GridBagConstraints.NORTH;
 		gbc_giornateComplete.insets = new Insets(0, 0, 0, 5);
 		gbc_giornateComplete.gridx = 1;
-		gbc_giornateComplete.gridy = 8;
+		gbc_giornateComplete.gridy = 10;
 		panel_3_1.add(giornateComplete, gbc_giornateComplete);
 		
 		JPanel panel_3 = new JPanel();
@@ -289,6 +293,8 @@ public class RichiediPermesso extends JFrame {
 		JButton btnNewButton = new JButton("RICHIEDI");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String matricola= campoMatricola.getText();
 																					//	Contenuto combobox
 				int index=motivazioni.getSelectedIndex();
 				String motivazioneSelezionata = listaMotivazioni[index];
