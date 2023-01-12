@@ -161,6 +161,8 @@ public class VisualizzaTurni extends JFrame {
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
+		// trascinando
 
 		JLabel servizioDueLabel = new JLabel("Servizio due");
 		servizioDueLabel.setHorizontalAlignment(SwingConstants.CENTER);
