@@ -269,6 +269,8 @@ public class VisualizzaServizi extends JFrame {
 		table_3.getColumnModel().getColumn(0).setResizable(false);
 		table_3.getColumnModel().getColumn(1).setResizable(false);
 		table_3.getColumnModel().getColumn(2).setResizable(false);
+		table_3.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
+		// trascinando
 
 		JPanel panel_5 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_5.getLayout();

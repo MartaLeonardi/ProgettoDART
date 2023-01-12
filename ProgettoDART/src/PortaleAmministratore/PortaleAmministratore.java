@@ -150,9 +150,9 @@ public class PortaleAmministratore extends JFrame {
 		MenuUtente.add(FunzioniUtenteMenu, BorderLayout.CENTER);
 		GridBagLayout gbl_FunzioniUtenteMenu = new GridBagLayout();
 		gbl_FunzioniUtenteMenu.columnWidths = new int[] { 208, 0 };
-		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0, 0, 0 };
+		gbl_FunzioniUtenteMenu.rowHeights = new int[] { 40, 0, 0, 0, 0, 0, 0 };
 		gbl_FunzioniUtenteMenu.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_FunzioniUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		FunzioniUtenteMenu.setLayout(gbl_FunzioniUtenteMenu);
 
 		JSeparator separator = new JSeparator();
@@ -235,11 +235,28 @@ public class PortaleAmministratore extends JFrame {
 		visTurniButtom.setFont(new Font("Arial", Font.PLAIN, 15));
 		visTurniButtom.setBounds(new Rectangle(0, 0, 0, 4));
 		GridBagConstraints gbc_visTurniButtom = new GridBagConstraints();
+		gbc_visTurniButtom.insets = new Insets(0, 0, 5, 0);
 		gbc_visTurniButtom.fill = GridBagConstraints.HORIZONTAL;
 		gbc_visTurniButtom.ipady = 15;
 		gbc_visTurniButtom.gridx = 0;
 		gbc_visTurniButtom.gridy = 4;
 		FunzioniUtenteMenu.add(visTurniButtom, gbc_visTurniButtom);
+
+		JButton visualizzaServizi = new JButton("Visualizza Servizi");
+		visualizzaServizi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualizzaServizi visSer = new VisualizzaServizi();
+				visSer.setVisible(true);
+				dispose();
+			}
+		});
+		visualizzaServizi.setFont(new Font("Arial", Font.PLAIN, 15));
+		GridBagConstraints gbc_visualizzaServizi = new GridBagConstraints();
+		gbc_visualizzaServizi.ipady = 10;
+		gbc_visualizzaServizi.fill = GridBagConstraints.BOTH;
+		gbc_visualizzaServizi.gridx = 0;
+		gbc_visualizzaServizi.gridy = 5;
+		FunzioniUtenteMenu.add(visualizzaServizi, gbc_visualizzaServizi);
 
 		JPanel Pannello = new JPanel();
 		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));
