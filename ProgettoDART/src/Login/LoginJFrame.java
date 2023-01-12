@@ -151,7 +151,9 @@ public class LoginJFrame extends JFrame {
 				String matricola = textField.getText();
 				char[] password = passwordField.getPassword();
 
-				if (matricola.substring(0, 1).equals("0")) {
+				if (matricola.equals(null)) {
+					System.out.println("x");
+				} else if (matricola.substring(0, 1).equals("0")) {
 					PortaleImpiegato portaleImp = new PortaleImpiegato();
 					portaleImp.setVisible(true);
 					dispose();
