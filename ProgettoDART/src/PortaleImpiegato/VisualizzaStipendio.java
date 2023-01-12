@@ -21,10 +21,13 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class VisualizzaStipendio extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -50,7 +53,7 @@ public class VisualizzaStipendio extends JFrame {
 		setBounds(100, 100,1280, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);	
+		setExtendedState(JFrame.MAXIMIZED_BOTH);	
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
@@ -85,6 +88,48 @@ public class VisualizzaStipendio extends JFrame {
 		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0};
 		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setEnabled(false);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 0;
+		panel.add(scrollPane, gbc_scrollPane);
+		
+		table = new JTable();
+		table.setRowSelectionAllowed(false);
+		table.setEnabled(false);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"Periodo di retribuzione (inizio)", "Periodo di retribuzione (fine)", "Importo"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, Float.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(151);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(149);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
+		// trascinando
+		scrollPane.setViewportView(table);
 	}
-
 }
