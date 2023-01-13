@@ -31,6 +31,8 @@ import PortaleImpiegato.PortaleImpiegato;
 
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class LoginJFrame extends JFrame {
@@ -148,8 +150,24 @@ public class LoginJFrame extends JFrame {
 		JButton loginButtom = new JButton("Login");
 		loginButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+	
 				String matricola = textField.getText();
 				char[] password = passwordField.getPassword();
+				
+				
+				
+				//creazione istanza classe Utente
+		/*		try {
+					Utente u = new Utente(matricola,password);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+		*/
+				
 
 				if (matricola.equals(null)) {
 					System.out.println("x");
