@@ -31,8 +31,6 @@ import PortaleImpiegato.PortaleImpiegato;
 
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class LoginJFrame extends JFrame {
@@ -40,6 +38,7 @@ public class LoginJFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private static String matricola;
 
 	/**
 	 * Launch the application.
@@ -150,37 +149,14 @@ public class LoginJFrame extends JFrame {
 		JButton loginButtom = new JButton("Login");
 		loginButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
-				String matricola = textField.getText();
+				matricola = textField.getText();
 				char[] password = passwordField.getPassword();
-				
-				
-				
-				//creazione istanza classe Utente
-		/*		try {
-					Utente u = new Utente(matricola,password);
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	
-		*/
-				
 
-				if (matricola.equals(null)) {
-					System.out.println("x");
-				} else if (matricola.substring(0, 1).equals("0")) {
-					PortaleImpiegato portaleImp = new PortaleImpiegato();
-					portaleImp.setVisible(true);
-					dispose();
-				} else if (matricola.substring(0, 1).equals("1")) {
-					PortaleAmministratore portaleAmm = new PortaleAmministratore();
-					portaleAmm.setVisible(true);
+				LoginControl loginControl = new LoginControl();
+				if (loginControl.check(matricola)) {
+					loginControl.choosePortal(matricola);
 					dispose();
 				}
-
 			}
 		});
 		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -189,6 +165,15 @@ public class LoginJFrame extends JFrame {
 		gbc_loginButtom.gridx = 3;
 		gbc_loginButtom.gridy = 2;
 		panel_4.add(loginButtom, gbc_loginButtom);
+
+	}
+
+	public static String getMatricola() {
+		return matricola;
+	}
+
+	public void setMatricola(String matricola) {
+		this.matricola = this.textField.getText();
 	}
 
 }
