@@ -89,7 +89,7 @@ public class VisualizzaSchedaImpiegato extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_1.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[] { 371, 0, 174, 61, 421, 0 };
+		gbl_panel_4.columnWidths = new int[] { 959, 0, 174, 61, 1080, 0 };
 		gbl_panel_4.rowHeights = new int[] { 111, 0, 0, 0, 0, 24, 311, 0 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };

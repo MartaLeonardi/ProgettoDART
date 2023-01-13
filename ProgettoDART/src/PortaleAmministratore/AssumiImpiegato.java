@@ -130,7 +130,7 @@ public class AssumiImpiegato extends JFrame {
 		JPanel panel = new JPanel();
 		panel_3.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 524, 123, 135, 57, 535, 0 };
+		gbl_panel.columnWidths = new int[] { 1016, 123, 135, 57, 1080, 0 };
 		gbl_panel.rowHeights = new int[] { 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50 };
 		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
