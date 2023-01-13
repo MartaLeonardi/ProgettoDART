@@ -58,6 +58,7 @@ public class VisualizzaSchedaImpiegato extends JFrame {
 	public VisualizzaSchedaImpiegato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

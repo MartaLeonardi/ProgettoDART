@@ -51,6 +51,7 @@ public class VisualizzaStipendi extends JFrame {
 		setTitle("D.A.R.T - Visualizza Stipendi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
