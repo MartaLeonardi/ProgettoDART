@@ -9,6 +9,7 @@ public class LoginControl {
 	
 	public static void main (String[] args) {
 			String matricola = LoginJFrame.getMatricola();
+
 			
 			if(check(matricola)) {
 				System.out.println("true");

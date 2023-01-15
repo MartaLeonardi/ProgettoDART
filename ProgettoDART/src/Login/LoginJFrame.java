@@ -37,7 +37,7 @@ public class LoginJFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JPasswordField passwordField;
+	private static JPasswordField passwordField;
 	private static String matricola;
 
 	/**
@@ -174,6 +174,11 @@ public class LoginJFrame extends JFrame {
 
 	public void setMatricola(String matricola) {
 		this.matricola = this.textField.getText();
+	}
+	
+	//METODO AGGIUNTO DA MARTA
+	public static char[] getPassword() {
+		return passwordField.getPassword();
 	}
 
 }
