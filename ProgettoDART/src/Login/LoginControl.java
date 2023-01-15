@@ -7,31 +7,16 @@ import PortaleImpiegato.PortaleImpiegato;
 
 public class LoginControl {
 	
-	private String matricola;
-	private char[] password = null;
+	public static void main (String[] args) {
+			String matricola = LoginJFrame.getMatricola();
 
-
-	public LoginControl(String matricola, char[] password) throws FileNotFoundException, IOException{
-			this.matricola = matricola;
-			this.password = null;
 			
-			if(check(this.matricola)) {
-				
-				//interrogazione al DBMS per controllare se i dati esistono
-				
-					//Se l'interrogazione da esito positivo
-						//Interrogazione DBMS per prendere tutti i dati
-						//Creazione oggetto (entity) utente con i dati ottenuti dal DBMS
-				
-				
-				Utente utente = new Utente(this.matricola, this.password);
-				
-				choosePortal(this.matricola);
+			if(check(matricola)) {
+				System.out.println("true");
+				choosePortal(matricola);
 			}
-			else {
-				LoginJFrame login = new LoginJFrame();
-				login.setVisible(true);
-			}
+			
+			
 	}
 	
 	

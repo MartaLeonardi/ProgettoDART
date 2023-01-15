@@ -21,6 +21,7 @@ import javax.swing.JSeparator;
 import Login.LoginJFrame;
 import PortaleAmministratore.LogoutControl;
 import PortaleAmministratore.PopUpConfermaLogout;
+import ModificaAccount.modificaAccount;
 
 import java.awt.GridLayout;
 
@@ -231,6 +232,16 @@ public class PortaleImpiegato extends JFrame {
 		FunzioniUtenteMenu.add(RichiediFerieButton);
 
 		JButton ModificaAccountButton = new JButton("Modifica account");
+		// -------------------------------------------------------------------------------------------------EVENTO
+		// RICHIEDI FERIE > RichiediFerie.java
+		ModificaAccountButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				modificaAccount modificaAccount = new modificaAccount();
+				modificaAccount.setVisible(true);
+
+			}
+		});
 		ModificaAccountButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		FunzioniUtenteMenu.add(ModificaAccountButton);
 

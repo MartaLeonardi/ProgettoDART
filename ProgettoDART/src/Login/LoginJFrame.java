@@ -31,14 +31,13 @@ import PortaleImpiegato.PortaleImpiegato;
 
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class LoginJFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JPasswordField passwordField;
+	private static JPasswordField passwordField;
 	private static String matricola;
 
 	/**
@@ -153,18 +152,11 @@ public class LoginJFrame extends JFrame {
 				matricola = textField.getText();
 				char[] password = passwordField.getPassword();
 
-				try {
-					LoginControl loginControl = new LoginControl(matricola, password);
+				LoginControl loginControl = new LoginControl();
+				if (loginControl.check(matricola)) {
+					loginControl.choosePortal(matricola);
 					dispose();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
-
-				/*
-				 * if (loginControl.check(matricola)) { loginControl.choosePortal(matricola);
-				 * dispose(); }
-				 */
 			}
 		});
 		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -182,6 +174,11 @@ public class LoginJFrame extends JFrame {
 
 	public void setMatricola(String matricola) {
 		this.matricola = this.textField.getText();
+	}
+
+	// METODO AGGIUNTO DA MARTA
+	public static char[] getPassword() {
+		return passwordField.getPassword();
 	}
 
 }
