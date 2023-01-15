@@ -49,6 +49,11 @@ public class Utente {
 		
 	}
 	
+	public void eliminaEntity() {
+		if(f.exists()) {
+			f.delete();
+		}
+	}
+	
 	
 }
-

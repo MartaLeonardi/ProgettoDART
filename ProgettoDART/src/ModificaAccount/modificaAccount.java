@@ -246,7 +246,7 @@ public class modificaAccount extends JFrame {
 				}
 				else {
 					String msg = "I campi nuova e-mail e conferma e-mail non coincidono!";
-					System.out.println(msg);					//controllo da console
+					System.out.println(msg);
 					PopUp popUp = new PopUp(msg);
 					popUp.setVisible(true);
 				}
