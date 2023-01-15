@@ -80,6 +80,11 @@ public class modificaAccount extends JFrame {
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
 		JButton IndietroButton = new JButton("INDIETRO");
+		IndietroButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//CONTROLLO PER I PORTALI DA FARE
+			}
+		});
 		IndietroButton.setHorizontalAlignment(SwingConstants.LEFT);
 		IndietroButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		panel_1.add(IndietroButton);
@@ -240,7 +245,7 @@ public class modificaAccount extends JFrame {
 					
 				}
 				else {
-					String msg = "I campi nuova e-mail e conferma e-mail non coincidono!!";
+					String msg = "I campi nuova e-mail e conferma e-mail non coincidono!";
 					System.out.println(msg);					//controllo da console
 					PopUp popUp = new PopUp(msg);
 					popUp.setVisible(true);
@@ -267,13 +272,44 @@ public class modificaAccount extends JFrame {
 				pswV=passwordVecchia.getPassword();
 				pswN=passwordNuova.getPassword();
 				pswC=passwordConferma.getPassword();
-				
-				if(pswN!=pswC) {
-								//pop up di campi inseriti diversi --> conferma non avvenuta
+
+				if(pswN.length==pswC.length) {
 					
+					boolean flag=true;
+					
+					for(int i=0; i<pswN.length; i++) {
+						char N=pswN[i];
+						char C=pswC[i];
+						
+						if(N==C) {
+							flag = true;
+							System.out.println(i+ " coincide\n");
+						}else {
+							System.out.println(i+ " NON coincide\n");
+							i=pswN.length;
+							flag = false;
+						}
+					}
+					
+					if(flag==false) {
+						String msg ="Nuova password e conferma password non coincidono!";
+						System.out.println(msg);
+						PopUp popUp = new PopUp(msg);
+						popUp.setVisible(true);
+					}else
+					{
+																				//invio dei dati alla control DA FARE
+						String msg ="Nuova password e conferma password coincidono!";
+						System.out.println(msg);
+					}
 				}
 				else {
-								//invio di dati alla control
+					
+					String msg ="Nuova password e conferma password non coincidono!";
+					System.out.println(msg);
+					PopUp popUp = new PopUp(msg);
+					popUp.setVisible(true);
+					
 					
 				}
 			}
