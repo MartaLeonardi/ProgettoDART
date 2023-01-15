@@ -31,6 +31,7 @@ import PortaleImpiegato.PortaleImpiegato;
 
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class LoginJFrame extends JFrame {
@@ -152,11 +153,18 @@ public class LoginJFrame extends JFrame {
 				matricola = textField.getText();
 				char[] password = passwordField.getPassword();
 
-				LoginControl loginControl = new LoginControl();
-				if (loginControl.check(matricola)) {
-					loginControl.choosePortal(matricola);
+				try {
+					LoginControl loginControl = new LoginControl(matricola, password);
 					dispose();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+
+				/*
+				 * if (loginControl.check(matricola)) { loginControl.choosePortal(matricola);
+				 * dispose(); }
+				 */
 			}
 		});
 		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));

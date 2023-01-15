@@ -42,7 +42,7 @@ import java.awt.Rectangle;
 
 public class PortaleAmministratore extends JFrame {
 
-	private JPanel PortaleAmm;
+	private final JPanel PortaleAmm;
 
 	/**
 	 * Launch the application.
@@ -94,8 +94,8 @@ public class PortaleAmministratore extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				LoginJFrame login = new LoginJFrame();
-				login.setVisible(true);
+				PopUpConfermaLogout popUpConferma = new PopUpConfermaLogout();
+				popUpConferma.setVisible(true);
 				dispose();
 			}
 		});
