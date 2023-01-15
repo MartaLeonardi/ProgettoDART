@@ -2,6 +2,7 @@ package Login;
 
 import java.io.*;
 
+import NPorAmm.PAmm;
 import PortaleAmministratore.PortaleAmministratore;
 import PortaleImpiegato.PortaleImpiegato;
 
@@ -41,7 +42,7 @@ public class LoginControl {
 			PortaleImpiegato portaleImp = new PortaleImpiegato();
 			portaleImp.setVisible(true);
 		} else if (matricola.substring(0, 1).equals("1")) {
-			PortaleAmministratore portaleAmm = new PortaleAmministratore();
+			PAmm portaleAmm = new PAmm();
 			portaleAmm.setVisible(true);
 			
 		}
