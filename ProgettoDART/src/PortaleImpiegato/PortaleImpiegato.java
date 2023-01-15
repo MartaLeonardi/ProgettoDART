@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import Login.LoginJFrame;
+import PortaleAmministratore.LogoutControl;
 import PortaleAmministratore.PopUpConfermaLogout;
 
 import java.awt.GridLayout;
@@ -85,8 +86,7 @@ public class PortaleImpiegato extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				PopUpConfermaLogout popUpConferma = new PopUpConfermaLogout();
-				popUpConferma.setVisible(true);
+				LogoutControl logoutControl = new LogoutControl();
 				dispose();
 			}
 		});

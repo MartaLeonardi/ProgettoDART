@@ -94,8 +94,7 @@ public class PortaleAmministratore extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				PopUpConfermaLogout popUpConferma = new PopUpConfermaLogout();
-				popUpConferma.setVisible(true);
+				LogoutControl logoutControl = new LogoutControl();
 				dispose();
 			}
 		});
