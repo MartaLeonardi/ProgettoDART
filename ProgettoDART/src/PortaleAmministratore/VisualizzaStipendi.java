@@ -21,6 +21,9 @@ import java.awt.FlowLayout;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class VisualizzaStipendi extends JPanel {
 	private JTable table;
@@ -68,10 +71,20 @@ public class VisualizzaStipendi extends JPanel {
 
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[] { 159, 861, 106, 0 };
+		gbl_panel_1.rowHeights = new int[] { 564, 0 };
+		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		panel_1.setLayout(gbl_panel_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		panel_1.add(scrollPane);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 0;
+		panel_1.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
