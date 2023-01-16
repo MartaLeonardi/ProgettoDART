@@ -17,8 +17,10 @@ public class Utente {
 	double stipendio;
 	
 	
-	public Utente() {};
+	public Utente() {};					//Metodo costruttore senza parametri
 	
+	
+										//Metodo costruttore iniziale al momento del login
 	public Utente(String matricola, char[] password) throws FileNotFoundException, IOException {
 		this.matricola=matricola;
 		this.password=password;
@@ -30,13 +32,18 @@ public class Utente {
 		else if(f.createNewFile())
 		{
 			System.out.println("Il file e' stato creato");
-			toString();
+			toString1();
 		}
 		
 	}
 	
+	
+										//Metodo costruttore con tutti i dati necessari (ENTITY)
 	public Utente(String nome, String cognome, String matricola, char[] password,String mail, String ruolo,
 					int ferie, int permessi, double stipendio) throws FileNotFoundException, IOException {
+		
+		if(checkMail(mail)==true)
+		{
 		this.matricola=matricola;
 		this.password=password;
 		this.nome=nome;
@@ -50,17 +57,22 @@ public class Utente {
 		if(f.exists()) 
 		{
 			System.out.println("Il file esiste");
-			toString1();
+			toString();
 		}
 		else if(f.createNewFile())
 		{
 			System.out.println("Il file e' stato creato");
-			toString();
+			toString1();
+		}
+		
+		}
+		else {
+			System.out.println("Formato e-mail non valido, Utente non aggiunto");
 		}
 		
 	}
-	
-	private String toString1() {
+									//Mette a stringa tutti i dati del metodo costruttore per aggiornare il file UserEntity.txt
+	public String toString() {
 
 		 String s ="\nNome:"+ this.nome + "\nCognome:" + this.cognome +"\nMatricola:" + this.matricola + "\nPassword:" + this.password +
 				   "\nEmail:" + this.mail + "\nRuolo:" + this.ruolo + "\nNumero ferie:" + this.ferie + "\nNumero permessi:" + this.permessi + 
@@ -73,8 +85,8 @@ public class Utente {
 		 return s;
 		
 	}
-
-	public String toString() {
+								//Genera una stringa contenente i dati di login, e aggiorna i dati all'interno del file UserEntity.txt
+	public String toString1() {
 		 String s ="\nMatricola:" + this.matricola + "\nPassword:" + this.password;
 		 try {
 			aggiornaDati(s);
@@ -84,6 +96,7 @@ public class Utente {
 		 return s;
 	}
 	
+								//Tramite passaggio di stringa(ottenuta da toString() o toString1()) sovrascrive il file UserEntity.txt
 	public void aggiornaDati(String stringa) throws FileNotFoundException {
 		
 		PrintWriter scrivi = new PrintWriter(f);
@@ -91,43 +104,36 @@ public class Utente {
 		scrivi.close();
 		
 	}
-	
+								//Metodo utile al momento del Logout ->Elimina il file UserEntity.txt
 	public void eliminaEntity() {
 		if(f.exists()) {
 			f.delete();
 		}
 	}
-	
+								//Restituisce la matricola
 	public String getMatricola() {
 		return matricola;
 	}
-	
+								//Restituisce la password
 	public char[] getPassword() {
 		return password;
 	}
 	
+			/*
+				* Attraverso la matricola inserita da login, viene effettuata la query di ricerca all'interno del database
+				* si effettuano gli opportuni controlli di integrità e si instanzia l'utente coi dati ottenuti dalla query
+			*/
 	public void getDatiDataBase (String matricola) {
 		
-		//query db per prendere i dati (nome,cognome,ruolo,mail,ferie,permessi,stipendi)
-		
-		//nella mail parte il controllo del metodo (checkMail) contenuto in questa stessa classe
-		
-		/*String nome="Mario";
-		String cognome="Rossi";
-		String matricola=this.matricola;
-		char[] password=getPassword();
-		String mail="ciao@ciao.it";
-		String ruolo="ruolo 1";
-		int ferie=0, permessi=0;
-		Double stipendio=0.00;
-		*/												//DATI CON CUI TESTARE L'ACCESSO,SOLO DOPO AVER RISOLTO IL PROBLEMA LoginJFrame e LoginControl
+		//query db per prendere i dati (nome,cognome,ruolo,mail,ferie,permessi,stipendi) MANCANTE
+
 		
 		
 		if(checkMail(mail)==true)
 		{
 		try {
 			Utente u= new Utente(nome, cognome, matricola, password, mail, ruolo, ferie, permessi, stipendio);
-			String f=u.toString1();
+			String f=u.toString();
 			System.out.println(f);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -138,10 +144,13 @@ public class Utente {
 		
 	}
 	
+					//Setta la mail
 	public void setMail(String mail) {
 		this.mail=mail;
 	}
 	
+	
+					//Metodi Get per tutti gli attributi (Nome, Cognome, Mail, Ruolo, Ferie, Permessi, Stipendio)
 	public String getNome() {
 		return nome;
 	}
@@ -170,6 +179,14 @@ public class Utente {
 		return stipendio;
 	}
 	
+			/*
+			 * Controllo della stringa mail inserita
+			 * pattern mail = Stringa dove sono concessi numeri e lettere(minuscole e maiuscole) + @ + dominio
+			 * il dominio è composto da: stringa lettere e numeri + . + stringa sole lettere
+			 * 
+			 * il metodo restituisce un valore booleano true se la mail soddisfa tutti i requisiti del pattern
+			 * false se non li soddisfa
+			 */
 	public boolean checkMail (String email) {
 		
 				Pattern p = Pattern.compile(".+@.+\\.[a-z]+");

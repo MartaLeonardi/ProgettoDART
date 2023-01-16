@@ -1,4 +1,4 @@
-package PortaleAmministratore;
+package PopUp;
 
 import java.awt.EventQueue;
 

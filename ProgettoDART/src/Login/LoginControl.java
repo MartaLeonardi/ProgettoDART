@@ -1,9 +1,5 @@
 package Login;
 
-import java.io.*;
-
-import NPorAmm.PAmm;
-import NPorImp.PImp;
 import PortaleAmministratore.PortaleAmministratore;
 import PortaleImpiegato.PortaleImpiegato;
 
@@ -40,10 +36,10 @@ public class LoginControl {
 		if (matricola.equals(null)) {
 			System.out.println("x");
 		} else if (matricola.substring(0, 1).equals("0")) {
-			PImp portaleImp = new PImp();
+			PortaleImpiegato portaleImp = new PortaleImpiegato();
 			portaleImp.setVisible(true);
 		} else if (matricola.substring(0, 1).equals("1")) {
-			PAmm portaleAmm = new PAmm();
+			PortaleAmministratore portaleAmm = new PortaleAmministratore();
 			portaleAmm.setVisible(true);
 			
 		}

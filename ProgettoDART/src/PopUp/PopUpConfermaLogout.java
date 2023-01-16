@@ -1,19 +1,15 @@
-package PortaleAmministratore;
+package PopUp;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Login.LoginJFrame;
-import NPorAmm.PAmm;
-
+import PortaleAmministratore.PortaleAmministratore;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -74,7 +70,7 @@ public class PopUpConfermaLogout extends JFrame {
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PAmm portaleAmm = new PAmm();
+				PortaleAmministratore portaleAmm = new PortaleAmministratore();
 				portaleAmm.setVisible(true);
 				dispose();
 			}

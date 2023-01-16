@@ -1,7 +1,6 @@
-package PortaleAmministratore;
+package PopUp;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,14 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
-
-import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Component;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

@@ -1,65 +1,40 @@
 package PortaleAmministratore;
 
-import java.awt.EventQueue;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import java.awt.Component;
-
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
+import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.FlowLayout;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 
-public class VisualizzaStipendi extends JFrame {
-
-	private JPanel contentPane;
+public class VisualizzaStipendi extends JPanel {
 	private JTable table;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VisualizzaStipendi frame = new VisualizzaStipendi();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
 	public VisualizzaStipendi() {
-		setTitle("D.A.R.T - Visualizza Stipendi");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JLabel logoImg = new JLabel("");
@@ -73,12 +48,26 @@ public class VisualizzaStipendi extends JFrame {
 		logoImg.setFont(new Font("Arial", Font.PLAIN, 30));
 
 		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(0, 0, 0));
 		panel.add(separator, BorderLayout.SOUTH);
 
-		JPanel panel_1 = new JPanel();
+		JPanel panel_2 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		add(panel_2, BorderLayout.SOUTH);
 
-		panel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		contentPane.add(panel_1, BorderLayout.CENTER);
+		JButton indietroButtom = new JButton("Indietro");
+		indietroButtom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PortaleAmministratore.back();
+			}
+		});
+		indietroButtom.setHorizontalAlignment(SwingConstants.LEFT);
+		indietroButtom.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		panel_2.add(indietroButtom);
+
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -117,23 +106,11 @@ public class VisualizzaStipendi extends JFrame {
 		table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
 		// trascinando
 		scrollPane.setViewportView(table);
+	}
 
-		JPanel panel_2 = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEFT);
-		contentPane.add(panel_2, BorderLayout.SOUTH);
+	private void setExtendedState(int maximizedBoth) {
+		// TODO Auto-generated method stub
 
-		JButton indietroButtom = new JButton("Indietro");
-		indietroButtom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PortaleAmministratore portaleAmm = new PortaleAmministratore();
-				portaleAmm.setVisible(true);
-				dispose();
-			}
-		});
-		indietroButtom.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		indietroButtom.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_2.add(indietroButtom);
 	}
 
 }

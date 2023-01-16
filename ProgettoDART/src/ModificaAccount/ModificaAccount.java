@@ -1,4 +1,4 @@
-package NPorImp;
+package ModificaAccount;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -9,10 +9,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -21,8 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import PopUp.PopUp;
+import PortaleImpiegato.PortaleImpiegato;
 
-public class ModAccount extends JPanel {
+public class ModificaAccount extends JPanel {
 
 	private JTextField mailVecchia;
 	private JTextField mailNuova;
@@ -34,7 +33,7 @@ public class ModAccount extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ModAccount() {
+	public ModificaAccount() {
 
 		setBounds(100, 100, 1280, 800);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,7 +57,7 @@ public class ModAccount extends JPanel {
 		IndietroButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// CONTROLLO PER I PORTALI DA FARE
-				PImp.back();
+				PortaleImpiegato.back();
 			}
 		});
 		IndietroButton.setHorizontalAlignment(SwingConstants.LEFT);
