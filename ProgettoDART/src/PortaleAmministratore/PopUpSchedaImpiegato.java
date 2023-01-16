@@ -69,8 +69,6 @@ public class PopUpSchedaImpiegato extends JFrame {
 		panel_2.add(indietroButtom);
 		indietroButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VisualizzaSchedaImpiegato visSchedaImp = new VisualizzaSchedaImpiegato();
-				visSchedaImp.setVisible(true);
 				dispose();
 			}
 		});
