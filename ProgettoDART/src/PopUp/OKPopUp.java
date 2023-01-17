@@ -13,16 +13,17 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PopUp extends JDialog {
+public class OKPopUp extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
+	public boolean flag;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String msg) {
 		try {
-			PopUp dialog = new PopUp(msg);
+			OKPopUp dialog = new OKPopUp(msg);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,7 +34,9 @@ public class PopUp extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PopUp(String msg) {
+	public OKPopUp(String msg) {
+		setFlag(true);
+		setModal(true);					//le classi che chiamano OKPopUp attendono una risposta
 		setBounds(100, 100, 500, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,6 +67,16 @@ public class PopUp extends JDialog {
 			}
 		}
 	}
+	
+	public void setFlag(boolean flag) {
+		this.flag=flag;
+	}
+	
+	public boolean getFlag(){			//restituisce sempre true...a prescindere dal chiudere la finestra dalla X o da "OK"
+		return flag;
+	}
+	
+
 
 
 }
