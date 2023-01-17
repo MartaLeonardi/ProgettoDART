@@ -4,7 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import Login.LoginJFrame;
+
+import Login.Login;
 import PortaleAmministratore.PortaleAmministratore;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -59,7 +60,7 @@ public class PopUpConfermaLogout extends JFrame {
 		JButton confermaButton = new JButton("Conferma");
 		confermaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginJFrame login = new LoginJFrame();
+				Login login = new Login();
 				login.setVisible(true);
 				dispose();
 			}
