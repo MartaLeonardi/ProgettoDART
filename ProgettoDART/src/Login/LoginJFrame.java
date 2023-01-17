@@ -50,6 +50,8 @@ public class LoginJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginJFrame() {
+
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setTitle("D.A.R.T - Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
@@ -94,15 +96,16 @@ public class LoginJFrame extends JFrame {
 		panel_2.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
 		gbl_panel_4.columnWidths = new int[] { 50, 50, 0, 0 };
-		gbl_panel_4.rowHeights = new int[] { 0, 0, 0, 0, 30, 30, 30 };
+		gbl_panel_4.rowHeights = new int[] { 0, 0, 54, 0, 30, 30, 30 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
 		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_4.setLayout(gbl_panel_4);
 
 		JLabel matricolaLabel = new JLabel("Matricola:");
+		matricolaLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		matricolaLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_matricolaLabel = new GridBagConstraints();
-		gbc_matricolaLabel.anchor = GridBagConstraints.NORTH;
+		gbc_matricolaLabel.anchor = GridBagConstraints.EAST;
 		gbc_matricolaLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_matricolaLabel.fill = GridBagConstraints.BOTH;
 		gbc_matricolaLabel.gridx = 1;
@@ -119,7 +122,7 @@ public class LoginJFrame extends JFrame {
 		textField.setColumns(15);
 
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		passwordLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
 		gbc_passwordLabel.fill = GridBagConstraints.BOTH;
@@ -135,26 +138,38 @@ public class LoginJFrame extends JFrame {
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 1;
 		panel_4.add(passwordField, gbc_passwordField);
+		
+				JButton loginButtom = new JButton("Login");
+				loginButtom.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						matricola = textField.getText();
+						char[] password = passwordField.getPassword();
 
-		JButton loginButtom = new JButton("Login");
-		loginButtom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				matricola = textField.getText();
-				char[] password = passwordField.getPassword();
-
-				LoginControl loginControl = new LoginControl();
-				if (loginControl.check(matricola)) {
-					loginControl.choosePortal(matricola);
-					dispose();
-				}
-			}
-		});
-		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		GridBagConstraints gbc_loginButtom = new GridBagConstraints();
-		gbc_loginButtom.insets = new Insets(0, 0, 5, 0);
-		gbc_loginButtom.gridx = 3;
-		gbc_loginButtom.gridy = 2;
-		panel_4.add(loginButtom, gbc_loginButtom);
+						LoginControl loginControl = new LoginControl();
+						if (loginControl.check(matricola)) {
+							loginControl.choosePortal(matricola);
+							dispose();
+						}
+					}
+				});
+				
+				JButton btnNewButton = new JButton("Recupero password");
+				btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+				gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+				gbc_btnNewButton.gridx = 1;
+				gbc_btnNewButton.gridy = 3;
+				panel_4.add(btnNewButton, gbc_btnNewButton);
+				loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+				GridBagConstraints gbc_loginButtom = new GridBagConstraints();
+				gbc_loginButtom.insets = new Insets(0, 0, 5, 0);
+				gbc_loginButtom.gridx = 3;
+				gbc_loginButtom.gridy = 3;
+				panel_4.add(loginButtom, gbc_loginButtom);
 
 	}
 
