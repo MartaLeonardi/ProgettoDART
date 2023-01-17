@@ -95,10 +95,10 @@ public class Login extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[] { 259, 98, 50, 223, 0, 236 };
-		gbl_panel_4.rowHeights = new int[] { 180, 0, 0, 0, 278 };
+		gbl_panel_4.columnWidths = new int[] { 259, 98, 50, 223, 128, 236 };
+		gbl_panel_4.rowHeights = new int[] { 180, 0, 0, 61, 0, 278 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_4.setLayout(gbl_panel_4);
 
 		JLabel matricolaLabel = new JLabel("Matricola:");
@@ -157,13 +157,14 @@ public class Login extends JFrame {
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 3;
+		gbc_btnNewButton.gridy = 4;
 		panel_4.add(btnNewButton, gbc_btnNewButton);
 		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		GridBagConstraints gbc_loginButtom = new GridBagConstraints();
+		gbc_loginButtom.fill = GridBagConstraints.HORIZONTAL;
 		gbc_loginButtom.insets = new Insets(0, 0, 5, 5);
 		gbc_loginButtom.gridx = 4;
-		gbc_loginButtom.gridy = 3;
+		gbc_loginButtom.gridy = 4;
 		panel_4.add(loginButtom, gbc_loginButtom);
 
 		contentPane.add(panel, "Login");
