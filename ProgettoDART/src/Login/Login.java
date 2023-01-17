@@ -98,7 +98,7 @@ public class Login extends JFrame {
 		panel_2.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
 		gbl_panel_4.columnWidths = new int[] { 259, 98, 50, 223, 0, 236 };
-		gbl_panel_4.rowHeights = new int[] { 180, 0, 0, 0, 278 };
+		gbl_panel_4.rowHeights = new int[] { 33, 0, 0, 0, 278 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_4.setLayout(gbl_panel_4);
