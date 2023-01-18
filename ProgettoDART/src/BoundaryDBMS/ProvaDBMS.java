@@ -19,7 +19,6 @@ public class ProvaDBMS implements DbInterface {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	
@@ -29,7 +28,6 @@ public class ProvaDBMS implements DbInterface {
 				+ server + ":3306/" + database , user, password);
 		System.out.println("DB CONNECTED!");
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }
@@ -42,10 +40,9 @@ public class ProvaDBMS implements DbInterface {
 	
 	public ResultSet query(String sql) {
 		try {
-			statement=connect.prepareStatement(sql);
+			statement=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs=statement.executeQuery(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		return rs;
