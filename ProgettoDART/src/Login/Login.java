@@ -18,6 +18,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import PopUp.OKPopUp;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -153,8 +156,15 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				matricola = textField.getText();
 				char[] password = passwordField.getPassword();
-
-				LoginControl loginControl = new LoginControl(matricola, password);
+				
+				
+				String psw="";
+				for(int i=0;i<password.length;i++) {
+					psw= psw + password[i] ;
+				}
+				
+				
+				LoginControl loginControl = new LoginControl(matricola, psw);
 
 			}
 		});

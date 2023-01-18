@@ -1,25 +1,53 @@
 package Login;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import BoundaryDBMS.DBMS;
+import PopUp.OKPopUp;
 import PortaleAmministratore.PortaleAmministratore;
 import PortaleImpiegato.PortaleImpiegato;
 
 public class LoginControl {
 	
-	public LoginControl(String matricola, char[] password) {			
+	public LoginControl(String matricola, String password) {			
 		
-		if(check(matricola)) {
-			
-			if(controllo(matricola)) {;
-			
-			choosePortal(matricola);
+
+		if(matricola.equals("") || password.length()==0) {
+			System.out.println("Matricola e password vuoti");
+			OKPopUp popup1 = new OKPopUp("Compilare entrambi i campi !");
+			popup1.setVisible(true);
+		}
+		else {
+			if(matricola.length()==5 && (password.trim()).length()>1) {
+				
+					if(checkDatiDB(matricola, password.trim())) {
+					
+						choosePortal(matricola);
+						System.out.println("Accesso effettuato correttamente!");
+						try {
+							Utente user = new Utente(matricola, password.trim());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					else {
+						OKPopUp popup = new OKPopUp("Matricola e/o password non presente nel database !");
+						popup.setVisible(true);
+					}
+					
 			}
-		}		
+			else {
+				OKPopUp popup = new OKPopUp("Formato matricola o password non valido");
+				popup.setVisible(true);
+			}
+			
+		}
+		
 }
 
-
+/*
 	public static boolean check(String matricola) {
 		try {
 		if(Integer.parseInt(matricola) > 0) {
@@ -31,7 +59,7 @@ public class LoginControl {
 		}
 		return false;
 	}
-	
+*/	
 	
 	public static void choosePortal(String matricola) {
 		if (matricola.equals(null)) {
@@ -49,53 +77,20 @@ public class LoginControl {
 		}
 	}
 	
-	
-	/*public static boolean checkSql(String matricola) {
-		try {
-			//System.out.println("test");
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//Connection con = DriverManager.getConnection("jdbc:mysql://sql11.freesqldatabase.com/sql11590906", "sql11590906", "QIUpTZeWKm");
-			//Statement stat = con.createStatement();
-			DBMS db = new DBMS();
-			db.prova();
-			System.out.println("inserting records");
-			String sql = "select u_matricola FROM Utente WHERE u_matricola = '" + matricola + "';";
-			ResultSet rs = db.stat.executeQuery(sql);
-			//int result = stat.executeUpdate(sql);
-			String result = "";
-			rs.first();
-			while (rs.next())
-		      {
-		       result = rs.getString("u_matricola");
-		      }
-			if(result.equals(matricola)) {
-				System.out.println("true");
-				return true;
-			}
-			else {
-				return false;
-			}
-
-		}catch(Exception e) {
-			System.out.println(e);
-			return false;
-		}
-	}*/
-	
-	
-	//METODO AGGIUNTO DA MARTA PER PROVA COLLEGAMENTO DB
-	public static boolean controllo (String matricola) {
+	//metodo che effettua una ricerca nel database per la matricola e la password inserita: restituisce vero se trovata, falso se non trovata
+	public static boolean checkDatiDB (String matricola, String password) {
 		
 		DBMS database = new DBMS();
 		
-		String sql = "SELECT u_matricola FROM Utente WHERE u_matricola = '" + matricola + "'" ;
+		String sql = "SELECT ref_t_matricola,password  FROM Autenticazione WHERE ref_t_matricola = '" + matricola + "' AND "
+						+ " password ='" + password +"'" ;
 	
 		try {
 			ResultSet rs=database.query(sql);
 			rs.first();
 			do {
-				String row =rs.getString("u_matricola");
-				System.out.println(row);
+				String row =rs.getString("ref_t_matricola") + "" + rs.getString("password");
+				//System.out.println(row);
 				database.closeConnection();
 				return true;
 			}while(rs.next());
@@ -107,8 +102,7 @@ public class LoginControl {
 		database.closeConnection();
 		return false;
 		
-		
-		
 	}
+
 	
 }

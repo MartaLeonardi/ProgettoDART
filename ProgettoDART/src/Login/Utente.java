@@ -12,7 +12,7 @@ public class Utente {
 		
 	File f = new File("UserEntity.txt");
 	String matricola, nome, cognome, ruolo, mail;
-	char[] password;
+	String password;
 	int ferie,permessi;				//numero ferie e numero permessi
 	double stipendio;
 	
@@ -21,7 +21,7 @@ public class Utente {
 	
 	
 										//Metodo costruttore iniziale al momento del login
-	public Utente(String matricola, char[] password) throws FileNotFoundException, IOException {
+	public Utente(String matricola, String password) throws FileNotFoundException, IOException {
 		this.matricola=matricola;
 		this.password=password;
 		
@@ -39,7 +39,7 @@ public class Utente {
 	
 	
 										//Metodo costruttore con tutti i dati necessari (ENTITY)
-	public Utente(String nome, String cognome, String matricola, char[] password,String mail, String ruolo,
+	public Utente(String nome, String cognome, String matricola, String password,String mail, String ruolo,
 					int ferie, int permessi, double stipendio) throws FileNotFoundException, IOException {
 		
 		if(checkMail(mail)==true)
@@ -115,7 +115,7 @@ public class Utente {
 		return matricola;
 	}
 								//Restituisce la password
-	public char[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	
