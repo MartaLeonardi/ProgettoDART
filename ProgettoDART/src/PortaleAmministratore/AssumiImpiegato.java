@@ -20,6 +20,8 @@ import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import GestionePersonale.AddEmpControl;
+
 public class AssumiImpiegato extends JPanel {
 
 	private JTextField nomeTextField;
@@ -28,12 +30,12 @@ public class AssumiImpiegato extends JPanel {
 	private JTextField emailTextField;
 	private JTextField telefonoTextField;
 	private JTextField stipendioTextField;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField matricolaField;
+	private JTextField nomeField;
+	private JTextField cognomeField;
+	private JTextField emailField;
+	private JTextField telefonoField;
+	private JTextField stipendioField;
 
 	/**
 	 * Create the panel.
@@ -113,15 +115,15 @@ public class AssumiImpiegato extends JPanel {
 		gbc_matricolaLabel.gridy = 2;
 		panel_3.add(matricolaLabel, gbc_matricolaLabel);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField.setColumns(14);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 2;
-		panel_3.add(textField, gbc_textField);
+		matricolaField = new JTextField();
+		matricolaField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		matricolaField.setColumns(14);
+		GridBagConstraints gbc_matricolaField = new GridBagConstraints();
+		gbc_matricolaField.fill = GridBagConstraints.BOTH;
+		gbc_matricolaField.insets = new Insets(0, 0, 5, 5);
+		gbc_matricolaField.gridx = 2;
+		gbc_matricolaField.gridy = 2;
+		panel_3.add(matricolaField, gbc_matricolaField);
 
 		JLabel nomeLabel = new JLabel("Nome:");
 		nomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -131,15 +133,15 @@ public class AssumiImpiegato extends JPanel {
 		gbc_nomeLabel.gridy = 3;
 		panel_3.add(nomeLabel, gbc_nomeLabel);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_1.setColumns(14);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.fill = GridBagConstraints.BOTH;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 3;
-		panel_3.add(textField_1, gbc_textField_1);
+		nomeField = new JTextField();
+		nomeField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		nomeField.setColumns(14);
+		GridBagConstraints gbc_nomeField = new GridBagConstraints();
+		gbc_nomeField.fill = GridBagConstraints.BOTH;
+		gbc_nomeField.insets = new Insets(0, 0, 5, 5);
+		gbc_nomeField.gridx = 2;
+		gbc_nomeField.gridy = 3;
+		panel_3.add(nomeField, gbc_nomeField);
 
 		JLabel cognomeLabel = new JLabel("Cognome:");
 		cognomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -149,15 +151,15 @@ public class AssumiImpiegato extends JPanel {
 		gbc_cognomeLabel.gridy = 4;
 		panel_3.add(cognomeLabel, gbc_cognomeLabel);
 
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_2.setColumns(14);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.fill = GridBagConstraints.BOTH;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.gridx = 2;
-		gbc_textField_2.gridy = 4;
-		panel_3.add(textField_2, gbc_textField_2);
+		cognomeField = new JTextField();
+		cognomeField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		cognomeField.setColumns(14);
+		GridBagConstraints gbc_cognomeField = new GridBagConstraints();
+		gbc_cognomeField.fill = GridBagConstraints.BOTH;
+		gbc_cognomeField.insets = new Insets(0, 0, 5, 5);
+		gbc_cognomeField.gridx = 2;
+		gbc_cognomeField.gridy = 4;
+		panel_3.add(cognomeField, gbc_cognomeField);
 
 		JLabel emilaLabel = new JLabel("E-mail:");
 		emilaLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -167,15 +169,15 @@ public class AssumiImpiegato extends JPanel {
 		gbc_emilaLabel.gridy = 5;
 		panel_3.add(emilaLabel, gbc_emilaLabel);
 
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_3.setColumns(14);
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.fill = GridBagConstraints.BOTH;
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_3.gridx = 2;
-		gbc_textField_3.gridy = 5;
-		panel_3.add(textField_3, gbc_textField_3);
+		emailField = new JTextField();
+		emailField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		emailField.setColumns(14);
+		GridBagConstraints gbc_emailField = new GridBagConstraints();
+		gbc_emailField.fill = GridBagConstraints.BOTH;
+		gbc_emailField.insets = new Insets(0, 0, 5, 5);
+		gbc_emailField.gridx = 2;
+		gbc_emailField.gridy = 5;
+		panel_3.add(emailField, gbc_emailField);
 
 		JLabel telefonoLabel = new JLabel("Telefono:");
 		telefonoLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -185,15 +187,15 @@ public class AssumiImpiegato extends JPanel {
 		gbc_telefonoLabel.gridy = 6;
 		panel_3.add(telefonoLabel, gbc_telefonoLabel);
 
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_4.setColumns(14);
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.fill = GridBagConstraints.BOTH;
-		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_4.gridx = 2;
-		gbc_textField_4.gridy = 6;
-		panel_3.add(textField_4, gbc_textField_4);
+		telefonoField = new JTextField();
+		telefonoField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		telefonoField.setColumns(14);
+		GridBagConstraints gbc_telefonoField = new GridBagConstraints();
+		gbc_telefonoField.fill = GridBagConstraints.BOTH;
+		gbc_telefonoField.insets = new Insets(0, 0, 5, 5);
+		gbc_telefonoField.gridx = 2;
+		gbc_telefonoField.gridy = 6;
+		panel_3.add(telefonoField, gbc_telefonoField);
 
 		JLabel ruoloLabel = new JLabel("Ruolo:");
 		ruoloLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -221,17 +223,31 @@ public class AssumiImpiegato extends JPanel {
 		gbc_stipendioLabel.gridy = 8;
 		panel_3.add(stipendioLabel, gbc_stipendioLabel);
 
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_5.setColumns(14);
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.fill = GridBagConstraints.BOTH;
-		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_5.gridx = 2;
-		gbc_textField_5.gridy = 8;
-		panel_3.add(textField_5, gbc_textField_5);
+		stipendioField = new JTextField();
+		stipendioField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		stipendioField.setColumns(14);
+		GridBagConstraints gbc_stipendioField = new GridBagConstraints();
+		gbc_stipendioField.fill = GridBagConstraints.BOTH;
+		gbc_stipendioField.insets = new Insets(0, 0, 5, 5);
+		gbc_stipendioField.gridx = 2;
+		gbc_stipendioField.gridy = 8;
+		panel_3.add(stipendioField, gbc_stipendioField);
 
 		JButton assumiButtom = new JButton("Assumi");
+		assumiButtom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String matricola = matricolaField.getText();
+				String nome = nomeField.getText();
+				String cognome = cognomeField.getText();
+				String email = emailField.getText();
+				String telefono = telefonoField.getText();
+				String ruolo = (String) ruoloComboBox.getItemAt(ruoloComboBox.getSelectedIndex());
+				String stipendio = stipendioField.getText();
+
+				AddEmpControl addEmp = new AddEmpControl(nome, cognome, matricola, email, telefono, ruolo, stipendio);
+
+			}
+		});
 		assumiButtom.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		GridBagConstraints gbc_assumiButtom = new GridBagConstraints();
 		gbc_assumiButtom.insets = new Insets(0, 0, 5, 5);
