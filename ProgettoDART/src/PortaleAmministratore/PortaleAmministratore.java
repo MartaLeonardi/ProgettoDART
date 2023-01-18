@@ -26,6 +26,7 @@ public class PortaleAmministratore extends JFrame {
 
 	public static CardLayout crd;
 	private static JPanel contentPane;
+	private static PortaleAmministratore instance;
 
 	/**
 	 * Launch the application.
@@ -34,7 +35,8 @@ public class PortaleAmministratore extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PortaleAmministratore frame = new PortaleAmministratore();
+					PortaleAmministratore frame = PortaleAmministratore.getInstance();
+					;
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -103,7 +105,6 @@ public class PortaleAmministratore extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LogoutControl logoutControl = new LogoutControl();
-				dispose();
 			}
 		});
 		logoutButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -324,4 +325,10 @@ public class PortaleAmministratore extends JFrame {
 		crd.show(contentPane, "PortaleAmministrazione");
 	}
 
+	public static PortaleAmministratore getInstance() {
+		if (instance == null) {
+			instance = new PortaleAmministratore();
+		}
+		return instance;
+	}
 }

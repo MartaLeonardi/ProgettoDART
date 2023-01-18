@@ -6,7 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Login.Login;
+import Login.Utente;
 import PortaleAmministratore.PortaleAmministratore;
+import PortaleImpiegato.PortaleImpiegato;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -60,6 +63,15 @@ public class PopUpConfermaLogout extends JFrame {
 		JButton confermaButton = new JButton("Conferma");
 		confermaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (Utente.getMatricola().substring(0, 1).equals("0")) {
+					PortaleImpiegato portaleImp = PortaleImpiegato.getInstance();
+					portaleImp.dispose();
+					dispose();
+				} else if (Utente.getMatricola().substring(0, 1).equals("1")) {
+					PortaleAmministratore portaleAmm = PortaleAmministratore.getInstance();
+					portaleAmm.dispose();
+					dispose();			
+				}
 				Login login = Login.getInstance();
 				login.setVisible(true);
 				dispose();
@@ -71,8 +83,6 @@ public class PopUpConfermaLogout extends JFrame {
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PortaleAmministratore portaleAmm = new PortaleAmministratore();
-				portaleAmm.setVisible(true);
 				dispose();
 			}
 		});

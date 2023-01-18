@@ -15,7 +15,11 @@ import BoundaryDBMS.DBMS;
 public class Utente {
 		
 	File f = new File("UserEntity.txt");
-	String matricola, nome, cognome, ruolo, mail;
+	static String matricola;
+	String nome;
+	String cognome;
+	String ruolo;
+	String mail;
 	String password;
 	
 	
@@ -102,7 +106,7 @@ public class Utente {
 		}
 	}
 								//Restituisce la matricola
-	public String getMatricola() {
+	public static String getMatricola() {
 		return matricola;
 	}
 								//Restituisce la password

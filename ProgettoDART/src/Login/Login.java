@@ -35,7 +35,6 @@ public class Login extends JFrame {
 	private static String matricola;
 	private static Login instance;
 
-	
 	/**
 	 * Launch the application.
 	 */
@@ -156,14 +155,14 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				matricola = textField.getText();
 				char[] password = passwordField.getPassword();
-				
-				
-				String psw="";
-				for(int i=0;i<password.length;i++) {
-					psw= psw + password[i] ;
+
+				String psw = "";
+				for (int i = 0; i < password.length; i++) {
+					psw = psw + password[i];
 				}
-				
-				
+
+				passwordField.setText("");
+				textField.setText("");
 				LoginControl loginControl = new LoginControl(matricola, psw);
 
 			}
