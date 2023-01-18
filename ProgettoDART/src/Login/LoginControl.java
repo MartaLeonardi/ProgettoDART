@@ -1,13 +1,8 @@
 package Login;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import BoundaryDBMS.DBMS;
-import BoundaryDBMS.ProvaDBMS;
 import PortaleAmministratore.PortaleAmministratore;
 import PortaleImpiegato.PortaleImpiegato;
 
@@ -99,7 +94,7 @@ public class LoginControl {
 	//METODO AGGIUNTO DA MARTA PER PROVA COLLEGAMENTO DB
 	public static void controllo (String matricola) {
 		
-		ProvaDBMS database = new ProvaDBMS();
+		DBMS database = new DBMS();
 		
 		String sql = "select u_matricola FROM Utente WHERE u_matricola =" + matricola ;
 	
