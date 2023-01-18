@@ -6,7 +6,7 @@ import PortaleImpiegato.PortaleImpiegato;
 public class LoginControl {
 	
 	public static void main (String[] args) {
-			String matricola = LoginJFrame.getMatricola();
+			String matricola = Login.getMatricola();
 
 			
 			if(check(matricola)) {

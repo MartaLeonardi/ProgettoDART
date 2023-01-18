@@ -55,6 +55,7 @@ public class Login extends JFrame {
 		crd = new CardLayout();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -62,6 +63,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(crd);
 		crd.first(contentPane);
 
+		RecuperaPassword recuperaPassword = new RecuperaPassword();
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout(0, 0));
 		contentPane.add(panel, BorderLayout.NORTH);
@@ -95,8 +97,12 @@ public class Login extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
+
 		gbl_panel_4.columnWidths = new int[] { 259, 98, 50, 223, 128, 236 };
 		gbl_panel_4.rowHeights = new int[] { 180, 0, 0, 61, 0, 278 };
+
+		gbl_panel_4.columnWidths = new int[] { 259, 98, 50, 223, 0, 236 };
+		gbl_panel_4.rowHeights = new int[] { 33, 0, 0, 0, 278 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_4.setLayout(gbl_panel_4);
@@ -153,6 +159,11 @@ public class Login extends JFrame {
 		});
 
 		JButton btnNewButton = new JButton("Recupera Password");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				crd.show(contentPane, "RecuperaPassword");
+			}
+		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
@@ -168,6 +179,7 @@ public class Login extends JFrame {
 		panel_4.add(loginButtom, gbc_loginButtom);
 
 		contentPane.add(panel, "Login");
+		contentPane.add(recuperaPassword, "RecuperaPassword");
 
 	}
 
