@@ -43,8 +43,17 @@ public class DBMS implements DbInterface {
 			rs=statement.executeQuery(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}			
 		return rs;
+	}
+	
+	public void closeConnection() {
+		try {
+			connect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

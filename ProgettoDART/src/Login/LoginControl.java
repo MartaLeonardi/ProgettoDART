@@ -8,25 +8,15 @@ import PortaleImpiegato.PortaleImpiegato;
 
 public class LoginControl {
 	
-	public static void main (String[] args) {
-			String matricola = Login.getMatricola();
-
-			controllo(matricola);
-			
-			
-			/*if(check(matricola)) {
+	public LoginControl(String matricola, char[] password) {			
+		
+			if(check(matricola)) {
 				
-				if(checkSql(matricola)) {;
+				if(controllo(matricola)) {;
 				
-				System.out.println("true");
 				choosePortal(matricola);
-				}									//commentato da Marta per prova db
-				
-				
-				
-			}*/
-			
-			
+				}
+			}		
 	}
 	
 	
@@ -50,10 +40,13 @@ public class LoginControl {
 		} else if (matricola.substring(0, 1).equals("0")) {
 			PortaleImpiegato portaleImp = new PortaleImpiegato();
 			portaleImp.setVisible(true);
+			Login frame = Login.getInstance();
+			frame.dispose();
 		} else if (matricola.substring(0, 1).equals("1")) {
 			PortaleAmministratore portaleAmm = new PortaleAmministratore();
 			portaleAmm.setVisible(true);
-			
+			Login frame = Login.getInstance();
+			frame.dispose();			
 		}
 	}
 	
@@ -92,11 +85,11 @@ public class LoginControl {
 	
 	
 	//METODO AGGIUNTO DA MARTA PER PROVA COLLEGAMENTO DB
-	public static void controllo (String matricola) {
+	public static boolean controllo (String matricola) {
 		
 		DBMS database = new DBMS();
 		
-		String sql = "select u_matricola FROM Utente WHERE u_matricola =" + matricola ;
+		String sql = "SELECT u_matricola FROM Utente WHERE u_matricola = '" + matricola + "'" ;
 	
 		try {
 			ResultSet rs=database.query(sql);
@@ -104,12 +97,16 @@ public class LoginControl {
 			do {
 				String row =rs.getString("u_matricola");
 				System.out.println(row);
+				database.closeConnection();
+				return true;
 			}while(rs.next());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		System.out.println("Fine controllo");
+		database.closeConnection();
+		return false;
 		
 		
 		
