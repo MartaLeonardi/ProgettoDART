@@ -60,7 +60,7 @@ public class PopUpConfermaLogout extends JFrame {
 		JButton confermaButton = new JButton("Conferma");
 		confermaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
+				Login login = Login.getInstance();
 				login.setVisible(true);
 				dispose();
 			}

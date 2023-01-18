@@ -30,6 +30,7 @@ public class Login extends JFrame {
 	private JTextField textField;
 	private static JPasswordField passwordField;
 	private static String matricola;
+	private static Login instance;
 
 	
 	/**
@@ -39,7 +40,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					Login frame = Login.getInstance();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,8 +51,11 @@ public class Login extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @return
 	 */
 	public Login() {
+
 		crd = new CardLayout();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
@@ -150,16 +154,8 @@ public class Login extends JFrame {
 				matricola = textField.getText();
 				char[] password = passwordField.getPassword();
 
-				LoginControl loginControl = new LoginControl();
-				if (loginControl.check(matricola)) {
-					/*if (loginControl.checkSql(matricola)) {
-						loginControl.choosePortal(matricola);
-						dispose();
-					}*/
-					
-					loginControl.controllo(matricola);
-					
-				}
+				LoginControl loginControl = new LoginControl(matricola, password);
+
 			}
 		});
 
@@ -203,5 +199,12 @@ public class Login extends JFrame {
 
 	public static void back() {
 		crd.show(contentPane, "Login");
+	}
+
+	public static Login getInstance() {
+		if (instance == null) {
+			instance = new Login();
+		}
+		return instance;
 	}
 }
