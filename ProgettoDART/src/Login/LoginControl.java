@@ -1,5 +1,11 @@
 package Login;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import BoundaryDBMS.DBMS;
 import PortaleAmministratore.PortaleAmministratore;
 import PortaleImpiegato.PortaleImpiegato;
 
@@ -10,8 +16,12 @@ public class LoginControl {
 
 			
 			if(check(matricola)) {
+				
+				if(checkSql(matricola)) {;
+				
 				System.out.println("true");
 				choosePortal(matricola);
+				}
 			}
 			
 			
@@ -42,6 +52,39 @@ public class LoginControl {
 			PortaleAmministratore portaleAmm = new PortaleAmministratore();
 			portaleAmm.setVisible(true);
 			
+		}
+	}
+	
+	
+	public static boolean checkSql(String matricola) {
+		try {
+			//System.out.println("test");
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//Connection con = DriverManager.getConnection("jdbc:mysql://sql11.freesqldatabase.com/sql11590906", "sql11590906", "QIUpTZeWKm");
+			//Statement stat = con.createStatement();
+			DBMS db = new DBMS();
+			db.prova();
+			System.out.println("inserting records");
+			String sql = "select u_matricola FROM Utente WHERE u_matricola = '" + matricola + "';";
+			ResultSet rs = db.stat.executeQuery(sql);
+			//int result = stat.executeUpdate(sql);
+			String result = "";
+			rs.first();
+			while (rs.next())
+		      {
+		       result = rs.getString("u_matricola");
+		      }
+			if(result.equals(matricola)) {
+				System.out.println("true");
+				return true;
+			}
+			else {
+				return false;
+			}
+
+		}catch(Exception e) {
+			System.out.println(e);
+			return false;
 		}
 	}
 }

@@ -152,8 +152,10 @@ public class Login extends JFrame {
 
 				LoginControl loginControl = new LoginControl();
 				if (loginControl.check(matricola)) {
-					loginControl.choosePortal(matricola);
-					dispose();
+					if (loginControl.checkSql(matricola)) {
+						loginControl.choosePortal(matricola);
+						dispose();
+					}
 				}
 			}
 		});
