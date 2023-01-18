@@ -4,21 +4,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import BoundaryDBMS.DBMS;
 
 public class Utente {
 		
 	File f = new File("UserEntity.txt");
 	String matricola, nome, cognome, ruolo, mail;
 	String password;
-	int ferie,permessi;				//numero ferie e numero permessi
-	double stipendio;
 	
 	
 	public Utente() {};					//Metodo costruttore senza parametri
-	
 	
 										//Metodo costruttore iniziale al momento del login
 	public Utente(String matricola, String password) throws FileNotFoundException, IOException {
@@ -39,20 +40,16 @@ public class Utente {
 	
 	
 										//Metodo costruttore con tutti i dati necessari (ENTITY)
-	public Utente(String nome, String cognome, String matricola, String password,String mail, String ruolo,
-					int ferie, int permessi, double stipendio) throws FileNotFoundException, IOException {
+	public Utente(String nome, String cognome, String matricola, String password,String mail, String ruolo) throws FileNotFoundException, IOException {
 		
-		if(checkMail(mail)==true)
-		{
+		//if(checkMail(mail)==true)
+		//{
 		this.matricola=matricola;
 		this.password=password;
 		this.nome=nome;
 		this.cognome=cognome;
 		this.mail=mail;
 		this.ruolo=ruolo;
-		this.ferie=ferie;
-		this.permessi=permessi;
-		this.stipendio=stipendio;
 		
 		if(f.exists()) 
 		{
@@ -65,23 +62,24 @@ public class Utente {
 			toString1();
 		}
 		
-		}
+		/*}
 		else {
 			System.out.println("Formato e-mail non valido, Utente non aggiunto");
 		}
-		
+		*/
 	}
 									//Mette a stringa tutti i dati del metodo costruttore per aggiornare il file UserEntity.txt
 	public String toString() {
 
 		 String s ="\nNome:"+ this.nome + "\nCognome:" + this.cognome +"\nMatricola:" + this.matricola + "\nPassword:" + this.password +
-				   "\nEmail:" + this.mail + "\nRuolo:" + this.ruolo + "\nNumero ferie:" + this.ferie + "\nNumero permessi:" + this.permessi + 
-				   "\nStipendio:" + this.stipendio;
-		 try {
-			aggiornaDati(s);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+				   "\nEmail:" + this.mail + "\nRuolo:" + this.ruolo ;
+			try {
+				aggiornaDati(s);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		 return s;
 		
 	}
@@ -132,7 +130,7 @@ public class Utente {
 		if(checkMail(mail)==true)
 		{
 		try {
-			Utente u= new Utente(nome, cognome, matricola, password, mail, ruolo, ferie, permessi, stipendio);
+			Utente u= new Utente(nome, cognome, matricola, password, mail, ruolo);
 			String f=u.toString();
 			System.out.println(f);
 		} catch (FileNotFoundException e) {
@@ -166,18 +164,7 @@ public class Utente {
 	public String getRuolo() {
 		return ruolo;
 	}
-	
-	public int getFerie() {
-		return ferie;
-	}
-	
-	public int getPermessi() {
-		return permessi;
-	}
-	
-	public double getStipendio() {
-		return stipendio;
-	}
+
 	
 			/*
 			 * Controllo della stringa mail inserita
@@ -208,4 +195,45 @@ public class Utente {
 					return false;
 				}
 	}
+	
+	
+	public static boolean checkDatiDB (String matricola, String password) {
+		
+		DBMS database = new DBMS();
+		
+		String sql = "SELECT U.nome, U.cognome , U.u_matricola, U.email, I.ruolo\r\n"
+				+ "FROM Utente U, Impiegato I\r\n"
+				+ "WHERE A.ref_t_matricola=U.u_matricola AND I.i_matricola=U.u_matricola AND U.u_matricola = '" + matricola + "' " ;
+	
+		try {
+			ResultSet rs=database.query(sql);
+			rs.first();
+			do {
+				String row =rs.getString("nome") + "" + rs.getString("cognome") + ""+ matricola + ""+ password
+							+ ""+ rs.getString("email") + ""+ rs.getString("ruolo");
+				
+				try {
+					Utente utente = new Utente(rs.getString("nome"),rs.getString("cognome"),matricola, password,
+										rs.getString("email"),rs.getString("ruolo"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//System.out.println(row);
+				database.closeConnection();
+				return true;
+			}while(rs.next());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Fine controllo");
+		database.closeConnection();
+		return false;
+		
+	}
+	
+	
+	
 }

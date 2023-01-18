@@ -14,11 +14,10 @@ public class TestUtente {
 		String nome="Mario";
 		String cognome="Rossi";
 		String matricola="0000000";
-		char[] password= {'p', 's', 'w'};
+		String password="psw";
 		String mail="ciao@ciao.it";
 		String ruolo="ruolo 1";
-		int ferie=0, permessi=0;
-		Double stipendio=0.00;
+
 		*/
 		
 		//test 2 non funzionante per email
@@ -26,15 +25,14 @@ public class TestUtente {
 		String nome="Mario";
 		String cognome="Rossi";
 		String matricola="0000000";
-		char[] password= {'p', 's', 'w'};
+		String password="psw";
 		String mail="cIao33333@d.io";
 		String ruolo="ruolo 1";
-		int ferie=0, permessi=0;
-		Double stipendio=0.00;
+
 		
 		
 		try {
-			Utente u = new Utente(nome,cognome,matricola,password,mail,ruolo,ferie,permessi,stipendio);
+			Utente u = new Utente(nome,cognome,matricola,password,mail,ruolo);
 			System.out.println(u.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

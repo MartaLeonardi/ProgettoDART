@@ -202,7 +202,6 @@ public class Login extends JFrame {
 		this.matricola = this.textField.getText();
 	}
 
-	// METODO AGGIUNTO DA MARTA
 	public static char[] getPassword() {
 		return passwordField.getPassword();
 	}
