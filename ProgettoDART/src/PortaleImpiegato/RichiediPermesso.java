@@ -10,6 +10,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
@@ -23,6 +24,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
+
+import GestionePermessi.RichiediPermessoControl;
 
 public class RichiediPermesso extends JPanel {
 
@@ -259,14 +262,12 @@ public class RichiediPermesso extends JPanel {
 				// Contenuto combobox
 				int index = motivazioni.getSelectedIndex();
 				String motivazioneSelezionata = listaMotivazioni[index];
+				
 				// Contenuto chooseDate inizio e fine
 				Date dataInseritaInizio = dataInizio.getDate();
-				DateFormat cambioFormatoDataI = DateFormat.getDateInstance(DateFormat.SHORT);
-				String dataI = cambioFormatoDataI.format(dataInseritaInizio);
 
 				Date dataInseritaFine = dataFine.getDate();
-				DateFormat cambioFormatoDataF = DateFormat.getDateInstance(DateFormat.SHORT);
-				String dataF = cambioFormatoDataF.format(dataInseritaFine);
+
 
 				Boolean checkBoxGiornate = giornateComplete.isSelected(); // contenuto checkbox
 
@@ -285,6 +286,8 @@ public class RichiediPermesso extends JPanel {
 					minutoI = minuti[minutoInizio.getSelectedIndex()];
 					minutoF = minuti[minutoFine.getSelectedIndex()];
 				}
+				
+				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,minutoI,minutoF);
 
 			}
 		});

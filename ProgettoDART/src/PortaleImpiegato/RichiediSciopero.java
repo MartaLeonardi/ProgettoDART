@@ -10,8 +10,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -122,10 +122,13 @@ public class RichiediSciopero extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				Date dataInserita = dateChooser.getDate();
-				DateFormat cambioFormatoData = DateFormat.getDateInstance(DateFormat.SHORT);
-				String data = cambioFormatoData.format(dataInserita);
-				// ProvaInserimento.setText(data); //PROVA DATA OTTENUTA ATTRAVERSO
-				// AGGIORNAMENTO DI LABEL
+				
+				String pattern = "yyyy-MM-dd";
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+				String date = simpleDateFormat.format(dataInserita);
+				System.out.println(date);
+				
+				
 
 			}
 		});

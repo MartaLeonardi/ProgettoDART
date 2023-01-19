@@ -52,6 +52,11 @@ public class PortaleImpiegato extends JFrame {
 	 * Create the frame.
 	 */
 	public PortaleImpiegato() {
+		Utente utente = Utente.getInstance();
+		String nome = utente.getNome();
+		String cognome = utente.getCognome();
+		String matricola = utente.getMatricola();
+		
 		crd = new CardLayout();
 		setTitle("Portale impiegato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,9 +153,7 @@ public class PortaleImpiegato extends JFrame {
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
 
-		Utente utente = Utente.getInstance();
-		//System.out.println("TESTTESTTESTTEST" + utente.getNome());
-		JLabel nomeLabel = new JLabel(utente.getNome());
+		JLabel nomeLabel = new JLabel(nome);
 		nomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_nomeLabel = new GridBagConstraints();
 		gbc_nomeLabel.insets = new Insets(0, 0, 5, 0);
@@ -159,7 +162,7 @@ public class PortaleImpiegato extends JFrame {
 		gbc_nomeLabel.gridy = 0;
 		panel_3.add(nomeLabel, gbc_nomeLabel);
 
-		JLabel cognomeLabel = new JLabel(utente.getCognome());
+		JLabel cognomeLabel = new JLabel(cognome);
 		cognomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_cognomeLabel = new GridBagConstraints();
 		gbc_cognomeLabel.insets = new Insets(0, 0, 5, 0);
@@ -167,7 +170,7 @@ public class PortaleImpiegato extends JFrame {
 		gbc_cognomeLabel.gridy = 1;
 		panel_3.add(cognomeLabel, gbc_cognomeLabel);
 
-		JLabel matricolaLabel = new JLabel(utente.getMatricola());
+		JLabel matricolaLabel = new JLabel(matricola);
 		matricolaLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_matricolaLabel = new GridBagConstraints();
 		gbc_matricolaLabel.gridx = 0;

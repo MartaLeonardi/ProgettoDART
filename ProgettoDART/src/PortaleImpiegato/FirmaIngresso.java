@@ -10,6 +10,9 @@ import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import Login.Utente;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -27,6 +30,9 @@ public class FirmaIngresso extends JPanel {
 	 * Create the panel.
 	 */
 	public FirmaIngresso() {
+		Utente utente = Utente.getInstance();
+		String matricola=utente.getMatricola();
+		
 		setBounds(100, 100, 1280, 800);
 		setLayout(new BorderLayout(0, 0));
 
@@ -59,9 +65,9 @@ public class FirmaIngresso extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] { 372, 225, 403, 345 };
+		gbl_panel_2.columnWidths = new int[] {30, 150, 300, 150, 30};
 		gbl_panel_2.rowHeights = new int[] { 0, 0 };
-		gbl_panel_2.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0 };
+		gbl_panel_2.columnWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0 };
 		gbl_panel_2.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
 
@@ -76,6 +82,8 @@ public class FirmaIngresso extends JPanel {
 		panel_2.add(lblNewLabel, gbc_lblNewLabel);
 
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setText(matricola);
 		textField.setEnabled(false);
 		textField.setEditable(false);
 		textField.setFont(new Font("Times New Roman", Font.PLAIN, 25));
