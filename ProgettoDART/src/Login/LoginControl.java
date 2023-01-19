@@ -19,14 +19,14 @@ public class LoginControl {
 			popup1.setVisible(true);
 		}
 		else {
-			if(matricola.length()==5 && (password.trim()).length()>1) {
+			if(matricola.length()==5 && password.length()>1) {
 				
-					if(checkDatiDB(matricola, password.trim())) {
+					if(checkDatiDB(matricola, password)) {
 					
 						choosePortal(matricola);
 						System.out.println("Accesso effettuato correttamente!");
 						try {
-							Utente user = new Utente(matricola, password.trim());
+							Utente utente = new Utente(matricola, password);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -89,8 +89,8 @@ public class LoginControl {
 			ResultSet rs=database.query(sql);
 			rs.first();
 			do {
-				String row =rs.getString("ref_t_matricola") + "" + rs.getString("password");
-				//System.out.println(row);
+				String row =rs.getString("ref_t_matricola") + "\n" + rs.getString("password");
+				System.out.println("Credenziali trovate:\n" + row);
 				database.closeConnection();
 				return true;
 			}while(rs.next());
@@ -100,6 +100,7 @@ public class LoginControl {
 		
 		System.out.println("Fine controllo");
 		database.closeConnection();
+		System.out.println("Credenziali NON trovate");
 		return false;
 		
 	}

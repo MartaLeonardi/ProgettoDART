@@ -41,6 +41,9 @@ public class DBMS implements DbInterface {
 		try {
 			statement=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs=statement.executeQuery(sql);
+			
+			//System.out.println("risultato query: " +rs);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}			

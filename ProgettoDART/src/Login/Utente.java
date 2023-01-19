@@ -26,11 +26,8 @@ public class Utente {
 	public Utente() {};					//Metodo costruttore senza parametri
 	
 										//Metodo costruttore iniziale al momento del login
-	public Utente(String matricola, String password) throws FileNotFoundException, IOException {
-		this.matricola=matricola;
-		this.password=password;
-		
-		
+	public Utente(String matricola, String password) throws FileNotFoundException, IOException {		
+	
 		getDatiDataBase(matricola, password);
 		
 	}
@@ -130,38 +127,31 @@ public class Utente {
 		try {
 			ResultSet rs=database.query(sql);
 			rs.first();
-			do {
-				String row =rs.getString("nome") + "" + rs.getString("cognome") + ""+ matricola + ""+ password
-							+ ""+ rs.getString("email") + ""+ rs.getString("ruolo");
+				String row =rs.getString("nome") + "\n" + rs.getString("cognome") + "\n"+ matricola + "\n"+ password
+							+ "\n"+ rs.getString("email") + "\n"+ rs.getString("ruolo");
 				System.out.println(row);
 				
+				String nome = rs.getString("nome");
+				String cognome = rs.getString("cognome");
+				String mail = rs.getString("email");
+				String ruolo = rs.getString("ruolo");
+				
 				try {
-					Utente utente = new Utente(rs.getString("nome"),rs.getString("cognome"),matricola, password,
-										rs.getString("email"),rs.getString("ruolo"));
+					Utente utente = new Utente(nome,cognome,matricola, password,mail,ruolo);
+					utente.toString();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-				//System.out.println(row);
 				database.closeConnection();
 				
-			}while(rs.next());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		System.out.println("Fine controllo");
 		database.closeConnection();
-		
-		Utente u;
-		try {
-			u = new Utente(nome, cognome, matricola, password, mail, ruolo);
-			String f=u.toString();
-			System.out.println(f);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 	}
 	
