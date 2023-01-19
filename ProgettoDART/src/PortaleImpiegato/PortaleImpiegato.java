@@ -149,7 +149,7 @@ public class PortaleImpiegato extends JFrame {
 		panel_3.setLayout(gbl_panel_3);
 
 		Utente utente = Utente.getInstance();
-		System.out.println("TESTTESTTESTTEST" + utente.getNome());
+		//System.out.println("TESTTESTTESTTEST" + utente.getNome());
 		JLabel nomeLabel = new JLabel(utente.getNome());
 		nomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_nomeLabel = new GridBagConstraints();

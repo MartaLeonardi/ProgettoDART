@@ -34,7 +34,7 @@ public class Utente {
 	}
 	
 	
-										//Metodo costruttore con tutti i dati necessari (ENTITY)
+										//Metodo costruttore con tutti i dati necessari (ENTITY)		IMPIEGATO
 	public Utente(String nome, String cognome, String matricola, String password,String mail, String ruolo) throws FileNotFoundException, IOException {
 		
 		if(checkMail(mail)==true)
@@ -49,12 +49,12 @@ public class Utente {
 		if(f.exists()) 
 		{
 			System.out.println("Il file esiste");
-			toString();
+			toString0();
 		}
 		else if(f.createNewFile())
 		{
 			System.out.println("Il file e' stato creato");
-			toString();
+			toString0();
 		}
 		
 		}
@@ -63,23 +63,71 @@ public class Utente {
 		}
 		
 	}
-									//Mette a stringa tutti i dati del metodo costruttore per aggiornare il file UserEntity.txt
-	public String toString() {
+	
+	
+									//Metodo costruttore con tutti i dati necessari (ENTITY)		AMMINISTRATORE
+	public Utente(String nome, String cognome, String matricola, String password,String mail) throws FileNotFoundException, IOException {
+		
+		if(checkMail(mail)==true)
+		{
+		this.matricola=matricola;
+		this.password=password;
+		this.nome=nome;
+		this.cognome=cognome;
+		this.mail=mail;
+		
+		if(f.exists()) 
+		{
+			System.out.println("Il file esiste");
+			toString1();
+		}
+		else if(f.createNewFile())
+		{
+			System.out.println("Il file e' stato creato");
+			toString1();
+		}
+		
+		}
+		else {
+			System.out.println("Formato e-mail non valido, Utente non aggiunto");
+		}
+		
+	}
+	
+	
+									//Mette a stringa tutti i dati del metodo costruttore per aggiornare il file UserEntity.txt IMPIEGATO
+	public String toString0() {
 
 		 String s ="\nNome:"+ this.nome + "\nCognome:" + this.cognome +"\nMatricola:" + this.matricola + "\nPassword:" + this.password +
 				   "\nEmail:" + this.mail + "\nRuolo:" + this.ruolo ;
 			try {
 				aggiornaDati(s);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
 		 return s;
 		
 	}
-								//Genera una stringa contenente i dati di login, e aggiorna i dati all'interno del file UserEntity.txt
+	
+									//Mette a stringa tutti i dati del metodo costruttore per aggiornare il file UserEntity.txt AMMINISTRATORE
 	public String toString1() {
+
+		String s ="\nNome:"+ this.nome + "\nCognome:" + this.cognome +"\nMatricola:" + this.matricola + "\nPassword:" + this.password +
+		"\nEmail:" + this.mail ;
+		try {
+			aggiornaDati(s);
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+
+		return s;
+
+	}
+
+								//Genera una stringa contenente i dati di login, e aggiorna i dati all'interno del file UserEntity.txt
+	public String toString() {
 		 String s ="\nMatricola:" + this.matricola + "\nPassword:" + this.password;
 		 try {
 			aggiornaDati(s);
@@ -121,34 +169,69 @@ public class Utente {
 		//query db per prendere i dati (nome,cognome,matricola,mail,ruolo) 
 		DBMS database = new DBMS();
 		
-		String sql = "SELECT U.nome, U.cognome , U.u_matricola, U.email, I.ruolo\r\n"
-				+ "FROM Utente U, Impiegato I\r\n"
-				+ "WHERE I.i_matricola=U.u_matricola AND U.u_matricola = '" + matricola + "' " ;
-	
-		try {
-			ResultSet rs=database.query(sql);
-			rs.first();
-				String row =rs.getString("nome") + "\n" + rs.getString("cognome") + "\n"+ matricola + "\n"+ password
-							+ "\n"+ rs.getString("email") + "\n"+ rs.getString("ruolo");
-				System.out.println(row);
-				
-				String nome = rs.getString("nome");
-				String cognome = rs.getString("cognome");
-				String mail = rs.getString("email");
-				String ruolo = rs.getString("ruolo");
-				
-				try {
-					Utente utente = new Utente(nome,cognome,matricola, password,mail,ruolo);
-					utente.toString();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				database.closeConnection();
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if(matricola.substring(0, 1).equals("0")) {
+			
+			String sql = "SELECT U.nome, U.cognome , U.u_matricola, U.email, I.ruolo\r\n"
+					+ "FROM Utente U, Impiegato I\r\n"
+					+ "WHERE I.i_matricola=U.u_matricola AND U.u_matricola = '" + matricola + "' " ;
+		
+			try {
+				ResultSet rs=database.query(sql);
+				rs.first();
+					String row =rs.getString("nome") + "\n" + rs.getString("cognome") + "\n"+ matricola + "\n"+ password
+								+ "\n"+ rs.getString("email") + "\n"+ rs.getString("ruolo");
+					System.out.println(row);
+					
+					String nome = rs.getString("nome");
+					String cognome = rs.getString("cognome");
+					String mail = rs.getString("email");
+					String ruolo = rs.getString("ruolo");
+					
+					try {
+						Utente utente = new Utente(nome,cognome,matricola, password,mail,ruolo);
+						utente.toString0();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					database.closeConnection();
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(matricola.substring(0, 1).equals("1")) {
+			
+			String sql = "SELECT U.nome, U.cognome , U.u_matricola, U.email\r\n"
+					+ "FROM Utente U\r\n"
+					+ "WHERE U.u_matricola = '" + matricola + "' " ;
+		
+			try {
+				ResultSet rs=database.query(sql);
+				rs.first();
+					String row =rs.getString("nome") + "\n" + rs.getString("cognome") + "\n"+ matricola + "\n"+ password
+								+ "\n"+ rs.getString("email");
+					System.out.println(row);
+					
+					String nome = rs.getString("nome");
+					String cognome = rs.getString("cognome");
+					String mail = rs.getString("email");
+					
+					try {
+						Utente utente = new Utente(nome,cognome,matricola, password,mail);
+						utente.toString1();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					database.closeConnection();
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		System.out.println("Fine controllo");
@@ -229,6 +312,17 @@ public class Utente {
 		return instance;
 	}
 	
+	public static Utente getInstance(String nome, String cognome, String matricola, String password,String mail) {
+		if(instance == null) {
+			try {
+				instance = new Utente(nome, cognome, matricola, password, mail);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return instance;
+	}
 	
 	
 
