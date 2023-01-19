@@ -162,8 +162,8 @@ public class Login extends JFrame {
 					psw.trim();
 				}
 
-				passwordField.setText(psw);
-				textField.setText(matricola);
+				passwordField.setText("");
+				textField.setText("");
 				LoginControl loginControl = new LoginControl(matricola, psw);
 
 			}

@@ -21,6 +21,7 @@ public class Utente {
 	static String ruolo;
 	static String mail;
 	static String password;
+	private static Utente instance;
 	
 	
 	public Utente() {};					//Metodo costruttore senza parametri
@@ -103,7 +104,7 @@ public class Utente {
 		}
 	}
 								//Restituisce la matricola
-	public static String getMatricola() {
+	public String getMatricola() {
 		return matricola;
 	}
 								//Restituisce la password
@@ -208,6 +209,26 @@ public class Utente {
 					return false;
 				}
 	}
+	
+	public static Utente getInstance() {
+		if(instance == null) {
+			instance = new Utente();
+		}
+		return instance;
+	}
+	
+	public static Utente getInstance(String nome, String cognome, String matricola, String password,String mail, String ruolo) {
+		if(instance == null) {
+			try {
+				instance = new Utente(nome, cognome, matricola, password, mail, ruolo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return instance;
+	}
+	
 	
 	
 

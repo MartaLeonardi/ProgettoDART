@@ -22,15 +22,16 @@ public class LoginControl {
 			if(matricola.length()==5 && password.length()>1) {
 				
 					if(checkDatiDB(matricola, password)) {
-					
-						choosePortal(matricola);
-						System.out.println("Accesso effettuato correttamente!");
+						
 						try {
 							Utente utente = new Utente(matricola, password);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						
+						choosePortal(matricola);
+						System.out.println("Accesso effettuato correttamente!");
 					}
 					else {
 						OKPopUp popup = new OKPopUp("Matricola e/o password non presente nel database !");
@@ -65,12 +66,12 @@ public class LoginControl {
 		if (matricola.equals(null)) {
 			System.out.println("x");
 		} else if (matricola.substring(0, 1).equals("0")) {
-			PortaleImpiegato portaleImp = new PortaleImpiegato();
+			PortaleImpiegato portaleImp = PortaleImpiegato.getInstance();
 			portaleImp.setVisible(true);
 			Login frame = Login.getInstance();
 			frame.dispose();
 		} else if (matricola.substring(0, 1).equals("1")) {
-			PortaleAmministratore portaleAmm = new PortaleAmministratore();
+			PortaleAmministratore portaleAmm = PortaleAmministratore.getInstance();
 			portaleAmm.setVisible(true);
 			Login frame = Login.getInstance();
 			frame.dispose();			

@@ -63,11 +63,13 @@ public class PopUpConfermaLogout extends JFrame {
 		JButton confermaButton = new JButton("Conferma");
 		confermaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (Utente.getMatricola().substring(0, 1).equals("0")) {
+				Utente utente = Utente.getInstance();
+				System.out.println(utente.getMatricola());
+				if (utente.getMatricola().substring(0, 1).equals("0")) {
 					PortaleImpiegato portaleImp = PortaleImpiegato.getInstance();
 					portaleImp.dispose();
 					dispose();
-				} else if (Utente.getMatricola().substring(0, 1).equals("1")) {
+				} else if (utente.getMatricola().substring(0, 1).equals("1")) {
 					PortaleAmministratore portaleAmm = PortaleAmministratore.getInstance();
 					portaleAmm.dispose();
 					dispose();			
