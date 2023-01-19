@@ -30,12 +30,12 @@ public class AssumiImpiegato extends JPanel {
 	private JTextField emailTextField;
 	private JTextField telefonoTextField;
 	private JTextField stipendioTextField;
-	private JTextField matricolaField;
-	private JTextField nomeField;
-	private JTextField cognomeField;
-	private JTextField emailField;
-	private JTextField telefonoField;
-	private JTextField stipendioField;
+	public JTextField matricolaField;
+	public JTextField nomeField;
+	public JTextField cognomeField;
+	public JTextField emailField;
+	public JTextField telefonoField;
+	private static AssumiImpiegato instance;
 
 	/**
 	 * Create the panel.
@@ -215,24 +215,6 @@ public class AssumiImpiegato extends JPanel {
 		gbc_ruoloComboBox.gridy = 7;
 		panel_3.add(ruoloComboBox, gbc_ruoloComboBox);
 
-		JLabel stipendioLabel = new JLabel("Stipendio:");
-		stipendioLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_stipendioLabel = new GridBagConstraints();
-		gbc_stipendioLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_stipendioLabel.gridx = 1;
-		gbc_stipendioLabel.gridy = 8;
-		panel_3.add(stipendioLabel, gbc_stipendioLabel);
-
-		stipendioField = new JTextField();
-		stipendioField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		stipendioField.setColumns(14);
-		GridBagConstraints gbc_stipendioField = new GridBagConstraints();
-		gbc_stipendioField.fill = GridBagConstraints.BOTH;
-		gbc_stipendioField.insets = new Insets(0, 0, 5, 5);
-		gbc_stipendioField.gridx = 2;
-		gbc_stipendioField.gridy = 8;
-		panel_3.add(stipendioField, gbc_stipendioField);
-
 		JButton assumiButtom = new JButton("Assumi");
 		assumiButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -242,9 +224,8 @@ public class AssumiImpiegato extends JPanel {
 				String email = emailField.getText();
 				String telefono = telefonoField.getText();
 				String ruolo = (String) ruoloComboBox.getItemAt(ruoloComboBox.getSelectedIndex());
-				String stipendio = stipendioField.getText();
 
-				AddEmpControl addEmp = new AddEmpControl(nome, cognome, matricola, email, telefono, ruolo, stipendio);
+				AddEmpControl addEmp = new AddEmpControl(nome, cognome, matricola, email, telefono, ruolo);
 
 			}
 		});
@@ -255,6 +236,13 @@ public class AssumiImpiegato extends JPanel {
 		gbc_assumiButtom.gridy = 9;
 		panel_3.add(assumiButtom, gbc_assumiButtom);
 
+	}
+
+	public static AssumiImpiegato getInstance() {
+		if (instance == null) {
+			instance = new AssumiImpiegato();
+		}
+		return instance;
 	}
 
 }

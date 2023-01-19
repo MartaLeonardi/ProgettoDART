@@ -69,7 +69,13 @@ public class PortaleAmministratore extends JFrame {
 		contentPane.setLayout(crd);
 		crd.first(contentPane);
 
-		AssumiImpiegato assumiImp = new AssumiImpiegato();
+		AssumiImpiegato assumiImp = null;
+		try {
+			assumiImp = AssumiImpiegato.getInstance();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		LicenziaImpiegato licenziaImp = new LicenziaImpiegato();
 		VisualizzaSchedaImpiegato visualizzaSchedaImp = new VisualizzaSchedaImpiegato();
 		VisualizzaTurni visTurni = new VisualizzaTurni();
