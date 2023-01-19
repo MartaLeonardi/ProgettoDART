@@ -18,9 +18,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import PopUp.OKPopUp;
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;

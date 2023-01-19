@@ -34,7 +34,7 @@ public class LoginControl {
 						System.out.println("Accesso effettuato correttamente!");
 					}
 					else {
-						OKPopUp popup = new OKPopUp("Matricola e/o password non presente nel database !");
+						OKPopUp popup = new OKPopUp("Credenziali NON corrette !");
 						popup.setVisible(true);
 					}
 					
