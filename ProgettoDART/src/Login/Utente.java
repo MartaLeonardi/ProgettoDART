@@ -16,11 +16,11 @@ public class Utente {
 		
 	File f = new File("UserEntity.txt");
 	static String matricola;
-	String nome;
-	String cognome;
-	String ruolo;
-	String mail;
-	String password;
+	static String nome;
+	static String cognome;
+	static String ruolo;
+	static String mail;
+	static String password;
 	
 	
 	public Utente() {};					//Metodo costruttore senza parametri
@@ -162,19 +162,19 @@ public class Utente {
 	
 	
 					//Metodi Get per tutti gli attributi (Nome, Cognome, Mail, Ruolo, Ferie, Permessi, Stipendio)
-	public String getNome() {
+	public static String getNome() {
 		return nome;
 	}
 	
-	public String getCognome() {
+	public static String getCognome() {
 		return cognome;
 	}
 
-	public String getMail() {
+	public static String getMail() {
 		return mail;
 	}
 	
-	public String getRuolo() {
+	public static String getRuolo() {
 		return ruolo;
 	}
 
