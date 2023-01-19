@@ -1,6 +1,7 @@
 package BoundaryDBMS;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +11,8 @@ public class DBMS implements DbInterface {
 
 	private static DBMS instance = null;
 	
-	private Connection connect;
-	private PreparedStatement statement;
+	public Connection connect;
+	public PreparedStatement statement;
 	private ResultSet rs;
 	
 	public DBMS() {
@@ -57,6 +58,65 @@ public class DBMS implements DbInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void insertUtente(String matricola, String email, String nome, String cognome) {
+		String sql = "INSERT into Utente(u_matricola, email, nome, cognome) value (?,?,?,?)";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, matricola);
+			statement.setString(2, email);
+			statement.setString(3, nome);
+			statement.setString(4, cognome);
+			
+			statement.execute();
+			
+					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	public void insertImpiegato(String matricola, String ruolo) {
+		String sql2 = "insert into Impiegato (i_matricola, dataNascita, dataAssunzione, ruolo, oreLavorate, oreStraordinarie, oreFestive) value (?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			statement = connect.prepareStatement(sql2);
+			statement.setString(1, matricola);
+			statement.setDate(2, Date.valueOf("2000-1-1"));
+			statement.setDate(3, Date.valueOf("2022-1-1"));
+			statement.setString(4, ruolo);
+			statement.setInt(5, 0);
+			statement.setInt(6, 0);
+			statement.setInt(7, 0);
+			
+			statement.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertAutenticazione(String matricola) {
+		String sql3 = "insert into Autenticazione (ref_t_matricola, password) value (?,?)";
+		
+		try {
+			statement = connect.prepareStatement(sql3);
+			statement.setString(1, matricola);
+			statement.setString(2, "1234");
+			
+			statement.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
