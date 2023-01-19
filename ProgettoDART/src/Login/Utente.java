@@ -10,6 +10,8 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.management.ObjectInstance;
+
 import BoundaryDBMS.DBMS;
 
 public class Utente {
@@ -21,7 +23,7 @@ public class Utente {
 	static String ruolo;
 	static String mail;
 	static String password;
-	private static Utente instance;
+	private static Utente instance=null;
 	
 	
 	public Utente() {};					//Metodo costruttore senza parametri
@@ -149,6 +151,7 @@ public class Utente {
 	public void eliminaEntity() {
 		if(f.exists()) {
 			f.delete();
+			System.out.println("File eliminato");
 		}
 	}
 								//Restituisce la matricola
@@ -323,7 +326,11 @@ public class Utente {
 		}
 		return instance;
 	}
-	
+
+	public void clearInstance() {
+		instance=null;
+		System.out.println("Instanza eliminata");
+	}
 	
 
 	

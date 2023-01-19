@@ -69,10 +69,12 @@ public class PopUpConfermaLogout extends JFrame {
 					PortaleImpiegato portaleImp = PortaleImpiegato.getInstance();
 					portaleImp.dispose();
 					dispose();
+					portaleImp.clearPorImp();
 				} else if (utente.getMatricola().substring(0, 1).equals("1")) {
 					PortaleAmministratore portaleAmm = PortaleAmministratore.getInstance();
 					portaleAmm.dispose();
-					dispose();			
+					dispose();
+					portaleAmm.clearPorAmm();
 				}
 				Login login = Login.getInstance();
 				login.setVisible(true);

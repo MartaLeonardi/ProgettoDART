@@ -340,4 +340,9 @@ public class PortaleAmministratore extends JFrame {
 		}
 		return instance;
 	}
+	
+	public void clearPorAmm() {
+		instance=null;
+	}
+
 }

@@ -281,7 +281,10 @@ public class PortaleImpiegato extends JFrame {
 			instance = new PortaleImpiegato();
 		}
 		return instance;
-
+	}
+	
+	public void clearPorImp() {
+		instance=null;
 	}
 
 }

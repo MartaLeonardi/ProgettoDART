@@ -1,11 +1,7 @@
 package PortaleAmministratore;
 
-import java.io.*;
-
 import Login.Utente;
 import PopUp.PopUpConfermaLogout;
-import PortaleAmministratore.PortaleAmministratore;
-import PortaleImpiegato.PortaleImpiegato;
 
 
 public class LogoutControl {
@@ -15,10 +11,9 @@ public class LogoutControl {
 		PopUpConfermaLogout popUpConferma = new PopUpConfermaLogout();
 		popUpConferma.setVisible(true);
 				
-		Utente utente = new Utente();
+		Utente utente = Utente.getInstance();
 		utente.eliminaEntity();
-		
-		
+		utente.clearInstance();
 		
 		}
 		

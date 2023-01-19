@@ -210,10 +210,15 @@ public class Login extends JFrame {
 		crd.show(contentPane, "Login");
 	}
 
+	
 	public static Login getInstance() {
 		if (instance == null) {
 			instance = new Login();
 		}
 		return instance;
 	}
+	
+
+	
+
 }
