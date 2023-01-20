@@ -196,21 +196,11 @@ public class RichiediPermesso extends JPanel {
 
 		String[] ora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
 				"13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
-		String[] minuti = new String[] { "00", "15", "30", "45" };
 
 		JComboBox oraInizio = new JComboBox();
 		oraInizio.setModel(new DefaultComboBoxModel(ora));
 		oraInizio.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		panel_3.add(oraInizio);
-
-		JLabel lblNewLabel_3_1 = new JLabel(":    Minuti inizio:");
-		lblNewLabel_3_1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		panel_3.add(lblNewLabel_3_1);
-
-		JComboBox minutoInizio = new JComboBox();
-		minutoInizio.setModel(new DefaultComboBoxModel(minuti));
-		minutoInizio.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		panel_3.add(minutoInizio);
 
 		JLabel lblNewLabel_3_2 = new JLabel("-    Ora fine:");
 		lblNewLabel_3_2.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -220,15 +210,6 @@ public class RichiediPermesso extends JPanel {
 		oraFine.setModel(new DefaultComboBoxModel(ora));
 		oraFine.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		panel_3.add(oraFine);
-
-		JLabel lblNewLabel_3_1_1 = new JLabel(":    Minuti fine:");
-		lblNewLabel_3_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		panel_3.add(lblNewLabel_3_1_1);
-
-		JComboBox minutoFine = new JComboBox();
-		minutoFine.setModel(new DefaultComboBoxModel(minuti));
-		minutoFine.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		panel_3.add(minutoFine);
 
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.SOUTH);
@@ -240,17 +221,13 @@ public class RichiediPermesso extends JPanel {
 				if (checkBoxGiornate == true) // disattivazione delle combobox per la checkbox
 				{
 					oraInizio.setEnabled(false);
-					minutoInizio.setEnabled(false);
 					oraFine.setEnabled(false);
-					minutoFine.setEnabled(false);
 
 				} else // attivazione delle combobox per la checkbox
 				{
 
 					oraInizio.setEnabled(true);
-					minutoInizio.setEnabled(true);
 					oraFine.setEnabled(true);
-					minutoFine.setEnabled(true);
 
 				}
 			}
@@ -271,23 +248,19 @@ public class RichiediPermesso extends JPanel {
 
 				Boolean checkBoxGiornate = giornateComplete.isSelected(); // contenuto checkbox
 
-				String oraI, oraF, minutoI, minutoF;
+				String oraI, oraF;
 
 				if (checkBoxGiornate == true) // disattivazione combobox --> valori predefiniti
 				{
 					oraI = "00";
 					oraF = "23";
-					minutoI = "00";
-					minutoF = "59";
 				} else // attivazione delle combobox per la checkbox
 				{
 					oraI = ora[oraInizio.getSelectedIndex()];
 					oraF = ora[oraFine.getSelectedIndex()];
-					minutoI = minuti[minutoInizio.getSelectedIndex()];
-					minutoF = minuti[minutoFine.getSelectedIndex()];
 				}
 				
-				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,minutoI,minutoF);
+				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF);
 
 			}
 		});
