@@ -3,6 +3,7 @@ package GestionePermessi;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import BoundaryDBMS.DBMS;
 import Login.Utente;
 import PopUp.OKPopUp;
 
@@ -16,7 +17,7 @@ public class RichiediPermessoControl {
     static String d = simpleDateFormat.format(date); 
 
 	public static void checkDati(String motivazione, Date dataInizio, Date dataFine,
-			String oraI, String oraF) {
+			String oraI, String oraF, boolean check) {
 		
 		Utente u=Utente.getInstance();
 		String matricola=u.getMatricola();
@@ -50,7 +51,8 @@ public class RichiediPermessoControl {
 						System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + matricola + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
 											+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
 						//RICHIAMO AL METODO PER INSTANZIARE
-					
+						DBMS database=new DBMS();
+						database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
 					}
 					
 					

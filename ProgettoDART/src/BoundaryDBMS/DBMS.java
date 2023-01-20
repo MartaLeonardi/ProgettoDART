@@ -160,4 +160,29 @@ public class DBMS implements DbInterface {
 		
 	}
 
+	public void insertRichiesta(String matricola, String motivazione, String dInizio, String dFine, int oraInizio,
+			int oraFine, boolean check) {
+		String sql3 = "insert into Richiesta (ref_matricola, tipo, data_inizio, ora_inizio, data_fine, ora_fine, giornata_completa) value ( ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			statement = connect.prepareStatement(sql3);
+			statement.setString(1, matricola);
+			statement.setString(2, motivazione);
+			statement.setDate(3, Date.valueOf(dInizio));
+			statement.setInt(4, oraInizio);
+			statement.setDate(5, Date.valueOf(dFine));
+			statement.setInt(6, oraFine);
+			statement.setBoolean(7, check);
+
+			statement.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 }

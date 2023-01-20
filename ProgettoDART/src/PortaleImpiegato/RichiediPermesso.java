@@ -260,7 +260,7 @@ public class RichiediPermesso extends JPanel {
 					oraF = ora[oraFine.getSelectedIndex()];
 				}
 				
-				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF);
+				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,checkBoxGiornate);
 
 			}
 		});
