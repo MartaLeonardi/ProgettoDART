@@ -3,6 +3,7 @@ package PortaleAmministratore;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import GestionePersonale.SchedaControl;
 import PopUp.PopUpSchedaImpiegato;
 
 import java.awt.BorderLayout;
@@ -24,9 +25,9 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 
 public class VisualizzaSchedaImpiegato extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField matricolaTextField;
+	private JTextField nomeTextField;
+	private JTextField cognomeTextField;
 
 	/**
 	 * Create the panel.
@@ -104,15 +105,15 @@ public class VisualizzaSchedaImpiegato extends JPanel {
 		gbc_matricolaLabel.gridy = 2;
 		panel_4.add(matricolaLabel, gbc_matricolaLabel);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField.setColumns(15);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 2;
-		panel_4.add(textField, gbc_textField);
+		matricolaTextField = new JTextField();
+		matricolaTextField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		matricolaTextField.setColumns(15);
+		GridBagConstraints gbc_matricolaTextField = new GridBagConstraints();
+		gbc_matricolaTextField.fill = GridBagConstraints.BOTH;
+		gbc_matricolaTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_matricolaTextField.gridx = 2;
+		gbc_matricolaTextField.gridy = 2;
+		panel_4.add(matricolaTextField, gbc_matricolaTextField);
 
 		JLabel nomeLabel = new JLabel("Nome:");
 		nomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -122,15 +123,15 @@ public class VisualizzaSchedaImpiegato extends JPanel {
 		gbc_nomeLabel.gridy = 3;
 		panel_4.add(nomeLabel, gbc_nomeLabel);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_1.setColumns(15);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.fill = GridBagConstraints.BOTH;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 3;
-		panel_4.add(textField_1, gbc_textField_1);
+		nomeTextField = new JTextField();
+		nomeTextField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		nomeTextField.setColumns(15);
+		GridBagConstraints gbc_nomeTextField = new GridBagConstraints();
+		gbc_nomeTextField.fill = GridBagConstraints.BOTH;
+		gbc_nomeTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_nomeTextField.gridx = 2;
+		gbc_nomeTextField.gridy = 3;
+		panel_4.add(nomeTextField, gbc_nomeTextField);
 
 		JLabel cognomeLabel = new JLabel("Cognome:");
 		cognomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -140,21 +141,26 @@ public class VisualizzaSchedaImpiegato extends JPanel {
 		gbc_cognomeLabel.gridy = 4;
 		panel_4.add(cognomeLabel, gbc_cognomeLabel);
 
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_2.setColumns(15);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.fill = GridBagConstraints.BOTH;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.gridx = 2;
-		gbc_textField_2.gridy = 4;
-		panel_4.add(textField_2, gbc_textField_2);
+		cognomeTextField = new JTextField();
+		cognomeTextField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		cognomeTextField.setColumns(15);
+		GridBagConstraints gbc_cognomeTextField = new GridBagConstraints();
+		gbc_cognomeTextField.fill = GridBagConstraints.BOTH;
+		gbc_cognomeTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_cognomeTextField.gridx = 2;
+		gbc_cognomeTextField.gridy = 4;
+		panel_4.add(cognomeTextField, gbc_cognomeTextField);
 
 		JButton mostraButtom = new JButton("Mostra");
 		mostraButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PopUpSchedaImpiegato popUpScheda = new PopUpSchedaImpiegato();
-				popUpScheda.setVisible(true);
+				String matricola = matricolaTextField.getText();
+				String nome = nomeTextField.getText();
+				String cognome = cognomeTextField.getText();
+				SchedaControl scontrol = new SchedaControl(matricola, nome, cognome);
+				// PopUpSchedaImpiegato popUpScheda = new PopUpSchedaImpiegato(matricola, nome,
+				// cognome);
+				// popUpScheda.setVisible(true);
 			}
 		});
 		mostraButtom.setFont(new Font("Times New Roman", Font.PLAIN, 20));
