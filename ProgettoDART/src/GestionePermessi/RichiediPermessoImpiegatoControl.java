@@ -37,11 +37,12 @@ public class RichiediPermessoImpiegatoControl {
 			return false;
 		}
 		return false;
+		
 	
 	}
 	
 	public static void checkDati(String matricola, String motivazione, Date dataInizio, Date dataFine,
-			String oraI, String oraF) {
+			String oraI, String oraF, boolean check) {
 		String m=matricola;
 		
 		if(date.before(dataInizio)) {	//controllo data inizio maggiore alla data odierna
@@ -72,7 +73,12 @@ public class RichiediPermessoImpiegatoControl {
 					}else {		//ora inizio minore
 						System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + m + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
 											+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
+						OKPopUp pop = new OKPopUp("Operazione avvenuta con successo!");
+						pop.setVisible(true);
 						//RICHIAMO AL METODO PER INSTANZIARE
+						DBMS database=new DBMS();
+						database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
+						database.closeConnection();
 					
 					}
 					
@@ -81,7 +87,12 @@ public class RichiediPermessoImpiegatoControl {
 					
 					System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + m + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
 							+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
+					OKPopUp pop = new OKPopUp("Operazione avvenuta con successo!");
+					pop.setVisible(true);
 					//RICHIAMO AL METODO PER INSTANZIARE
+					DBMS database=new DBMS();
+					database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
+					database.closeConnection();
 	
 				}
 		

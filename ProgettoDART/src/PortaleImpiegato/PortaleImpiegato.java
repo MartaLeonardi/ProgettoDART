@@ -6,9 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GestioneAccesso.LogoutControl;
+import GestioneAccount.ModificaAccount;
 import Login.Utente;
-import ModificaAccount.ModificaAccount;
-import PortaleAmministratore.LogoutControl;
+
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
