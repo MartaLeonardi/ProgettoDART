@@ -138,6 +138,7 @@ public class DBMS implements DbInterface {
 			statement = connect.prepareStatement(sql3);
 			
 			statement.setString(1, matricola);
+			
 			statement.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
