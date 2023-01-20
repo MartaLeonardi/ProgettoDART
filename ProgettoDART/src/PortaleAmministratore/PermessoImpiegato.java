@@ -21,6 +21,10 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import GestionePermessi.RichiediPermessoImpiegatoControl;
+import PopUp.OKPopUp;
+
 import javax.swing.JCheckBox;
 
 public class PermessoImpiegato extends JPanel {
@@ -238,31 +242,40 @@ public class PermessoImpiegato extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String matricola = campoMatricola.getText();
-				// Contenuto combobox
-				int index = motivazioni.getSelectedIndex();
-				String motivazioneSelezionata = listaMotivazioni[index];
-				// Contenuto chooseDate inizio e fine
-				Date dataInseritaInizio = dataInizio.getDate();
-				DateFormat cambioFormatoDataI = DateFormat.getDateInstance(DateFormat.SHORT);
-				String dataI = cambioFormatoDataI.format(dataInseritaInizio);
+				
+				if(RichiediPermessoImpiegatoControl.checkMatricola(matricola)) {
+					
+					// Contenuto combobox
+					int index = motivazioni.getSelectedIndex();
+					String motivazioneSelezionata = listaMotivazioni[index];
+					
+					// Contenuto chooseDate inizio e fine
+					Date dataInseritaInizio = dataInizio.getDate();
 
-				Date dataInseritaFine = dataFine.getDate();
-				DateFormat cambioFormatoDataF = DateFormat.getDateInstance(DateFormat.SHORT);
-				String dataF = cambioFormatoDataF.format(dataInseritaFine);
+					Date dataInseritaFine = dataFine.getDate();
 
-				Boolean checkBoxGiornate = giornateComplete.isSelected(); // contenuto checkbox
 
-				String oraI, oraF;
+					Boolean checkBoxGiornate = giornateComplete.isSelected(); // contenuto checkbox
 
-				if (checkBoxGiornate == true) // disattivazione combobox --> valori predefiniti
-				{
-					oraI = "00";
-					oraF = "23";
-				} else // attivazione delle combobox per la checkbox
-				{
-					oraI = ora[oraInizio.getSelectedIndex()];
-					oraF = ora[oraFine.getSelectedIndex()];
+					String oraI, oraF;
+
+					if (checkBoxGiornate == true) // disattivazione combobox --> valori predefiniti
+					{
+						oraI = "00";
+						oraF = "23";
+					} else // attivazione delle combobox per la checkbox
+					{
+						oraI = ora[oraInizio.getSelectedIndex()];
+						oraF = ora[oraFine.getSelectedIndex()];
+					}
+					
+					RichiediPermessoImpiegatoControl.checkDati(matricola, motivazioneSelezionata, dataInseritaInizio, dataInseritaFine, oraI, oraF);
+					
+				}else {
+					OKPopUp pop =new OKPopUp("Matricola inesistente!");
+					pop.setVisible(true);
 				}
+
 			}
 		});
 

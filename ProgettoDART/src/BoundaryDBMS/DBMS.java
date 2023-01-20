@@ -47,7 +47,7 @@ public class DBMS implements DbInterface {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}			
+		}
 		return rs;
 	}
 	
