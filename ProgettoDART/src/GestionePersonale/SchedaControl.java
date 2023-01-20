@@ -16,6 +16,7 @@ public class SchedaControl {
 			String cognomeD = "";
 			String email = "";
 			String ruolo = "";
+			String telefono = "";
 			
 			DBMS db = new DBMS();
 			
@@ -33,11 +34,12 @@ public class SchedaControl {
 				e.printStackTrace();
 			}
 			
-			String sql2 = "select ruolo from Impiegato where i_matricola = '"+ matricola +"'";
+			String sql2 = "select telefono, ruolo from Impiegato where i_matricola = '"+ matricola +"'";
 			ResultSet rs2 = db.query(sql2);
 			try {
 				while(rs2.next()) {
-				ruolo = rs2.getString(1);
+				telefono = rs2.getString(1);
+				ruolo = rs2.getString(2);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -45,7 +47,7 @@ public class SchedaControl {
 			}
 			db.closeConnection();
 			
-			PopUpSchedaImpiegato visScheda = new PopUpSchedaImpiegato(matricola, nomeD, cognomeD, email, ruolo);
+			PopUpSchedaImpiegato visScheda = new PopUpSchedaImpiegato(matricola, nomeD, cognomeD, email, ruolo, telefono);
 			visScheda.setVisible(true);
 		}
 		else {
