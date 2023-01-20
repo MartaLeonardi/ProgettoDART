@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GestioneAccesso.LogoutControl;
+import GestioneAccount.ModificaAccount;
 import Login.Utente;
 
 import java.awt.CardLayout;
@@ -52,12 +53,12 @@ public class PortaleAmministratore extends JFrame {
 	 * Create the frame.
 	 */
 	public PortaleAmministratore() {
-		
+
 		Utente utente = Utente.getInstance();
 		String nome = utente.getNome();
 		String cognome = utente.getCognome();
 		String matricola = utente.getMatricola();
-		
+
 		crd = new CardLayout();
 		setTitle("Portale amministratore");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,6 +84,7 @@ public class PortaleAmministratore extends JFrame {
 		VisualizzaServizi visServizi = new VisualizzaServizi();
 		PermessoImpiegato permessoImp = new PermessoImpiegato();
 		VisualizzaStipendi visStipendi = new VisualizzaStipendi();
+		ModificaAccount modAccount = new ModificaAccount();
 
 		JPanel panel = new JPanel();
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -160,7 +162,6 @@ public class PortaleAmministratore extends JFrame {
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
 
-
 		JLabel nomeLabel = new JLabel(nome);
 		nomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_nomeLabel = new GridBagConstraints();
@@ -190,9 +191,9 @@ public class PortaleAmministratore extends JFrame {
 		MenuUtente.add(FunzioneUtenteMenu, BorderLayout.CENTER);
 		GridBagLayout gbl_FunzioneUtenteMenu = new GridBagLayout();
 		gbl_FunzioneUtenteMenu.columnWidths = new int[] { 300, 0 };
-		gbl_FunzioneUtenteMenu.rowHeights = new int[] { 37, 0, 0, 0, 0, 40, 39, 0, 306 };
+		gbl_FunzioneUtenteMenu.rowHeights = new int[] { 37, 0, 0, 0, 0, 40, 39, 0, 0, 306 };
 		gbl_FunzioneUtenteMenu.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_FunzioneUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_FunzioneUtenteMenu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		FunzioneUtenteMenu.setLayout(gbl_FunzioneUtenteMenu);
 
 		JButton AssumiImpiegatoButton = new JButton("Assumi Impiegato");
@@ -310,6 +311,22 @@ public class PortaleAmministratore extends JFrame {
 		gbc_visuallizaStipendi.gridy = 7;
 		FunzioneUtenteMenu.add(visuallizaStipendi, gbc_visuallizaStipendi);
 
+		JButton btnNewButton = new JButton("Modifica Account");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				crd.show(contentPane, "ModificaAccount");
+
+			}
+		});
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.ipady = 10;
+		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 8;
+		FunzioneUtenteMenu.add(btnNewButton, gbc_btnNewButton);
+
 		JPanel Pannello = new JPanel();
 		Pannello.setBorder(new EmptyBorder(0, 0, 0, 0));
 		GridBagConstraints gbc_Pannello = new GridBagConstraints();
@@ -333,6 +350,7 @@ public class PortaleAmministratore extends JFrame {
 		contentPane.add(visServizi, "VisualizzaServizi");
 		contentPane.add(permessoImp, "PermessoImpiegato");
 		contentPane.add(visStipendi, "VisualizzaStipendi");
+		contentPane.add(modAccount, "ModificaAccount");
 		// crd.show(contentPane, "PortaleAmministrazione");
 
 	}
@@ -347,9 +365,9 @@ public class PortaleAmministratore extends JFrame {
 		}
 		return instance;
 	}
-	
+
 	public void clearPorAmm() {
-		instance=null;
+		instance = null;
 	}
 
 }

@@ -19,8 +19,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Login.Login;
+import Login.Utente;
 import PopUp.OKPopUp;
 import PopUp.OkCancelPopUp;
+import PortaleAmministratore.PortaleAmministratore;
 import PortaleImpiegato.PortaleImpiegato;
 import javax.swing.JRadioButton;
 
@@ -58,7 +61,14 @@ public class ModificaAccount extends JPanel {
 		IndietroButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// CONTROLLO PER I PORTALI DA FARE
-				PortaleImpiegato.back();
+				Utente utente = Utente.getInstance();
+				String matricola = utente.getMatricola();
+				
+				if (matricola.substring(0, 1).equals("0")) {
+					PortaleImpiegato.back();
+				} else if (matricola.substring(0, 1).equals("1")) {
+					PortaleAmministratore.back();			
+				}
 			}
 		});
 		IndietroButton.setHorizontalAlignment(SwingConstants.LEFT);
