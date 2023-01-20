@@ -7,7 +7,8 @@ import java.util.Random;
 import BoundaryDBMS.DBMS;
 import PopUp.OKPopUp;
 
-public class RecuperaPasswordControl {
+public class RecuperaPasswordControl {	
+	
 	
 	public  RecuperaPasswordControl(String matricola){
 		if(checkMatricola(matricola)) {
