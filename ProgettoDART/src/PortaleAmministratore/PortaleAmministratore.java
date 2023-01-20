@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GestioneAccesso.LogoutControl;
 import Login.Utente;
 
 import java.awt.CardLayout;
