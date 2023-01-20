@@ -3,6 +3,8 @@ package Login;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import GestioneAccesso.RecuperaPasswordControl;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
@@ -22,7 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class RecuperaPassword extends JPanel {
-	private JTextField textField;
+	private JTextField matricolaTextField;
 
 	/**
 	 * Create the panel.
@@ -60,9 +62,9 @@ public class RecuperaPassword extends JPanel {
 		panel_1.add(panel_2, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[] { 288, 0, 184, 244, 0 };
-		gbl_panel_2.rowHeights = new int[] { 214, 0, 334, 0 };
+		gbl_panel_2.rowHeights = new int[] { 214, 0, 0, 334, 0 };
 		gbl_panel_2.columnWeights = new double[] { 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_2.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_2.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
 
 		JLabel lblNewLabel_1 = new JLabel("Matricola:");
@@ -74,15 +76,29 @@ public class RecuperaPassword extends JPanel {
 		gbc_lblNewLabel_1.gridy = 1;
 		panel_2.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 1;
-		panel_2.add(textField, gbc_textField);
-		textField.setColumns(10);
+		matricolaTextField = new JTextField();
+		matricolaTextField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		GridBagConstraints gbc_matricolaTextField = new GridBagConstraints();
+		gbc_matricolaTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_matricolaTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_matricolaTextField.gridx = 2;
+		gbc_matricolaTextField.gridy = 1;
+		panel_2.add(matricolaTextField, gbc_matricolaTextField);
+		matricolaTextField.setColumns(10);
+
+		JButton reucuperaButtom = new JButton("Recupera");
+		reucuperaButtom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String matricola = matricolaTextField.getText();
+				RecuperaPasswordControl rcontrol = new RecuperaPasswordControl(matricola);
+			}
+		});
+		reucuperaButtom.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		GridBagConstraints gbc_reucuperaButtom = new GridBagConstraints();
+		gbc_reucuperaButtom.insets = new Insets(0, 0, 5, 5);
+		gbc_reucuperaButtom.gridx = 2;
+		gbc_reucuperaButtom.gridy = 2;
+		panel_2.add(reucuperaButtom, gbc_reucuperaButtom);
 
 		JPanel panel_3 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
