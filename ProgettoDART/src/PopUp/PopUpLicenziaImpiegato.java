@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import GestionePersonale.DelEmpControl;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -19,20 +22,11 @@ public class PopUpLicenziaImpiegato extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			PopUpLicenziaImpiegato dialog = new PopUpLicenziaImpiegato();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public PopUpLicenziaImpiegato() {
+	public PopUpLicenziaImpiegato(String matricola, String nome, String cognome) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
@@ -52,7 +46,9 @@ public class PopUpLicenziaImpiegato extends JDialog {
 				okButton.addActionListener(new ActionListener() { // Quando viene premuto il bottone OK, ATTUALMENTE si
 																	// chiude il popUp
 					public void actionPerformed(ActionEvent e) {
+						DelEmpControl delEmp = new DelEmpControl();
 						dispose();
+						delEmp.eliminaImpiegato(matricola, nome, cognome);
 
 					}
 				});

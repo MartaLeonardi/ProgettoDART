@@ -137,11 +137,14 @@ public class LicenziaImpiegato extends JPanel {
 		JButton LicenziaButtom = new JButton("Licenzia");
 		LicenziaButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PopUpLicenziaImpiegato popUpLicenzia = new PopUpLicenziaImpiegato();
 				String matricola = matricolaTextField.getText();
 				String nome = nomeTextField.getText();
-				String congome = cognomeTextField.getText();
+				String cognome = cognomeTextField.getText();
+				PopUpLicenziaImpiegato popUpLicenzia = new PopUpLicenziaImpiegato(matricola, nome, cognome);
 				popUpLicenzia.setVisible(true);
+				matricolaTextField.setText("");
+				nomeTextField.setText("");
+				cognomeTextField.setText("");
 			}
 		});
 		LicenziaButtom.setFont(new Font("Arial", Font.PLAIN, 18));
