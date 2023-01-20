@@ -118,5 +118,45 @@ public class DBMS implements DbInterface {
 		}
 		
 	}
+	
+	public void licenziaImpiegato(String matricola) {		
+		String sql2 = "delete from Impiegato where i_matricola = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql2);			
+			statement.setString(1, matricola);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String sql3 = "delete from Autenticazione where ref_t_matricola = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql3);
+			
+			statement.setString(1, matricola);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String sql = "delete from Utente where u_matricola = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1,  matricola);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }
