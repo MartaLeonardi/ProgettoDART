@@ -32,7 +32,8 @@ public class PopUpSchedaImpiegato extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PopUpSchedaImpiegato(String matricola, String nome, String cognome, String email, String ruolo) {
+	public PopUpSchedaImpiegato(String matricola, String nome, String cognome, String email, String ruolo,
+			String telefono) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
@@ -124,7 +125,7 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_emailLabel.gridy = 5;
 		panel.add(emailLabel, gbc_emailLabel);
 
-		JLabel telefonoLabel = new JLabel("Telefono: ");
+		JLabel telefonoLabel = new JLabel("Telefono: " + telefono);
 		telefonoLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_telefonoLabel = new GridBagConstraints();
 		gbc_telefonoLabel.insets = new Insets(0, 0, 5, 5);

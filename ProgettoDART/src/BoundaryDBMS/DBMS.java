@@ -79,18 +79,19 @@ public class DBMS implements DbInterface {
 		}		
 	}
 	
-	public void insertImpiegato(String matricola, String ruolo) {
-		String sql2 = "insert into Impiegato (i_matricola, dataNascita, dataAssunzione, ruolo, oreLavorate, oreStraordinarie, oreFestive) value (?, ?, ?, ?, ?, ?, ?)";
+	public void insertImpiegato(String matricola, String ruolo, String telefono) {
+		String sql2 = "insert into Impiegato (i_matricola, telefono, ruolo, oreLavorate, oreStraordinarie, oreFestive) value (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			statement = connect.prepareStatement(sql2);
 			statement.setString(1, matricola);
-			statement.setDate(2, Date.valueOf("2000-1-1"));
-			statement.setDate(3, Date.valueOf("2022-1-1"));
-			statement.setString(4, ruolo);
+			//statement.setDate(2, Date.valueOf("2000-1-1"));
+			//statement.setDate(3, Date.valueOf("2022-1-1"));
+			statement.setString(2, telefono);
+			statement.setString(3, ruolo);
+			statement.setInt(4, 0);
 			statement.setInt(5, 0);
 			statement.setInt(6, 0);
-			statement.setInt(7, 0);
 			
 			statement.execute();
 			

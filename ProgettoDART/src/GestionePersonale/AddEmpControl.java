@@ -31,7 +31,7 @@ public class AddEmpControl {
 			DBMS database = new DBMS();
 			
 			database.insertUtente(matricola, email, nome, cognome);
-			database.insertImpiegato(matricola, ruolo);
+			database.insertImpiegato(matricola, ruolo, telefono);
 			database.insertAutenticazione(matricola);
 			database.closeConnection();
 			OKPopUp popUp = new OKPopUp("Inserimento avvenuto con successo");
