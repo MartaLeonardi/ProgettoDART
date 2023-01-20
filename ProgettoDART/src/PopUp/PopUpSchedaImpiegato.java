@@ -28,23 +28,11 @@ public class PopUpSchedaImpiegato extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PopUpSchedaImpiegato frame = new PopUpSchedaImpiegato();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public PopUpSchedaImpiegato() {
+	public PopUpSchedaImpiegato(String matricola, String nome, String cognome, String email, String ruolo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
@@ -98,13 +86,13 @@ public class PopUpSchedaImpiegato extends JFrame {
 		JPanel panel = new JPanel();
 		panel_3.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 932, 341, 1080, 0 };
+		gbl_panel.columnWidths = new int[] { 1077, 341, 1080, 0 };
 		gbl_panel.rowHeights = new int[] { 100, 0, 0, 0, 0, 0, 0, 0, 0, 169, 0 };
 		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		JLabel nomeLabel = new JLabel("Nome:");
+		JLabel nomeLabel = new JLabel("Nome: " + nome);
 		nomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_nomeLabel = new GridBagConstraints();
 		gbc_nomeLabel.insets = new Insets(0, 0, 5, 5);
@@ -112,7 +100,7 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_nomeLabel.gridy = 2;
 		panel.add(nomeLabel, gbc_nomeLabel);
 
-		JLabel cognomeLabel = new JLabel("Cognome:");
+		JLabel cognomeLabel = new JLabel("Cognome: " + cognome);
 		cognomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_cognomeLabel = new GridBagConstraints();
 		gbc_cognomeLabel.insets = new Insets(0, 0, 5, 5);
@@ -120,7 +108,7 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_cognomeLabel.gridy = 3;
 		panel.add(cognomeLabel, gbc_cognomeLabel);
 
-		JLabel matricolaLabel = new JLabel("Matricola:");
+		JLabel matricolaLabel = new JLabel("Matricola: " + matricola);
 		matricolaLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_matricolaLabel = new GridBagConstraints();
 		gbc_matricolaLabel.insets = new Insets(0, 0, 5, 5);
@@ -128,7 +116,7 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_matricolaLabel.gridy = 4;
 		panel.add(matricolaLabel, gbc_matricolaLabel);
 
-		JLabel emailLabel = new JLabel("Email:");
+		JLabel emailLabel = new JLabel("Email: " + email);
 		emailLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_emailLabel = new GridBagConstraints();
 		gbc_emailLabel.insets = new Insets(0, 0, 5, 5);
@@ -136,7 +124,7 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_emailLabel.gridy = 5;
 		panel.add(emailLabel, gbc_emailLabel);
 
-		JLabel telefonoLabel = new JLabel("Telefono:");
+		JLabel telefonoLabel = new JLabel("Telefono: ");
 		telefonoLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_telefonoLabel = new GridBagConstraints();
 		gbc_telefonoLabel.insets = new Insets(0, 0, 5, 5);
@@ -144,7 +132,7 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_telefonoLabel.gridy = 6;
 		panel.add(telefonoLabel, gbc_telefonoLabel);
 
-		JLabel ruoloLabel = new JLabel("Ruolo:");
+		JLabel ruoloLabel = new JLabel("Ruolo: " + ruolo);
 		ruoloLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_ruoloLabel = new GridBagConstraints();
 		gbc_ruoloLabel.insets = new Insets(0, 0, 5, 5);
@@ -152,13 +140,6 @@ public class PopUpSchedaImpiegato extends JFrame {
 		gbc_ruoloLabel.gridy = 7;
 		panel.add(ruoloLabel, gbc_ruoloLabel);
 
-		JLabel stipendioLabel = new JLabel("Stipendio:");
-		stipendioLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_stipendioLabel = new GridBagConstraints();
-		gbc_stipendioLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_stipendioLabel.gridx = 1;
-		gbc_stipendioLabel.gridy = 8;
-		panel.add(stipendioLabel, gbc_stipendioLabel);
 	}
 
 }
