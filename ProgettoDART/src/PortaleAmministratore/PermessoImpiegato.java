@@ -269,7 +269,7 @@ public class PermessoImpiegato extends JPanel {
 						oraF = ora[oraFine.getSelectedIndex()];
 					}
 					
-					RichiediPermessoImpiegatoControl.checkDati(matricola, motivazioneSelezionata, dataInseritaInizio, dataInseritaFine, oraI, oraF);
+					RichiediPermessoImpiegatoControl.checkDati(matricola, motivazioneSelezionata, dataInseritaInizio, dataInseritaFine, oraI, oraF, checkBoxGiornate);
 					
 				}else {
 					OKPopUp pop =new OKPopUp("Matricola inesistente!");
