@@ -183,5 +183,22 @@ public class DBMS implements DbInterface {
 		
 		
 	}
+	
+	public void updatePassword(String matricola, String password) {
+		
+		String sql = "update Autenticazione set password = ? where ref_t_matricola = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, password);
+			statement.setString(2, matricola);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }
