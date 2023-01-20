@@ -173,7 +173,6 @@ public class DBMS implements DbInterface {
 			statement.setDate(5, Date.valueOf(dFine));
 			statement.setInt(6, oraFine);
 			statement.setBoolean(7, check);
-
 			statement.execute();
 			
 			
