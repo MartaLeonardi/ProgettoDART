@@ -200,5 +200,39 @@ public class DBMS implements DbInterface {
 		}
 		
 	}
+	
+	public void insertStipendi(String matricola, String date, int stipendio) {
+		
+		String sql = "insert into Stipendio (ref_S_matricola, dataPagamento, valoreStipendio) value (?,?,?)";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, matricola);
+			statement.setDate(2, Date.valueOf(date));
+			statement.setInt(3, stipendio);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void updateOreStipendi(String matricola) {
+		
+		String sql = "update Impiegato set oreLavorate = 0, oreStraordinarie = 0, oreFestive = 0 where ref_S_matricola = '" + matricola + "'";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }
