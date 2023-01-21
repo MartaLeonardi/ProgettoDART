@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class DBMS implements DbInterface {
 
@@ -232,6 +233,27 @@ public class DBMS implements DbInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void setStato(LocalDate data, String servizio, int turno, boolean presenza) {
+		
+		String sql = "insert into Stato (giornata_lavoro, ref_servizio, turno_orari, presenza) value (?,?,?,?)";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			
+			statement.setDate(1, Date.valueOf(data.toString()));
+			statement.setString(2, servizio);
+			statement.setInt(3, turno);
+			statement.setBoolean(4, presenza);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 

@@ -3,6 +3,7 @@ package GestioneStipendi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -79,5 +80,127 @@ public class TempoControl {
 		//StipendioBase + OreLavorate*PagaOraria + oreStraordinarie*(PagaOraria+4) + oreFestive*(PagaOraria+3)
 		
 	}
+	
+	
+	public void calcoloStatoServizi(LocalDate dataInizio, LocalDate dataFine) {
+		
+		LocalDate dInizio = dataInizio;
+		LocalDate dFine = dataFine;
+		
+		DBMS db = new DBMS();
+		
+		
+		LocalDate d;
+		for(d = dInizio;  d.isBefore(dFine.plusDays(1));  d = d.plusDays(1)) {
+			for(int i = 0; i < 3; i++) {
+			String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = 'Servizio 1' and fascia_oraria = '"+ i +"'";
+			
+			System.out.println("test");
+			System.out.println(d);
+			
+			ResultSet rs = db.query(sql);
+			
+			try {
+				if(rs.next()) {
+					if(rs.getInt(1) >= 1) {
+						db.setStato(d, "Servizio 1", i, true);
+					}
+					else {
+						db.setStato(d, "Servizio 1", i, false);
+					}
+				}
+				else {
+					db.setStato(d, "Servizio 1", i, false);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			}
+		}
+		
+		
+		
+		for( d = dInizio;  d.isBefore(dataFine.plusDays(1)); d = d.plusDays(1)) {
+			for(int i = 0; i < 3; i++) {
+			String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = 'Servizio 2' and fascia_oraria = '"+ i +"'";
+			
+			ResultSet rs = db.query(sql);
+			
+			try {
+				if(rs.next()) {
+					if(rs.getInt(1) >= 1) {
+						db.setStato(d, "Servizio 2", i, true);
+					}
+					else {
+						db.setStato(d, "Servizio 2", i, false);
+					}
+				}
+				else {
+					db.setStato(d, "Servizio 2", i, false);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			}
+		}
+		
+		
+		
+		for( d = dInizio;  d.isBefore(dataFine.plusDays(1)); d = d.plusDays(1)) {
+			for(int i = 0; i < 3; i++) {
+			String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = 'Servizio 3' and fascia_oraria = '"+ i +"'";
+			
+			ResultSet rs = db.query(sql);
+			
+			try {
+				if(rs.next()) {
+					if(rs.getInt(1) >= 1) {
+						db.setStato(d, "Servizio 3", i, true);
+					}
+					else {
+						db.setStato(d, "Servizio 3", i, false);
+					}
+				}
+				else {
+					db.setStato(d, "Servizio 3", i, false);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			}
+		}
+		
+		
+		for( d = dInizio;  d.isBefore(dataFine.plusDays(1));  d = d.plusDays(1)) {
+			for(int i = 0; i < 3; i++) {
+			String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = 'Servizio 4' and fascia_oraria = '"+ i +"'";
+			
+			ResultSet rs = db.query(sql);
+			
+			System.out.println("testtttt");
+			try {
+				if(rs.next()) {
+					if(rs.getInt(1) >= 1) {
+						db.setStato(d, "Servizio 4", i, true);
+					}
+					else {
+						db.setStato(d, "Servizio 4", i, false);
+					}
+				}
+				else {
+					db.setStato(d, "Servizio 4", i, false);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			}
+		}
+		db.closeConnection();
+	}
+	
 	
 }
