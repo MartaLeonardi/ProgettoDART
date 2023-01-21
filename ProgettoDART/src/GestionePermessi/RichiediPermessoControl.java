@@ -68,6 +68,14 @@ public class RichiediPermessoControl {
 					DBMS database=new DBMS();
 					database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
 					database.closeConnection();
+					
+					
+					//delete turno
+					DBMS db=new DBMS();
+					db.deleteTuplaImp(matricola,dInizio,dFine);
+					db.closeConnection();
+					
+					//richiamo classe Marco
 	
 				}
 		
