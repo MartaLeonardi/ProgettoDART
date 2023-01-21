@@ -234,5 +234,22 @@ public class DBMS implements DbInterface {
 		}
 		
 	}
+	
+	
+	public void deleteTuplaImp(String matricola, String data, String servizio, String fasciaOraria) {
+        String sql3 = "DELETE FROM Turno WHERE giornata_lavoro = ? AND servizio=? AND fascia_oraria=? AND ref_i_matricola=?";
+
+        try {
+            statement = connect.prepareStatement(sql3);
+            statement.setString(1, matricola);
+            statement.setDate(2, Date.valueOf(data));
+            statement.setString(3, servizio);
+            statement.setString(4, fasciaOraria);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e);
+            }
+    } 
 
 }

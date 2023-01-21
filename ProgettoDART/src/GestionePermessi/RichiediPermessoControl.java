@@ -10,7 +10,6 @@ import PopUp.OKPopUp;
 public class RichiediPermessoControl {
 
 	static Date date = new Date();
-	
 	 
     static String pattern = "yyyy-MM-dd";
     static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
