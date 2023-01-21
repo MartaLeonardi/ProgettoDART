@@ -10,7 +10,7 @@ import BoundaryDBMS.DBMS;
 
 public class TempoControl {
 		
-	public TempoControl() throws SQLException {
+	public void calcoloStipendio() throws SQLException {
 		
 		ArrayList<Impiegati> impiegati = new ArrayList<>();
 		
@@ -68,6 +68,10 @@ public class TempoControl {
 		
 		for(Stipendi i : stipendi) {			
 			db.insertStipendi(i.getMatricola(), i.getData(), i.getValore());		
+		}
+		
+		for(Impiegati i : impiegati) {
+			db.updateOreStipendi(i.getMatricola());
 		}
 		
 		db.closeConnection();

@@ -219,5 +219,20 @@ public class DBMS implements DbInterface {
 		
 		
 	}
+	
+	public void updateOreStipendi(String matricola) {
+		
+		String sql = "update Impiegato set oreLavorate = 0, oreStraordinarie = 0, oreFestive = 0 where ref_S_matricola = '" + matricola + "'";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

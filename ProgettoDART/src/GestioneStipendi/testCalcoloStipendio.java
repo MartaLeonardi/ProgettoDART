@@ -9,6 +9,7 @@ public class testCalcoloStipendio {
 		
 		try {
 			TempoControl test = new TempoControl();
+			test.calcoloStipendio();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
