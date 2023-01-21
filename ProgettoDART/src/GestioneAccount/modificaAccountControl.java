@@ -1,12 +1,10 @@
-package ModificaAccount;
+package GestioneAccount;
 import PopUp.OKPopUp;
 import PopUp.OkCancelPopUp;
 
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import ModificaAccount.ModificaAccount;
 
 public class modificaAccountControl {
 	
