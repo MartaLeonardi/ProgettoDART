@@ -79,6 +79,13 @@ public class RichiediPermessoImpiegatoControl {
 						DBMS database=new DBMS();
 						database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
 						database.closeConnection();
+						
+						//rimozione del turno in quel giorno/i
+						DBMS db=new DBMS();
+						db.deleteTuplaImp(matricola,dInizio,dFine);
+						db.closeConnection();
+						
+						//collegamento controllo stato servizi marco
 					
 					}
 					
