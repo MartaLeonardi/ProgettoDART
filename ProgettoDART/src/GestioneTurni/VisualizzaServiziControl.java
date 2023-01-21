@@ -3,83 +3,44 @@ package GestioneTurni;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import BoundaryDBMS.DBMS;
 
 public class VisualizzaServiziControl {
 		
 	public String[] getStato(String date, String servizio) {
-		String[] serviceState = new String[3];
-		
 		
 		DBMS db = new DBMS();
-		
-		System.out.println(date + servizio);
-		
-		String sql = "select count(*) from Turno where giornata_lavoro = '" + Date.valueOf(date) + "' AND servizio = '" + servizio + "' AND fascia_oraria = '0'";
+		Boolean stato = false;
+		String [] array = new String [3];
+		int i = 0;
+		String sql = "select presenza from Stato where giornata_lavoro = '"+ Date.valueOf(date) +"' and ref_servizio = '"+ servizio +"'";
 		
 		ResultSet rs = db.query(sql);
-		
 		try {
-			if(rs.next()) {
-				if(!(rs.getString(1).equals("1"))) {
-					serviceState[0] = "Aperto";
+			rs.first();
+			do {
+				if(rs.getBoolean(1)) {
+					array[i] = "Aperto";
+					i++;
 				}
 				else {
-					serviceState[0] = "Chiuso";
-				}				
-			}
-			else {
-				serviceState[0] = "Chiuso";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		String sql2 = "select count(*) from Turno where giornata_lavoro = '" + Date.valueOf(date) + "' AND servizio = '" + servizio + "' AND fascia_oraria = '1'";
-		
-		ResultSet rs2 = db.query(sql);
-		
-		try {
-			if(rs2.next()) {
-				if(!(rs2.getString(1).equals("1"))) {
-					serviceState[1] = "Aperto";
+					array[i] = "Chiuso";
+					i++;
 				}
-				else {
-					serviceState[1] = "Chiuso";
-				}			
-			}
-			else {
-				serviceState[1] = "Chiuso";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		String sql3 = "select count(*) from Turno where giornata_lavoro = '" + Date.valueOf(date) + "' AND servizio = '" + servizio + "' AND fascia_oraria = '2'";
-		
-		ResultSet rs3 = db.query(sql);
-		
-		try {
-			if(rs3.next()) {
-				if(!(rs3.getString(1).equals("1"))) {
-					serviceState[2] = "Aperto";
-				}
-				else {
-					serviceState[2] = "Chiuso";
-				}			
-			}
-			else {
-				serviceState[2] = "Chiuso";
-			}
+			}while(rs.next());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		db.closeConnection();
-		return serviceState;
+		return array;
+		
+	}
+	
+	public String getString(String[] array, int i) {
+		return array[i];
 	}
 }

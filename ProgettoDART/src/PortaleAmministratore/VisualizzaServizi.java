@@ -41,6 +41,11 @@ public class VisualizzaServizi extends JPanel {
 	String[] array2 = new String[3];
 	String[] array3 = new String[3];
 	String[] array4 = new String[3];
+	Date newData = new Date();
+	String d = simpleDateFormat.format(newData);
+	String t00;
+	String t10;
+	String t20;
 
 	static String pattern = "yyyy-MM-dd";
 	static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -101,16 +106,102 @@ public class VisualizzaServizi extends JPanel {
 		panel_1.add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(new BorderLayout(0, 0));
 
+		JPanel panel_6 = new JPanel();
+		JPanel panel_7 = new JPanel();
+		JPanel panel_8 = new JPanel();
+		JPanel panel_9 = new JPanel();
+
 		JButton selezionaDataButtom = new JButton("Selezione Data");
 		selezionaDataButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Date dataInseritaInizio = calendar.getDate();
-				String d = simpleDateFormat.format(dataInseritaInizio);
+				d = simpleDateFormat.format(dataInseritaInizio);
 
 				array1 = visSerControl.getStato(d, "Servizio 1");
 				array2 = visSerControl.getStato(d, "Servizio 2");
 				array3 = visSerControl.getStato(d, "Servizio 3");
 				array4 = visSerControl.getStato(d, "Servizio 4");
+
+				JTable table = new JTable();
+				panel_6.add(table.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
+																			// delle
+				// colonne
+				panel_6.add(table, BorderLayout.CENTER);
+				table.setModel(new DefaultTableModel(new Object[][] { { array1[0], array1[1], array1[2] }, },
+						new String[] { "00:00:-08:00", "08:00-16:00", "16:00-00:00" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
+				table.getColumnModel().getColumn(0).setResizable(false);
+				table.getColumnModel().getColumn(1).setResizable(false);
+				table.getColumnModel().getColumn(2).setResizable(false);
+				table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
+
+				table_1 = new JTable();
+				panel_7.add(table_1.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
+																			// delle
+				// colonne
+				panel_7.add(table_1, BorderLayout.CENTER);
+
+				table_1.setModel(new DefaultTableModel(new Object[][] { { array2[0], array2[1], array2[2] }, },
+						new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
+				table_1.getColumnModel().getColumn(0).setResizable(false);
+				table_1.getColumnModel().getColumn(1).setResizable(false);
+				table_1.getColumnModel().getColumn(2).setResizable(false);
+				table_1.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le
+																		// colonne
+				// trascinando
+
+				table_2.setModel(new DefaultTableModel(new Object[][] { { array3[0], array3[1], array3[2] }, },
+						new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+
+					boolean[] columnEditables = new boolean[] { false, false, false };
+
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
+				table_2.getColumnModel().getColumn(0).setResizable(false);
+				table_2.getColumnModel().getColumn(1).setResizable(false);
+				table_2.getColumnModel().getColumn(2).setResizable(false);
+				table_2.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le
+																		// colonne
+				// trascinando
+
+				table_3 = new JTable();
+				panel_9.add(table_3.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
+																			// delle
+				// colonne
+				panel_9.add(table_3, BorderLayout.CENTER);
+
+				table_3.setModel(new DefaultTableModel(new Object[][] { { array4[0], array4[1], array4[2] }, },
+						new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
+				table_3.getColumnModel().getColumn(0).setResizable(false);
+				table_3.getColumnModel().getColumn(1).setResizable(false);
+				table_3.getColumnModel().getColumn(2).setResizable(false);
+				table_3.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le
+																		// colonne
+				// trascinando
 
 			}
 		});
@@ -134,7 +225,6 @@ public class VisualizzaServizi extends JPanel {
 		gbc_servizioUnoLabel.gridy = 0;
 		panel_2_1.add(servizioUnoLabel, gbc_servizioUnoLabel);
 
-		JPanel panel_6 = new JPanel();
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
 		gbc_panel_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_6.insets = new Insets(0, 0, 5, 0);
@@ -146,7 +236,6 @@ public class VisualizzaServizi extends JPanel {
 		panel_6.add(table.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers delle
 		// colonne
 		panel_6.add(table, BorderLayout.CENTER);
-
 		table.setModel(new DefaultTableModel(new Object[][] { { array1[0], array1[1], array1[2] }, },
 				new String[] { "00:00:-08:00", "08:00-16:00", "16:00-00:00" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class };
@@ -169,7 +258,6 @@ public class VisualizzaServizi extends JPanel {
 		gbc_servizioDueLabel.gridy = 2;
 		panel_2_1.add(servizioDueLabel, gbc_servizioDueLabel);
 
-		JPanel panel_7 = new JPanel();
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
 		gbc_panel_7.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_7.insets = new Insets(0, 0, 5, 0);
@@ -204,7 +292,6 @@ public class VisualizzaServizi extends JPanel {
 		gbc_servizioTreLabel.gridy = 4;
 		panel_2_1.add(servizioTreLabel, gbc_servizioTreLabel);
 
-		JPanel panel_8 = new JPanel();
 		GridBagConstraints gbc_panel_8 = new GridBagConstraints();
 		gbc_panel_8.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_8.insets = new Insets(0, 0, 5, 0);
@@ -245,7 +332,6 @@ public class VisualizzaServizi extends JPanel {
 		gbc_servizioQuattro.gridy = 6;
 		panel_2_1.add(servizioQuattro, gbc_servizioQuattro);
 
-		JPanel panel_9 = new JPanel();
 		GridBagConstraints gbc_panel_9 = new GridBagConstraints();
 		gbc_panel_9.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_9.gridx = 2;
