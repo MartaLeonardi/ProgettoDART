@@ -103,9 +103,9 @@ public class RichiediScioperoControl {
 						database.closeConnection();
 						
 						//delete turno
-						//DBMS db=new DBMS();
-						//db.deleteTuplaImp(matricola,dataI,servizio,fasciaOraria);
-						//db.closeConnection();
+						DBMS db=new DBMS();
+						db.deleteTuplaImp(matricola,dataI,servizio,fasciaOraria);
+						db.closeConnection();
 						
 					}else {
 						System.out.println("Richiesta rigettata: mancanza personale");

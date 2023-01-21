@@ -241,15 +241,32 @@ public class DBMS implements DbInterface {
 
         try {
             statement = connect.prepareStatement(sql3);
-            statement.setString(1, matricola);
-            statement.setDate(2, Date.valueOf(data));
-            statement.setString(3, servizio);
-            statement.setString(4, fasciaOraria);
+            statement.setDate(1, Date.valueOf(data));
+            statement.setString(2, servizio);
+            statement.setString(3, fasciaOraria);
+            statement.setString(4, matricola);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
             }
-    } 
+    }
+
+	public void deleteTuplaImp(String matricola, String dInizio, String dFine) {
+		
+	       String sql3 = "DELETE FROM Turno WHERE giornata_lavoro >=? AND giornata_lavoro<=? AND ref_i_matricola=?";
+
+	        try {
+	            statement = connect.prepareStatement(sql3);
+	            statement.setDate(1, Date.valueOf(dInizio));
+	            statement.setDate(2, Date.valueOf(dFine));
+	            statement.setString(3, matricola);
+	            statement.execute();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            System.out.println(e);
+	            }
+		
+	} 
 
 }
