@@ -151,7 +151,7 @@ public class RichiediScioperoControl {
 		}
 		
 		database.closeConnection();
-			System.out.println("NOME SERVIZIO:" + result);
+			System.out.println("NOME FASCIA:" + result);
 		return result;
 	}
 	

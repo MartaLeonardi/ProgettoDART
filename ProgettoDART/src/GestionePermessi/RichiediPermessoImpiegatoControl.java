@@ -32,12 +32,15 @@ public class RichiediPermessoImpiegatoControl {
 		ResultSet rs = db.query(sql);
 		try {
 			if(rs.next()){
+				db.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			db.closeConnection();
 			return false;
 		}
+		db.closeConnection();
 		return false;
 	
 	}
@@ -76,20 +79,16 @@ public class RichiediPermessoImpiegatoControl {
 								+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
 						OKPopUp pop = new OKPopUp("Operazione avvenuta con successo!");
 						pop.setVisible(true);
-						//RICHIAMO AL METODO PER INSTANZIARE
-						
 						
 						DBMS database=new DBMS();
 						database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
 						
 						
 						String[] data = dInizio.split("-");
-						
 						int[] dataInt = new int[3]; 
 						dataInt[0] = Integer.parseInt(data[0]);
 						dataInt[1] = Integer.parseInt(data[1]);
 						dataInt[2] = Integer.parseInt(data[2]);
-						
 						
 						String[] dataF = dFine.split("-");
 						int[] dataIntF = new int[3]; 
@@ -100,19 +99,11 @@ public class RichiediPermessoImpiegatoControl {
 						LocalDate daInizio = LocalDate.of(dataInt[0], dataInt[1], dataInt[2]);
 						LocalDate daFine = LocalDate.of(dataIntF[0], dataIntF[1], dataIntF[2]);					
 						
-						
-						
 						for(LocalDate d = daInizio;  d.isBefore(daFine.plusDays(1));  d = d.plusDays(1)) {
-							
-							
 							
 							try {
 								String fascia = getFasciaOraria(matricola,d.toString());
 								String servizio = getServizio(matricola, d.toString());
-								
-								
-								
-								
 								
 								database.deleteTuplaImp(matricola, d.toString(), servizio, fascia);						
 								
@@ -123,22 +114,16 @@ public class RichiediPermessoImpiegatoControl {
 									res = rs.getString(1);
 								}
 								
-								
 								if(res.equals("0")) {
-									
 									database.updateStato(d.toString(), servizio, fascia);
-									
 								}
 								
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 							
 						}
 						database.closeConnection();
-						
-					
 					}
 					
 					
@@ -148,20 +133,15 @@ public class RichiediPermessoImpiegatoControl {
 							+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
 					OKPopUp pop = new OKPopUp("Operazione avvenuta con successo!");
 					pop.setVisible(true);
-					//RICHIAMO AL METODO PER INSTANZIARE
-					
 					
 					DBMS database=new DBMS();
 					database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
 					
-					
 					String[] data = dInizio.split("-");
-					
 					int[] dataInt = new int[3]; 
 					dataInt[0] = Integer.parseInt(data[0]);
 					dataInt[1] = Integer.parseInt(data[1]);
 					dataInt[2] = Integer.parseInt(data[2]);
-					
 					
 					String[] dataF = dFine.split("-");
 					int[] dataIntF = new int[3]; 
@@ -172,19 +152,11 @@ public class RichiediPermessoImpiegatoControl {
 					LocalDate daInizio = LocalDate.of(dataInt[0], dataInt[1], dataInt[2]);
 					LocalDate daFine = LocalDate.of(dataIntF[0], dataIntF[1], dataIntF[2]);					
 					
-					
-					
 					for(LocalDate d = daInizio;  d.isBefore(daFine.plusDays(1));  d = d.plusDays(1)) {
-						
-						
 						
 						try {
 							String fascia = getFasciaOraria(matricola,d.toString());
 							String servizio = getServizio(matricola, d.toString());
-							
-							
-							
-							
 							
 							database.deleteTuplaImp(matricola, d.toString(), servizio, fascia);						
 							
@@ -195,15 +167,11 @@ public class RichiediPermessoImpiegatoControl {
 								res = rs.getString(1);
 							}
 							
-							
 							if(res.equals("0")) {
-								
 								database.updateStato(d.toString(), servizio, fascia);
-								
 							}
 							
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						
@@ -239,7 +207,7 @@ public class RichiediPermessoImpiegatoControl {
 		}
 		
 		database.closeConnection();
-			System.out.println("NOME SERVIZIO:" + result);
+			System.out.println("NOME FASCIA:" + result);
 		return result;
 	}
 	
