@@ -6,6 +6,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import GestioneStipendi.StipendiControl;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
@@ -35,6 +37,8 @@ public class VisualizzaStipendi extends JPanel {
 		setBounds(100, 100, 1200, 800);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new BorderLayout(0, 0));
+
+		StipendiControl stipControl = new StipendiControl();
 
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -86,39 +90,48 @@ public class VisualizzaStipendi extends JPanel {
 		gbc_scrollPane.gridy = 0;
 		panel_1.add(scrollPane, gbc_scrollPane);
 
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null }, },
-				new String[] { "Matricola", "Periodo di retribuzione (inizio)", "Periodo di retribuzione (fine)",
-						"Importo" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { true, true, true, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		table = stipControl.createTable();
+		table.setEnabled(false);
+		table.setRowHeight(25);
+		table.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(3).setResizable(false);
 		table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
 		// trascinando
 		scrollPane.setViewportView(table);
+
+		/*
+		 * table.setModel(new DefaultTableModel( new Object[][] { { null, null, null,
+		 * null }, { null, null, null, null }, { null, null, null, null }, { null, null,
+		 * null, null }, { null, null, null, null }, { null, null, null, null }, { null,
+		 * null, null, null }, { null, null, null, null }, { null, null, null, null }, {
+		 * null, null, null, null }, { null, null, null, null }, { null, null, null,
+		 * null }, { null, null, null, null }, { null, null, null, null }, { null, null,
+		 * null, null }, { null, null, null, null }, { null, null, null, null }, { null,
+		 * null, null, null }, { null, null, null, null }, { null, null, null, null }, {
+		 * null, null, null, null }, { null, null, null, null }, { null, null, null,
+		 * null }, { null, null, null, null }, { null, null, null, null }, { null, null,
+		 * null, null }, { null, null, null, null }, { null, null, null, null }, { null,
+		 * null, null, null }, { null, null, null, null }, { null, null, null, null }, {
+		 * null, null, null, null }, { null, null, null, null }, { null, null, null,
+		 * null }, { null, null, null, null }, { null, null, null, null }, { null, null,
+		 * null, null }, { null, null, null, null }, { null, null, null, null }, { null,
+		 * null, null, null }, { null, null, null, null }, { null, null, null, null }, {
+		 * null, null, null, null }, { null, null, null, null }, { null, null, null,
+		 * null }, { null, null, null, null }, { null, null, null, null }, { null, null,
+		 * null, null }, { null, null, null, null }, { null, null, null, null }, { null,
+		 * null, null, null }, { null, null, null, null }, { null, null, null, null }, {
+		 * null, null, null, null }, { null, null, null, null }, { null, null, null,
+		 * null }, { null, null, null, null }, { null, null, null, null }, { null, null,
+		 * null, null }, { null, null, null, null }, }, new String[] { "Matricola",
+		 * "Periodo di retribuzione (inizio)", "Periodo di retribuzione (fine)",
+		 * "Importo" }) { Class[] columnTypes = new Class[] { String.class,
+		 * String.class, String.class, String.class };
+		 * 
+		 * public Class getColumnClass(int columnIndex) { return
+		 * columnTypes[columnIndex]; } });
+		 */
 	}
 
 	private void setExtendedState(int maximizedBoth) {

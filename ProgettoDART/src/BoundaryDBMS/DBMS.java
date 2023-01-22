@@ -307,6 +307,22 @@ public class DBMS implements DbInterface {
 		}
 		
 	}
+	
+	public void removeTurni(String date) {
+		
+		String sql = "delete from Turno where giornata_lavoro <= ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, date);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 
 }
