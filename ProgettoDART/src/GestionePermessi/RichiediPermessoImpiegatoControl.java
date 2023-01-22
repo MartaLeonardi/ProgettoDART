@@ -37,7 +37,6 @@ public class RichiediPermessoImpiegatoControl {
 			return false;
 		}
 		return false;
-		
 	
 	}
 	

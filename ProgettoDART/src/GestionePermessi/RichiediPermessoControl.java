@@ -76,6 +76,7 @@ public class RichiediPermessoControl {
 					db.closeConnection();
 					
 					//richiamo classe Marco
+					
 	
 				}
 		
