@@ -10,7 +10,6 @@ import PopUp.OKPopUp;
 public class RichiediPermessoControl {
 
 	static Date date = new Date();
-	
 	 
     static String pattern = "yyyy-MM-dd";
     static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -69,6 +68,15 @@ public class RichiediPermessoControl {
 					DBMS database=new DBMS();
 					database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
 					database.closeConnection();
+					
+					
+					//delete turno
+					DBMS db=new DBMS();
+					db.deleteTuplaImp(matricola,dInizio,dFine);
+					db.closeConnection();
+					
+					//richiamo classe Marco
+					
 	
 				}
 		

@@ -235,7 +235,7 @@ public class DBMS implements DbInterface {
 		}
 		
 	}
-	
+
 	public void setStato(LocalDate data, String servizio, int turno, boolean presenza) {
 		
 		String sql = "insert into Stato (giornata_lavoro, ref_servizio, turno_orari, presenza) value (?,?,?,?)";
@@ -256,5 +256,39 @@ public class DBMS implements DbInterface {
 		
 		
 	}
+	
+	public void deleteTuplaImp(String matricola, String data, String servizio, String fasciaOraria) {
+        String sql3 = "DELETE FROM Turno WHERE giornata_lavoro = ? AND servizio=? AND fascia_oraria=? AND ref_i_matricola=?";
+
+        try {
+            statement = connect.prepareStatement(sql3);
+            statement.setDate(1, Date.valueOf(data));
+            statement.setString(2, servizio);
+            statement.setString(3, fasciaOraria);
+            statement.setString(4, matricola);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e);
+            }
+    }
+
+	public void deleteTuplaImp(String matricola, String dInizio, String dFine) {
+		
+	       String sql3 = "DELETE FROM Turno WHERE giornata_lavoro >=? AND giornata_lavoro<=? AND ref_i_matricola=?";
+
+	        try {
+	            statement = connect.prepareStatement(sql3);
+	            statement.setDate(1, Date.valueOf(dInizio));
+	            statement.setDate(2, Date.valueOf(dFine));
+	            statement.setString(3, matricola);
+	            statement.execute();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            System.out.println(e);
+	            }
+		
+	} 
+
 
 }
