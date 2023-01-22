@@ -108,8 +108,11 @@ public class VisualizzaServizi extends JPanel {
 
 		JPanel panel_6 = new JPanel();
 		JPanel panel_7 = new JPanel();
+		panel_7.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		JPanel panel_8 = new JPanel();
+		panel_8.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		JPanel panel_9 = new JPanel();
+		panel_9.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 
 		JButton selezionaDataButtom = new JButton("Selezione Data");
 		selezionaDataButtom.addActionListener(new ActionListener() {
@@ -123,6 +126,9 @@ public class VisualizzaServizi extends JPanel {
 				array4 = visSerControl.getStato(d, "Servizio 4");
 
 				JTable table = new JTable();
+				table.setEnabled(false);
+				table.setRowHeight(40);
+				table.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 				panel_6.add(table.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
 																			// delle
 				// colonne
@@ -141,6 +147,9 @@ public class VisualizzaServizi extends JPanel {
 				table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
 
 				table_1 = new JTable();
+				table_1.setEnabled(false);
+				table_1.setRowHeight(40);
+				table_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 				panel_7.add(table_1.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
 																			// delle
 				// colonne
@@ -161,6 +170,14 @@ public class VisualizzaServizi extends JPanel {
 																		// colonne
 				// trascinando
 
+				table_2 = new JTable();
+				table_2.setEnabled(false);
+				table_2.setRowHeight(40);
+				table_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				panel_8.add(table_2.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
+																			// delle
+				// colonne
+				panel_8.add(table_2, BorderLayout.CENTER);
 				table_2.setModel(new DefaultTableModel(new Object[][] { { array3[0], array3[1], array3[2] }, },
 						new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
 					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
@@ -183,6 +200,9 @@ public class VisualizzaServizi extends JPanel {
 				// trascinando
 
 				table_3 = new JTable();
+				table_3.setEnabled(false);
+				table_3.setRowHeight(40);
+				table_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 				panel_9.add(table_3.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers
 																			// delle
 				// colonne
@@ -212,7 +232,7 @@ public class VisualizzaServizi extends JPanel {
 		add(panel_2_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_2_1 = new GridBagLayout();
 		gbl_panel_2_1.columnWidths = new int[] { 251, 0, 380, 0 };
-		gbl_panel_2_1.rowHeights = new int[] { 71, 0, 70, 0, 71, 0, 58, 0 };
+		gbl_panel_2_1.rowHeights = new int[] { 70, 0, 70, 0, 71, 0, 58, 0 };
 		gbl_panel_2_1.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		gbl_panel_2_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_2_1.setLayout(gbl_panel_2_1);
@@ -233,10 +253,14 @@ public class VisualizzaServizi extends JPanel {
 		panel_2_1.add(panel_6, gbc_panel_6);
 		panel_6.setLayout(new BorderLayout(0, 0));
 		JTable table = new JTable();
+		table.setEnabled(false);
+		table.setEnabled(false);
+		table.setRowHeight(40);
+		table.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_6.add(table.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers delle
 		// colonne
 		panel_6.add(table, BorderLayout.CENTER);
-		table.setModel(new DefaultTableModel(new Object[][] { { array1[0], array1[1], array1[2] }, },
+		table.setModel(new DefaultTableModel(new Object[][] { { "", "", "" }, },
 				new String[] { "00:00:-08:00", "08:00-16:00", "16:00-00:00" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class };
 
@@ -266,11 +290,14 @@ public class VisualizzaServizi extends JPanel {
 		panel_2_1.add(panel_7, gbc_panel_7);
 		panel_7.setLayout(new BorderLayout(0, 0));
 		table_1 = new JTable();
+		table_1.setEnabled(false);
+		table_1.setRowHeight(40);
+		table_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_7.add(table_1.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers delle
 		// colonne
 		panel_7.add(table_1, BorderLayout.CENTER);
 
-		table_1.setModel(new DefaultTableModel(new Object[][] { { array2[0], array2[1], array2[2] }, },
+		table_1.setModel(new DefaultTableModel(new Object[][] { { "", "", "" }, },
 				new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class };
 
@@ -300,11 +327,14 @@ public class VisualizzaServizi extends JPanel {
 		panel_2_1.add(panel_8, gbc_panel_8);
 		panel_8.setLayout(new BorderLayout(0, 0));
 		table_2 = new JTable();
+		table_2.setEnabled(false);
+		table_2.setRowHeight(40);
+		table_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_8.add(table_2.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers delle
 		// colonne
 		panel_8.add(table_2, BorderLayout.CENTER);
 
-		table_2.setModel(new DefaultTableModel(new Object[][] { { array3[0], array3[1], array3[2] }, },
+		table_2.setModel(new DefaultTableModel(new Object[][] { { "", "", "" }, },
 				new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class };
 
@@ -339,11 +369,14 @@ public class VisualizzaServizi extends JPanel {
 		panel_2_1.add(panel_9, gbc_panel_9);
 		panel_9.setLayout(new BorderLayout(0, 0));
 		table_3 = new JTable();
+		table_3.setEnabled(false);
+		table_3.setRowHeight(40);
+		table_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_9.add(table_3.getTableHeader(), BorderLayout.NORTH); // Creazione della tabella, con gli headers delle
 		// colonne
 		panel_9.add(table_3, BorderLayout.CENTER);
 
-		table_3.setModel(new DefaultTableModel(new Object[][] { { array4[0], array4[1], array4[2] }, },
+		table_3.setModel(new DefaultTableModel(new Object[][] { { "", "", "" }, },
 				new String[] { "00:00-08:00", "08:00-16:00", "16:00-00:00" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class };
 
