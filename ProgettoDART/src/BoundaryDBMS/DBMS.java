@@ -289,6 +289,24 @@ public class DBMS implements DbInterface {
 	            }
 		
 	} 
+	
+	public void updateStato(String giorno, String servizio, String fascia) {
+		
+		String sql = "update Stato set presenza = 0 where giornata_lavoro = ? AND ref_servizio=? AND turno_orari=?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, giorno);
+			statement.setString(2, servizio);
+			statement.setString(3, fascia);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 
 }

@@ -3,6 +3,7 @@ package GestionePermessi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import BoundaryDBMS.DBMS;
@@ -16,7 +17,8 @@ public class RichiediPermessoImpiegatoControl {
     static String pattern = "yyyy-MM-dd";
     static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
     static String d = simpleDateFormat.format(date); 
-	
+    
+    
 	public static boolean checkMatricola(String matricola) {
 
 		if (!(matricola.substring(0, 1).equals("0"))) {
@@ -70,34 +72,142 @@ public class RichiediPermessoImpiegatoControl {
 						}
 	
 					}else {		//ora inizio minore
-						System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + m + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
-											+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
+						System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + matricola + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
+								+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
 						OKPopUp pop = new OKPopUp("Operazione avvenuta con successo!");
 						pop.setVisible(true);
 						//RICHIAMO AL METODO PER INSTANZIARE
+						
+						
 						DBMS database=new DBMS();
 						database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
+						
+						
+						String[] data = dInizio.split("-");
+						
+						int[] dataInt = new int[3]; 
+						dataInt[0] = Integer.parseInt(data[0]);
+						dataInt[1] = Integer.parseInt(data[1]);
+						dataInt[2] = Integer.parseInt(data[2]);
+						
+						
+						String[] dataF = dFine.split("-");
+						int[] dataIntF = new int[3]; 
+						dataIntF[0] = Integer.parseInt(dataF[0]);
+						dataIntF[1] = Integer.parseInt(dataF[1]);
+						dataIntF[2] = Integer.parseInt(dataF[2]);
+						
+						LocalDate daInizio = LocalDate.of(dataInt[0], dataInt[1], dataInt[2]);
+						LocalDate daFine = LocalDate.of(dataIntF[0], dataIntF[1], dataIntF[2]);					
+						
+						
+						
+						for(LocalDate d = daInizio;  d.isBefore(daFine.plusDays(1));  d = d.plusDays(1)) {
+							
+							
+							
+							try {
+								String fascia = getFasciaOraria(matricola,d.toString());
+								String servizio = getServizio(matricola, d.toString());
+								
+								
+								
+								
+								
+								database.deleteTuplaImp(matricola, d.toString(), servizio, fascia);						
+								
+								String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = '"+servizio+"' and fascia_oraria = '"+ fascia +"'";
+								String res = "";
+								ResultSet rs = database.query(sql);
+								if(rs.next()) {
+									res = rs.getString(1);
+								}
+								
+								
+								if(res.equals("0")) {
+									
+									database.updateStato(d.toString(), servizio, fascia);
+									
+								}
+								
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}
 						database.closeConnection();
 						
-						//rimozione del turno in quel giorno/i
-						DBMS db=new DBMS();
-						db.deleteTuplaImp(matricola,dInizio,dFine);
-						db.closeConnection();
-						
-						//collegamento controllo stato servizi marco
 					
 					}
 					
 					
 				}else {	//se date diverse non serve effettuare controllo delle ore
 					
-					System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + m + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
+					System.out.println("Dati inseriti hanno superato i controlli:\nMatricola:" + matricola + "\nMotivazione:"+ motivazione + "\nData inizio:" + dInizio
 							+"\nData fine:"+ dFine+ "\nOra inizio:" + oraI + "\nOra fine:" + oraF);
 					OKPopUp pop = new OKPopUp("Operazione avvenuta con successo!");
 					pop.setVisible(true);
 					//RICHIAMO AL METODO PER INSTANZIARE
+					
+					
 					DBMS database=new DBMS();
 					database.insertRichiesta(matricola, motivazione, dInizio, dFine, oraInizio, oraFine, check);
+					
+					
+					String[] data = dInizio.split("-");
+					
+					int[] dataInt = new int[3]; 
+					dataInt[0] = Integer.parseInt(data[0]);
+					dataInt[1] = Integer.parseInt(data[1]);
+					dataInt[2] = Integer.parseInt(data[2]);
+					
+					
+					String[] dataF = dFine.split("-");
+					int[] dataIntF = new int[3]; 
+					dataIntF[0] = Integer.parseInt(dataF[0]);
+					dataIntF[1] = Integer.parseInt(dataF[1]);
+					dataIntF[2] = Integer.parseInt(dataF[2]);
+					
+					LocalDate daInizio = LocalDate.of(dataInt[0], dataInt[1], dataInt[2]);
+					LocalDate daFine = LocalDate.of(dataIntF[0], dataIntF[1], dataIntF[2]);					
+					
+					
+					
+					for(LocalDate d = daInizio;  d.isBefore(daFine.plusDays(1));  d = d.plusDays(1)) {
+						
+						
+						
+						try {
+							String fascia = getFasciaOraria(matricola,d.toString());
+							String servizio = getServizio(matricola, d.toString());
+							
+							
+							
+							
+							
+							database.deleteTuplaImp(matricola, d.toString(), servizio, fascia);						
+							
+							String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = '"+servizio+"' and fascia_oraria = '"+ fascia +"'";
+							String res = "";
+							ResultSet rs = database.query(sql);
+							if(rs.next()) {
+								res = rs.getString(1);
+							}
+							
+							
+							if(res.equals("0")) {
+								
+								database.updateStato(d.toString(), servizio, fascia);
+								
+							}
+							
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					}
 					database.closeConnection();
 	
 				}
@@ -112,6 +222,43 @@ public class RichiediPermessoImpiegatoControl {
 			OKPopUp pop = new OKPopUp("Data inizio precedente o uguale a oggi");
 			pop.setVisible(true);
 		}
+		
+	}
+	
+	
+	public static String getFasciaOraria(String matricola, String giornata) throws SQLException {
+		DBMS database = new DBMS();
+		String sql = "SELECT fascia_oraria FROM Turno WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro = '"+giornata+"'";
+				
+		ResultSet rs=database.query(sql);
+		
+		String result="";
+		
+		while(rs.next()) {
+			result=rs.getString(1);
+		}
+		
+		database.closeConnection();
+			System.out.println("NOME SERVIZIO:" + result);
+		return result;
+	}
+	
+	public static String getServizio(String matricola, String giornata) throws SQLException {
+		
+		DBMS database = new DBMS();
+		String sql = "SELECT servizio FROM Turno WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro = '"+giornata+"'";
+				
+		ResultSet rs=database.query(sql);
+		
+		String result="";
+		
+		while(rs.next()) {
+			result=rs.getString(1);
+		}
+		
+		database.closeConnection();
+			System.out.println("NOME SERVIZIO:" + result);
+		return result;
 		
 	}
 	
