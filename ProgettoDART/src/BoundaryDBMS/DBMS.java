@@ -460,4 +460,24 @@ public class DBMS implements DbInterface {
 			}
 	}
 	
+	
+	public void updateOre(String matricola, String data, String oraI, String oraF) {
+		
+		String sql ="UPDATE Turno set inizio_turno=?, fine_turno=? WHERE ref_i_matricola=? AND giornata_lavoro=?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setTime(1, Time.valueOf(oraI));
+			statement.setTime(2, Time.valueOf(oraF));
+			statement.setString(3, matricola);
+			statement.setDate(4, Date.valueOf(data));
+			
+			statement.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
