@@ -460,4 +460,16 @@ public class DBMS implements DbInterface {
 			}
 	}
 	
+	public void updateTurno(LocalDate data, String matricola, String oraFine) {
+		String sql3 = "UPDATE Turno SET fine_turno = '"+oraFine+"' WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro ='"+data.toString()+"'";
+		try {
+			statement = connect.prepareStatement(sql3);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			}
+	}
+	
 }

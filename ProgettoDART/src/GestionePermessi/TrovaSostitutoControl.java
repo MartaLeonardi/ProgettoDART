@@ -1,5 +1,7 @@
 package GestionePermessi;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -168,6 +170,44 @@ public class TrovaSostitutoControl {
 			dbms.insertTurno(mtr.next(), d.toString(), oraInizio[fascia], oraFine[fascia], fascia, servizio);
 			System.out.println("Impiegato sostituito");
 		} else System.out.println("Impiegato idoneo non trovato");
+		dbms.closeConnection();
+	}
+	
+	public void cercaSostitutoPerOreStraordinarie(int fascia, LocalDate d, String servizio, String oraFine) throws SQLException {
+		String[] oraInizio = {"00:00:00", "08:00:00", "16:00:00"};
+		DBMS dbms = new DBMS();
+		String sql=null;
+		ResultSet result;
+		ArrayList<String> matricole = new ArrayList<String>();
+		result = dbms.query(sql);
+		//Controllo dei turni
+		if(fascia==0) {
+			sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.minusDays(1).toString()+"' AND fascia_oraria = "+2;
+			result = dbms.query(sql);
+			while(result.next()) {
+				matricole.add(result.getString("ref_i_matricola"));
+			}
+			if(!matricole.isEmpty())
+			dbms.updateTurno(d, matricole.get(0), oraFine);
+		}
+		if(fascia==1) {
+			sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+0;
+			result = dbms.query(sql);
+			while(result.next()) {
+				matricole.add(result.getString("ref_i_matricola"));
+			}
+			if(!matricole.isEmpty())
+			dbms.updateTurno(d, matricole.get(0), oraFine);
+		}
+		if(fascia==2) {
+			sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+1;
+			result = dbms.query(sql);
+			while(result.next()) {
+				matricole.add(result.getString("ref_i_matricola"));
+			}
+			if(!matricole.isEmpty())
+			dbms.updateTurno(d, matricole.get(0), oraFine);
+		}
 		dbms.closeConnection();
 	}
 	
