@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import BoundaryDBMS.DBMS;
 
@@ -85,7 +86,6 @@ public class TempoControl {
 		//StipendioBase + OreLavorate*PagaOraria + oreStraordinarie*(PagaOraria+4) + oreFestive*(PagaOraria+3)
 		
 	}
-	
 	
 	public void calcoloStatoServizi(LocalDate dataInizio, LocalDate dataFine) {
 		
@@ -207,5 +207,84 @@ public class TempoControl {
 		db.closeConnection();
 	}
 	
-	
+	public void calcoloCalendario(LocalDate startDate, LocalDate endDate) throws SQLException {
+		//Local variables and objects
+		DBMS dbms = new DBMS();
+		ArrayList<Impiegati> impiegatiRuolo; //ArrayList utilizzato per copiare il retrive degli impiegati da iterare
+		Iterator<Impiegati> tempImp; //Iteratore temporaneo a cui assegnare gli oggetti impiegato da esaminare
+		Impiegati imp; //Oggetto utilizzato come riferimento temporaneo all'impiegato da assegnare
+		String oraInizio = null; //Stringa per indicare l'ora di inizio turno
+		String oraFine = null; //Stringa per indicare l'ora di fine turno
+		Impiegati[] emps = new Impiegati[6]; //Array utilizzato per scorrere i turni
+		//Controlli sul tempo
+		if(!(startDate.getDayOfMonth()==21)) {
+			System.out.println("Niente query D");
+			return;
+		}
+		for(int test=1; test<=10;test=test+3) {
+			System.out.println(test);
+			if(startDate.getMonthValue()==test) {
+				break;
+			}
+			if(test==10) {
+				System.out.println("Niente query M");
+				return;
+			}
+		}
+		for(int i = 1; i<=4; i++) {
+			String ruolo = "Ruolo " + i; //Utilizzato per recuperare gli impiegati di un certo ruolo
+			String servizio = "Servizio " + i; //Utilizzato per assegnare il servizio di lavoro
+			impiegatiRuolo = dbms.retriveImpiegatoByRole(ruolo); //Recupero degli impiegati di ruolo 
+			tempImp = impiegatiRuolo.iterator(); //Restituzione dell'oggetto iteratore Impiegato
+			for(LocalDate d = startDate.plusDays(1); d.isBefore(endDate); d = d.plusDays(1)) {
+				for(int nFascia = 0; nFascia < 3; nFascia++) {
+					int nImpiegati = 0; //Contatore che effettua il conteggio di impiegati attualmente assegnati alla fascia oraria
+					if(nFascia == 0) {oraInizio = "00:00:00"; oraFine = "08:00:00";}
+					if(nFascia == 1) {oraInizio = "08:00:00"; oraFine = "16:00:00";}
+					if(nFascia == 2) {oraInizio = "16:00:00"; oraFine = "24:00:00";}
+					while(nImpiegati<2) {
+						int countTry = 0; //Contatore che effettua il conteggio di tentativi per l'assegnazione dei turni
+						while(countTry<10) {
+							if(!(tempImp.hasNext())) {
+								tempImp = impiegatiRuolo.iterator();
+							}
+							//Controlla se nell'oggetto Iterator ci sono ancora record
+							if(tempImp.hasNext()) {
+								imp = tempImp.next(); //Assegno l'impiegato da inserire a un oggetto per le verifiche dei criteri di assegnazione
+								if(emps[nFascia]==null || emps[nFascia+3]==null) {
+									emps[nFascia] = imp;
+									dbms.insertTurno(imp.getMatricola(), d.toString(), oraInizio, oraFine, nFascia, servizio);
+									nImpiegati++;
+									break;
+								}
+								//Controlla se l'impiegato in analisi ha gia' lavorato per la stessa fascia oraria il giorno prima
+								else if(imp.getMatricola()!=emps[nFascia].getMatricola() && imp.getMatricola()!=emps[nFascia+3].getMatricola()) {
+									//Cotrollo ulteriore per chi verra' assegnato al turno di mattina
+									if(nFascia == 0) {
+										//Cotrolla se l-impiegato ha lavorato di notte il giorno prima
+										if(imp.getMatricola()!=emps[3].getMatricola() && imp.getMatricola()!=emps[6].getMatricola()) {
+											//Assegnazione del turno di lavoro
+											emps[nFascia+nImpiegati*3] = imp;
+											dbms.insertTurno(imp.getMatricola(), d.toString(), oraInizio, oraFine, nFascia, servizio);
+											nImpiegati++;
+											break;
+										}
+									}
+									//Assegnazione del turno di lavoro
+									else {
+										emps[nFascia+nImpiegati*3] = imp;
+										dbms.insertTurno(imp.getMatricola(), d.toString(), oraInizio, oraFine, nFascia, servizio);
+										nImpiegati++;
+										break;
+									}
+								}
+							}
+							countTry++;
+						}
+					}
+				}
+			}
+		}
+		dbms.closeConnection();
+	}
 }

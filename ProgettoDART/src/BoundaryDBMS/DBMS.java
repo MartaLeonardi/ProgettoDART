@@ -6,7 +6,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import GestioneStipendi.Impiegati;
 
 public class DBMS implements DbInterface {
 
@@ -343,5 +347,117 @@ public class DBMS implements DbInterface {
 		
 	}
 
-
+	public ArrayList<String> retriveImpiegato() {
+		String sql3 = "SELECT i_matricola FROM Impiegato";
+		String m;
+		ArrayList<String> matricola = new ArrayList<String>();
+		try {
+			statement = connect.prepareStatement(sql3);
+			while(rs.next()) {
+				m = rs.getString("i_matricola");
+				matricola.add(new String(m));
+			}
+			return matricola;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			return null;
+			}
+	}
+	
+	public ArrayList<Impiegati> retriveImpiegatoByRole(String ruolo) {
+		String sql3 = "SELECT * FROM Impiegato WHERE ruolo = '"+ruolo+"'";
+		String matricola;
+		ArrayList<Impiegati> imp = new ArrayList<Impiegati>();
+		try {
+			rs=query(sql3);
+			while(rs.next()) {
+				matricola = rs.getString("i_matricola");
+				imp.add(new Impiegati(matricola, ruolo));
+			}
+			return imp;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
+	public void insertTurno(String matricola, String giornata, String iTurno, String fTurno, int fascia, String servizio) {
+		String sql3 = "INSERT INTO Turno (ref_i_matricola, giornata_lavoro, inizio_turno, fine_turno, fascia_oraria, servizio) values(?, ?, ?, ?, ?, ?)";
+		
+		try {
+			statement = connect.prepareStatement(sql3);
+			statement.setString(1, matricola);
+			statement.setDate(2, Date.valueOf(giornata));
+			statement.setTime(3, Time.valueOf(iTurno));
+			statement.setTime(4, Time.valueOf(fTurno));
+			statement.setInt(5, fascia);
+			statement.setString(6, servizio);
+			statement.execute();	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			}
+		}
+	
+	public ArrayList<String> retriveImpiegatoForTurnoForFascia(LocalDate data, int fascia) {
+		String sql3 = "SELECT ref_i_matricola FROM Turno WHERE giornata_lavoro = '"+data.toString()+"'"+" fascia='"+fascia+"'";
+		String m;
+		ArrayList<String> matricola = new ArrayList<String>();
+		try {
+			rs = query(sql3);
+			while(rs.next()) {
+				m = rs.getString("ref_i_matricola");
+				matricola.add(new String(m));
+			}
+			return matricola;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			return null;
+			}
+	}
+	
+	public ArrayList<String> retriveImpiegatoForTurno(LocalDate data) {
+		String sql3 = "SELECT ref_i_matricola FROM Turno WHERE giornata_lavoro = '"+data.toString()+"'";
+		String m;
+		ArrayList<String> matricola = new ArrayList<String>();
+		try {
+			rs = query(sql3);
+			while(rs.next()) {
+				m = rs.getString("ref_i_matricola");
+				matricola.add(new String(m));
+			}
+			return matricola;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			return null;
+			}
+	}
+	
+	public ArrayList<String> retriveImpiegatoFromRichiestaForGiorno(LocalDate data) {
+		String sql3 = "SELECT ref_matricola FROM Richiesta WHERE giornata_lavoro = '"+data.toString()+"'";
+		String m;
+		ArrayList<String> matricola = new ArrayList<String>();
+		try {
+			rs = query(sql3);
+			while(rs.next()) {
+				m = rs.getString("ref_matricola");
+				matricola.add(new String(m));
+			}
+			return matricola;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			return null;
+			}
+	}
+	
 }

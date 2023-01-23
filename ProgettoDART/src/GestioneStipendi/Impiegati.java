@@ -23,6 +23,11 @@ public class Impiegati {
 		this.oreFestive = oreFestive;
 	}
 	
+	public Impiegati(String matricola, String ruolo) {
+		this.matricola = matricola;
+		this.ruolo = ruolo;
+	}
+	
 	
 	public int getOreLavorate() {
 		return oreLavorate;
