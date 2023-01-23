@@ -80,7 +80,9 @@ public class RichiediPermessoControl {
 								String fascia = getFasciaOraria(matricola,d.toString());
 								String servizio = getServizio(matricola, d.toString());
 								
-								database.deleteTuplaImp(matricola, d.toString(), servizio, fascia);						
+								database.deleteTuplaImp(matricola, d.toString(), servizio, fascia);	
+								
+								//RicercaSostituto
 								
 								String sql = "select count(*) from Turno where giornata_lavoro = '" + d + "' and servizio = '"+servizio+"' and fascia_oraria = '"+ fascia +"'";
 								String res = "";

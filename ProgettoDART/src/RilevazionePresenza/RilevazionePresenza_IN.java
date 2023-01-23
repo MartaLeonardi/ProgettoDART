@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+
+import RilevazionePresenze.RilevazionePresenzaControl;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -20,9 +23,9 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 
 public class RilevazionePresenza_IN extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField nomeField;
+	private JTextField cognomeField;
+	private JTextField matricolaField;
 
 	/**
 	 * Create the panel.
@@ -31,6 +34,8 @@ public class RilevazionePresenza_IN extends JPanel {
 		setBounds(100, 100, 1200, 800);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BorderLayout(0, 0));
+
+		RilevazionePresenzaControl rivPreControl = new RilevazionePresenzaControl();
 
 		JLabel lblNewLabel = new JLabel("ENTRATA");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -57,15 +62,15 @@ public class RilevazionePresenza_IN extends JPanel {
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 1;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		nomeField = new JTextField();
+		nomeField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		GridBagConstraints gbc_nomeField = new GridBagConstraints();
+		gbc_nomeField.fill = GridBagConstraints.BOTH;
+		gbc_nomeField.insets = new Insets(0, 0, 5, 5);
+		gbc_nomeField.gridx = 2;
+		gbc_nomeField.gridy = 1;
+		panel.add(nomeField, gbc_nomeField);
+		nomeField.setColumns(10);
 
 		JLabel lblNewLabel_1_1 = new JLabel("COGNOME");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -77,15 +82,15 @@ public class RilevazionePresenza_IN extends JPanel {
 		gbc_lblNewLabel_1_1.gridy = 3;
 		panel.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_1.setColumns(10);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.fill = GridBagConstraints.BOTH;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 3;
-		panel.add(textField_1, gbc_textField_1);
+		cognomeField = new JTextField();
+		cognomeField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		cognomeField.setColumns(10);
+		GridBagConstraints gbc_cognomeField = new GridBagConstraints();
+		gbc_cognomeField.fill = GridBagConstraints.BOTH;
+		gbc_cognomeField.insets = new Insets(0, 0, 5, 5);
+		gbc_cognomeField.gridx = 2;
+		gbc_cognomeField.gridy = 3;
+		panel.add(cognomeField, gbc_cognomeField);
 
 		JLabel lblNewLabel_1_2 = new JLabel("MATRICOLA");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -97,17 +102,33 @@ public class RilevazionePresenza_IN extends JPanel {
 		gbc_lblNewLabel_1_2.gridy = 5;
 		panel.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		textField_2.setColumns(10);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.fill = GridBagConstraints.BOTH;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.gridx = 2;
-		gbc_textField_2.gridy = 5;
-		panel.add(textField_2, gbc_textField_2);
+		matricolaField = new JTextField();
+		matricolaField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		matricolaField.setColumns(10);
+		GridBagConstraints gbc_matricolaField = new GridBagConstraints();
+		gbc_matricolaField.fill = GridBagConstraints.BOTH;
+		gbc_matricolaField.insets = new Insets(0, 0, 5, 5);
+		gbc_matricolaField.gridx = 2;
+		gbc_matricolaField.gridy = 5;
+		panel.add(matricolaField, gbc_matricolaField);
 
 		JButton btnRileva = new JButton("RILEVA");
+		btnRileva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String matricola = matricolaField.getText();
+				String nome = nomeField.getText();
+				String cognome = cognomeField.getText();
+
+				System.out.println("test");
+				if (rivPreControl.checkDati(matricola, nome, cognome)) {
+					if (rivPreControl.checkPresenzaIn(matricola)) {
+						rivPreControl.updatePresenza(matricola);
+					}
+				}
+
+			}
+		});
 		btnRileva.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		GridBagConstraints gbc_btnRileva = new GridBagConstraints();
 		gbc_btnRileva.insets = new Insets(0, 0, 5, 5);

@@ -323,6 +323,25 @@ public class DBMS implements DbInterface {
 		}
 		
 	}
+	
+	public void updatePresenza(String matricola, String date) {
+		
+		String sql = "update Turno set entrata = true where ref_i_matricola = ?  and giornata_lavoro = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, matricola);
+			statement.setDate(2, Date.valueOf(date));
+			
+			statement.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 
 }
