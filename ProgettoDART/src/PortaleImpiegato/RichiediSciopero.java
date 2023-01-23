@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
+
+import GestionePermessi.RichiediScioperoControl;
 
 public class RichiediSciopero extends JPanel {
 
@@ -123,12 +126,12 @@ public class RichiediSciopero extends JPanel {
 
 				Date dataInserita = dateChooser.getDate();
 				
-				String pattern = "yyyy-MM-dd";
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-				String date = simpleDateFormat.format(dataInserita);
-				System.out.println(date);
 				
-				
+				try {
+					RichiediScioperoControl.checkDati(dataInserita);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 
 			}
 		});

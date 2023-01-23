@@ -75,6 +75,11 @@ public class TempoControl {
 			db.updateOreStipendi(i.getMatricola());
 		}
 		
+		LocalDate dInizio = LocalDate.now();
+		dInizio = dInizio.minusDays(1);
+		
+		db.removeTurni(dInizio.toString());
+	
 		db.closeConnection();
 		
 		//StipendioBase + OreLavorate*PagaOraria + oreStraordinarie*(PagaOraria+4) + oreFestive*(PagaOraria+3)

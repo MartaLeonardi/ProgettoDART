@@ -32,6 +32,7 @@ public class PortaleAmministratore extends JFrame {
 	public static CardLayout crd;
 	private static JPanel contentPane;
 	private static PortaleAmministratore instance;
+	VisualizzaServizi visServizi;
 
 	/**
 	 * Launch the application.
@@ -81,7 +82,6 @@ public class PortaleAmministratore extends JFrame {
 		LicenziaImpiegato licenziaImp = new LicenziaImpiegato();
 		VisualizzaSchedaImpiegato visualizzaSchedaImp = new VisualizzaSchedaImpiegato();
 		VisualizzaTurni visTurni = new VisualizzaTurni();
-		VisualizzaServizi visServizi = new VisualizzaServizi();
 		PermessoImpiegato permessoImp = new PermessoImpiegato();
 		VisualizzaStipendi visStipendi = new VisualizzaStipendi();
 		ModificaAccount modAccount = new ModificaAccount();
@@ -269,6 +269,8 @@ public class PortaleAmministratore extends JFrame {
 		JButton visualizzaServizi = new JButton("Visualizza Servizi");
 		visualizzaServizi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				visServizi = new VisualizzaServizi();
+				contentPane.add(visServizi, "VisualizzaServizi");
 				crd.show(contentPane, "VisualizzaServizi");
 			}
 		});
@@ -347,7 +349,6 @@ public class PortaleAmministratore extends JFrame {
 		contentPane.add(licenziaImp, "LicenziaImpiegato");
 		contentPane.add(visualizzaSchedaImp, "VisualizzaSchedaImpiegato");
 		contentPane.add(visTurni, "VisualizzaTurni");
-		contentPane.add(visServizi, "VisualizzaServizi");
 		contentPane.add(permessoImp, "PermessoImpiegato");
 		contentPane.add(visStipendi, "VisualizzaStipendi");
 		contentPane.add(modAccount, "ModificaAccount");
