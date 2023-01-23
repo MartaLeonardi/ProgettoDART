@@ -217,8 +217,8 @@ public class TempoControl {
 		String oraFine = null; //Stringa per indicare l'ora di fine turno
 		Impiegati[] emps = new Impiegati[6]; //Array utilizzato per scorrere i turni
 		//Controlli sul tempo
-		if(!(startDate.getDayOfMonth()==21)) {
-			System.out.println("Niente query D");
+		if(!(startDate.getDayOfMonth()==25)) {
+			System.out.println("Niente query! Non e' il giorno giusto");
 			return;
 		}
 		for(int test=1; test<=10;test=test+3) {
@@ -227,7 +227,7 @@ public class TempoControl {
 				break;
 			}
 			if(test==10) {
-				System.out.println("Niente query M");
+				System.out.println("Niente query! Non e' il mese giusto");
 				return;
 			}
 		}
@@ -286,5 +286,6 @@ public class TempoControl {
 			}
 		}
 		dbms.closeConnection();
+		calcoloStatoServizi(LocalDate.now(), LocalDate.now().plusMonths(3));
 	}
 }
