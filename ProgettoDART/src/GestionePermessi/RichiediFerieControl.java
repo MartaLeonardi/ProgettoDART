@@ -122,18 +122,39 @@ public class RichiediFerieControl {
 						String[] giornate= giorniLavoro(matricola, dataInizio.toString(), dataFine.toString());
 						
 						//for che itera l'array giornate
-						//richiami a servizio e fascia oraria
-						//controllo sul numero di dipendenti
+						boolean b=true;
 						
-						
-						//se controllo va bene allora assegna ferie
-							//insert richiesta
-							//delete turno
+						for(int i=0; i<giornate.length; i++) {
 							
-						//altrimenti rigetta
+							String ser=getServizio(matricola, giornate[i]);
+							String fasOraria=getFasciaOraria(matricola,giornate[i]);
+							
+							if(countDipServizi(matricola, ser, fasOraria)==1) {
+								b=false;
+							}
+							
+						}
 						
-						
-						
+						if(b==true) {
+							
+							//insert
+							DBMS database=new DBMS();
+							database.insertRichiesta(matricola, "Ferie", dataInizio.toString(), dataFine.toString(), 0, 0, true);
+							database.closeConnection();
+							
+							//delete turno
+							DBMS db=new DBMS();
+							db.deleteTuplaImp(matricola,dataInizio.toString(),dataFine.toString());
+							db.closeConnection();
+							
+							OKPopUp pop1=new OKPopUp("Richiesta accordata!");
+							pop1.setVisible(true);
+							
+							
+						}else {
+							OKPopUp pop1=new OKPopUp("Richiesta rigettata: mancanza personale per uno o più giorni indicati");
+							pop1.setVisible(true);
+						}
 						
 					}
 					else {
@@ -164,6 +185,7 @@ public class RichiediFerieControl {
 		
 	}
 
+	//conta se l'impiegato ha preso ferie nel trimestre corrente
 	private static int contaFerie(String matricola) throws SQLException {
 		DBMS database = new DBMS();
 		String sql = "SELECT COUNT(*) FROM Richiesta R WHERE R.ref_matricola='"+matricola+"' AND R.tipo='Ferie'";
@@ -182,6 +204,7 @@ public class RichiediFerieControl {
 		
 	}
 	
+	//ricava la fascia oraria della giornata per la matricola selezionata
 	public static String getFasciaOraria(String matricola, String giornata) throws SQLException {
 		DBMS database = new DBMS();
 		String sql = "SELECT fascia_oraria FROM Turno WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro = '"+giornata+"'";
@@ -199,6 +222,7 @@ public class RichiediFerieControl {
 		return result;
 	}
 	
+	//ricava il servizio della giornata per la matricola selezionata
 	public static String getServizio(String matricola, String giornata) throws SQLException {
 		
 		DBMS database = new DBMS();
@@ -218,6 +242,7 @@ public class RichiediFerieControl {
 		
 	}
 
+	//controllo sul numero dei dipendenti per il servizio e la fascia oraria indicata
 	private static int countDipServizi(String dataI, String servizio, String fasciaOraria) throws SQLException {
 
 		DBMS database = new DBMS();
@@ -237,7 +262,7 @@ public class RichiediFerieControl {
 		
 	}
 
-	
+	//ritorna tutti i giorni in cui l'impiegato lavora da dataI a dataF
 	public static String[] giorniLavoro(String matricola,String dataI,String dataF) throws SQLException {
 		
 		DBMS database = new DBMS();
