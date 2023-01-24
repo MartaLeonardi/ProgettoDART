@@ -540,8 +540,7 @@ public class DBMS implements DbInterface {
 			return null;
 			}
 	}
-	
-	
+		
 	public void updateOre(String matricola, String data, String oraI, String oraF) {
 		
 		String sql ="UPDATE Turno set inizio_turno=?, fine_turno=? WHERE ref_i_matricola=? AND giornata_lavoro=?";
@@ -561,4 +560,24 @@ public class DBMS implements DbInterface {
 		
 	}
 	
+	public void updateEmail(String matricola, String email) {
+		
+		String sql = "update Utente set email = ? where u_matricola = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, email);
+			statement.setString(2, matricola);
+			
+			statement.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
+
+	
