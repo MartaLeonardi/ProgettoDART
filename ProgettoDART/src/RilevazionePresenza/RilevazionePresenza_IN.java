@@ -123,9 +123,13 @@ public class RilevazionePresenza_IN extends JPanel {
 				System.out.println("test");
 				if (rivPreControl.checkDati(matricola, nome, cognome)) {
 					if (rivPreControl.checkPresenzaIn(matricola)) {
-						rivPreControl.updatePresenza(matricola);
+						rivPreControl.updateEntrata(matricola);
 					}
 				}
+
+				matricolaField.setText("");
+				nomeField.setText("");
+				cognomeField.setText("");
 
 			}
 		});
