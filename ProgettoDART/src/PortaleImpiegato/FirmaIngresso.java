@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import Login.Utente;
+import RilevazionePresenze.FirmaIngressoControl;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -31,8 +32,10 @@ public class FirmaIngresso extends JPanel {
 	 */
 	public FirmaIngresso() {
 		Utente utente = Utente.getInstance();
-		String matricola=utente.getMatricola();
-		
+		String matricola = utente.getMatricola();
+
+		FirmaIngressoControl firControl = new FirmaIngressoControl();
+
 		setBounds(100, 100, 1280, 800);
 		setLayout(new BorderLayout(0, 0));
 
@@ -65,7 +68,7 @@ public class FirmaIngresso extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] {30, 150, 300, 150, 30};
+		gbl_panel_2.columnWidths = new int[] { 30, 150, 300, 150, 30 };
 		gbl_panel_2.rowHeights = new int[] { 0, 0 };
 		gbl_panel_2.columnWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0 };
 		gbl_panel_2.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
@@ -100,6 +103,15 @@ public class FirmaIngresso extends JPanel {
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JButton btnNewButton_1 = new JButton("Firma ingresso");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (firControl.checkPresenzaIn(matricola)) {
+					firControl.updateEntrata(matricola);
+				}
+
+			}
+		});
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		panel_3.add(btnNewButton_1);
 

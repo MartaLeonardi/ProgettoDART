@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import GestioneStipendi.Impiegati;
+import java.time.LocalTime;
+
 
 public class DBMS implements DbInterface {
 
@@ -328,7 +330,7 @@ public class DBMS implements DbInterface {
 		
 	}
 	
-	public void updatePresenza(String matricola, String date) {
+	public void updateEntrata(String matricola, String date) {
 		
 		String sql = "update Turno set entrata = true where ref_i_matricola = ?  and giornata_lavoro = ?";
 		
@@ -344,6 +346,85 @@ public class DBMS implements DbInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void updateUscita(String matricola, String date) {
+		
+		String sql = "update Turno set uscita = true where ref_i_matricola = ?  and giornata_lavoro = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, matricola);
+			statement.setDate(2, Date.valueOf(date));
+			
+			statement.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void insertRitardo(String matricola, String date) {
+		
+		String sql = "insert into Ritardo (ref_matricola_r, giorno) value (?,?)";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setString(1, matricola);
+			statement.setDate(2, Date.valueOf(date));
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void updateOre(int oreLavorate, int oreStraordinarie, int oreFestive, String matricola) {
+		
+		String sql = "update Impiegato set oreLavorate = ?, oreStraordinarie = ?, oreFestive = ? where i_matricola = ?";
+		
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setInt(1, oreLavorate);
+			statement.setInt(2, oreStraordinarie);
+			statement.setInt(3, oreFestive);
+			statement.setString(4, matricola);
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void updateUscitaAuto(LocalDate data, LocalTime tempo) {
+		
+		String sql = ("update Turno set uscita = true where giornata_lavoro = ?  and "
+				+ "	fine_turno <= ? and ? > ? and entrata = true and uscita is null");
+		LocalTime tempoSomma = tempo.plusMinutes(5);
+		System.out.println(tempoSomma.toString());
+		try {
+			statement = connect.prepareStatement(sql);
+			statement.setDate(1, Date.valueOf(data.toString()));
+			statement.setTime(2, Time.valueOf(tempo.toString()+":00"));
+			statement.setTime(3, Time.valueOf(tempoSomma.toString()+":00"));
+			statement.setTime(4, Time.valueOf(tempo.toString()+":00"));
+			
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
