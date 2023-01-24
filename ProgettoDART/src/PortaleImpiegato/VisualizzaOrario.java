@@ -15,11 +15,14 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
+
+import GestioneTurni.VisualizzaOrarioControl;
 
 public class VisualizzaOrario extends JPanel {
 
@@ -27,6 +30,7 @@ public class VisualizzaOrario extends JPanel {
 	 * Create the panel.
 	 */
 	public VisualizzaOrario() {
+		VisualizzaOrarioControl visControl = new VisualizzaOrarioControl();
 		setBounds(100, 100, 1280, 800);
 		JLabel LogoImg = new JLabel("");
 		LogoImg.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -107,6 +111,7 @@ public class VisualizzaOrario extends JPanel {
 		panel_4.add(lblNewLabel_1);
 
 		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		textPane.setEditable(false);
 		textPane.setBounds(15, 7, 475, 433);
 		panel_4.add(textPane);
@@ -167,23 +172,11 @@ public class VisualizzaOrario extends JPanel {
 				Integer mese = monthChooser.getMonth() + 1;
 				Integer anno = yearChooser.getYear();
 
-				String dataInserita;
-				if (mese <= 9) {
-					if (giorno < 9) {
-						dataInserita = "0" + giorno.toString() + "/0" + mese.toString() + "/" + anno.toString();
-					} else {
-						dataInserita = giorno.toString() + "/0" + mese.toString() + "/" + anno.toString();
-					}
-				} else {
-					if (giorno < 9) {
-						dataInserita = "0" + giorno.toString() + "/" + mese.toString() + "/" + anno.toString();
-					} else {
-						dataInserita = giorno.toString() + "/" + mese.toString() + "/" + anno.toString();
-					}
-				}
+				LocalDate data = LocalDate.of(anno, mese, giorno);
 
-				textPane.setText("INFO TURNO\n------------------------------------------\nData:       " + dataInserita);
-				DataSelezionata.setText(dataInserita);
+				textPane.setText("INFO TURNO\n------------------------------------------\nData: " + data + "\n"
+						+ visControl.getInfoOrario(data));
+				DataSelezionata.setText(data.toString());
 
 			}
 		});
