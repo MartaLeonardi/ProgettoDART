@@ -284,8 +284,8 @@ public class TempoControl {
 					}
 				}
 			}
-			calcoloStatoServizi(startDate, startDate.plusMonths(3));
 		}
 		dbms.closeConnection();
+		calcoloStatoServizi(startDate, startDate.plusMonths(3));
 	}
 }
