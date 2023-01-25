@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -195,7 +196,7 @@ public class RichiediPermesso extends JPanel {
 		panel_3.add(lblNewLabel_3);
 
 		String[] ora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
-				"13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+				"13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" , "24"};
 
 		JComboBox oraInizio = new JComboBox();
 		oraInizio.setModel(new DefaultComboBoxModel(ora));
@@ -253,14 +254,19 @@ public class RichiediPermesso extends JPanel {
 				if (checkBoxGiornate == true) // disattivazione combobox --> valori predefiniti
 				{
 					oraI = "00";
-					oraF = "23";
+					oraF = "24";
 				} else // attivazione delle combobox per la checkbox
 				{
 					oraI = ora[oraInizio.getSelectedIndex()];
 					oraF = ora[oraFine.getSelectedIndex()];
 				}
 				
-				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,checkBoxGiornate);
+				try {
+					RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,checkBoxGiornate);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});

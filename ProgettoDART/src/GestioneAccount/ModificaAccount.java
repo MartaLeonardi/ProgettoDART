@@ -43,6 +43,8 @@ public class ModificaAccount extends JPanel {
 
 		setLayout(new BorderLayout(0, 0));
 
+		modificaAccountControl modAccControl = new modificaAccountControl();
+
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
 
@@ -63,11 +65,11 @@ public class ModificaAccount extends JPanel {
 				// CONTROLLO PER I PORTALI DA FARE
 				Utente utente = Utente.getInstance();
 				String matricola = utente.getMatricola();
-				
+
 				if (matricola.substring(0, 1).equals("0")) {
 					PortaleImpiegato.back();
 				} else if (matricola.substring(0, 1).equals("1")) {
-					PortaleAmministratore.back();			
+					PortaleAmministratore.back();
 				}
 			}
 		});
@@ -81,19 +83,20 @@ public class ModificaAccount extends JPanel {
 		gbl_panel_2.columnWidths = new int[] { 316, 113, 318, 146, 353 };
 		gbl_panel_2.rowHeights = new int[] { 30, 68, 49, 40, 63, 40, 58, 40, 53, 40, 30, 0 };
 		gbl_panel_2.columnWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0 };
-		gbl_panel_2.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_2.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
-		
-				JLabel lblNewLabel = new JLabel("Cambio credenziali");
-				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-				gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-				gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
-				gbc_lblNewLabel.gridx = 2;
-				gbc_lblNewLabel.gridy = 1;
-				panel_2.add(lblNewLabel, gbc_lblNewLabel);
-		
+
+		JLabel lblNewLabel = new JLabel("Cambio credenziali");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel.gridx = 2;
+		gbc_lblNewLabel.gridy = 1;
+		panel_2.add(lblNewLabel, gbc_lblNewLabel);
+
 		JPanel panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.insets = new Insets(0, 0, 5, 5);
@@ -101,11 +104,11 @@ public class ModificaAccount extends JPanel {
 		gbc_panel_3.gridx = 2;
 		gbc_panel_3.gridy = 2;
 		panel_2.add(panel_3, gbc_panel_3);
-		
+
 		JRadioButton EmailRadioButton = new JRadioButton("E-mail");
 		EmailRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_3.add(EmailRadioButton);
-		
+
 		JRadioButton PasswordRadioButton = new JRadioButton("Password");
 		PasswordRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_3.add(PasswordRadioButton);
@@ -113,8 +116,7 @@ public class ModificaAccount extends JPanel {
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(EmailRadioButton);
 		bg.add(PasswordRadioButton);
-		
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Credenziale attuale");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -175,53 +177,74 @@ public class ModificaAccount extends JPanel {
 		JButton btnNewButton = new JButton("Cambia");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(EmailRadioButton.isSelected()) {
+
+				if (EmailRadioButton.isSelected()) {
 					OkCancelPopUp popUp = new OkCancelPopUp("Sicuro di voler cambiare e-mail?");
 					popUp.setVisible(true);
-					
-					
+
 					System.out.println(popUp.getFlag());
 
-					if(popUp.getFlag()==true) {
+					if (popUp.getFlag() == true) {
 						System.out.println("Cliccato ok pop up");
-						
-						boolean checkCredenzialeAttuale=modificaAccountControl.checkMail(credenzialeAttuale.getText());
-						boolean checkCredenzialeNuova=modificaAccountControl.checkMail(credenzialeNuova.getText());
-						boolean checkCredenzialeConferma=modificaAccountControl.checkMail(credenzialeConferma.getText());
-						
-						if(checkCredenzialeAttuale==true && checkCredenzialeNuova==true
-								&& checkCredenzialeConferma==true) {
+
+						boolean checkCredenzialeAttuale = modificaAccountControl
+								.checkMail(credenzialeAttuale.getText());
+						boolean checkCredenzialeNuova = modificaAccountControl.checkMail(credenzialeNuova.getText());
+						boolean checkCredenzialeConferma = modificaAccountControl
+								.checkMail(credenzialeConferma.getText());
+
+						if (checkCredenzialeAttuale == true && checkCredenzialeNuova == true
+								&& checkCredenzialeConferma == true) {
 							System.out.println("I tre campi inseriti corrispono al pattern e-mail");
-							
-							//controllo con email presente nel database attraverso control
-							//se controlli tutti soddisfatti allora bisogna istanziare un oggetto OKPopUp con avvenuta operazione
-							
-							
-						}
-						else {
+
+							String oldEmail = credenzialeAttuale.getText();
+							String newEmail = credenzialeNuova.getText();
+							String newEmailConfirm = credenzialeConferma.getText();
+							// se controlli tutti soddisfatti allora bisogna istanziare un oggetto OKPopUp
+							// con avvenuta operazione
+							if (modAccControl.modificaEmail(oldEmail, newEmail, newEmailConfirm)) {
+								OKPopUp okpop = new OKPopUp("Email aggiornata con successo!");
+								okpop.setVisible(true);
+							}
+
+						} else {
 							OKPopUp okpop = new OKPopUp("ERRORE:Controlla di aver inserito correttamente le e-mail");
 							okpop.setVisible(true);
 						}
-						
-					}
-					else {
+
+					} else {
 						System.out.println("Cliccato cancel pop up");
 					}
 
-					
 				}
-				
-				else if(PasswordRadioButton.isSelected()) {
+
+				else if (PasswordRadioButton.isSelected()) {
 					OkCancelPopUp popUp = new OkCancelPopUp("Sicuro di voler cambiare password?");
 					popUp.setVisible(true);
+
+					if (popUp.getFlag() == true) {
+						System.out.println("Cliccato ok pop up");
+
+						String oldPass = credenzialeAttuale.getText();
+						String newPass = credenzialeNuova.getText();
+						String newPassConfirm = credenzialeConferma.getText();
+						// se controlli tutti soddisfatti allora bisogna istanziare un oggetto OKPopUp
+						// con avvenuta operazione
+						if (modAccControl.modificaPass(oldPass, newPass, newPassConfirm)) {
+							OKPopUp okpop = new OKPopUp("Password aggiornata con successo!");
+							okpop.setVisible(true);
+						}
+
+					} else {
+						System.out.println("Cliccato cancel pop up");
+					}
 				}
-				
+
 				else {
 					OKPopUp okpopUp = new OKPopUp("Selezionare cosa modificare (e-mail o password)");
 					okpopUp.setVisible(true);
-					
-					System.out.println("\nOkPopUp:" +okpopUp.getFlag());
+
+					System.out.println("\nOkPopUp:" + okpopUp.getFlag());
 				}
 
 			}
@@ -234,9 +257,5 @@ public class ModificaAccount extends JPanel {
 		gbc_btnNewButton.gridy = 10;
 		panel_2.add(btnNewButton, gbc_btnNewButton);
 	}
-
-
-	
-	
 
 }

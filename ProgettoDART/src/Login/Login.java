@@ -98,7 +98,7 @@ public class Login extends JFrame {
 		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loginLabel.setHorizontalTextPosition(SwingConstants.LEFT);
 		panel_2.add(loginLabel, BorderLayout.NORTH);
-		loginLabel.setFont(new Font("Impact", Font.PLAIN, 35));
+		loginLabel.setFont(new Font("Impact", Font.PLAIN, 40));
 
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4, BorderLayout.CENTER);
@@ -110,11 +110,11 @@ public class Login extends JFrame {
 		gbl_panel_4.columnWidths = new int[] { 259, 98, 50, 223, 0, 236 };
 		gbl_panel_4.rowHeights = new int[] { 33, 0, 0, 0, 278 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_4.setLayout(gbl_panel_4);
 
 		JLabel matricolaLabel = new JLabel("Matricola:");
-		matricolaLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		matricolaLabel.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		GridBagConstraints gbc_matricolaLabel = new GridBagConstraints();
 		gbc_matricolaLabel.anchor = GridBagConstraints.NORTH;
 		gbc_matricolaLabel.insets = new Insets(0, 0, 5, 5);
@@ -124,6 +124,7 @@ public class Login extends JFrame {
 		panel_4.add(matricolaLabel, gbc_matricolaLabel);
 
 		textField = new JTextField();
+		textField.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -134,7 +135,7 @@ public class Login extends JFrame {
 
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		passwordLabel.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
 		gbc_passwordLabel.fill = GridBagConstraints.BOTH;
 		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
@@ -143,6 +144,7 @@ public class Login extends JFrame {
 		panel_4.add(passwordLabel, gbc_passwordLabel);
 
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
@@ -170,18 +172,21 @@ public class Login extends JFrame {
 		});
 
 		JButton btnNewButton = new JButton("Recupera Password");
+		btnNewButton.setBackground(new Color(240, 240, 240));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBorder(null);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				crd.show(contentPane, "RecuperaPassword");
 			}
 		});
-		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 4;
 		panel_4.add(btnNewButton, gbc_btnNewButton);
-		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		loginButtom.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_loginButtom = new GridBagConstraints();
 		gbc_loginButtom.fill = GridBagConstraints.HORIZONTAL;
 		gbc_loginButtom.insets = new Insets(0, 0, 5, 5);

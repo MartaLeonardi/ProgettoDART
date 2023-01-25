@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -20,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
+
+import GestionePermessi.RichiediFerieControl;
 
 public class RichiediFerie extends JPanel {
 
@@ -70,9 +73,9 @@ public class RichiediFerie extends JPanel {
 		panel_2.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[] { 0, 543, 678, 525, 0 };
-		gbl_panel_3.rowHeights = new int[] { 0, 0, 0, 0, 0, -16, 62, 0 };
+		gbl_panel_3.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, -16, 62, 0 };
 		gbl_panel_3.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
-		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
 
 		JLabel lblNewLabel_2 = new JLabel(" ");
@@ -83,25 +86,6 @@ public class RichiediFerie extends JPanel {
 		gbc_lblNewLabel_2.gridy = 1;
 		panel_3.add(lblNewLabel_2, gbc_lblNewLabel_2);
 
-		JLabel lblNewLabel_1 = new JLabel("Scegli il giorno di inizio ferie:");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 2;
-		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
-
-		JDateChooser dataInizio = new JDateChooser();
-		dataInizio.setDateFormatString("dd-MM-yyyy");
-		GridBagConstraints gbc_dataInizio = new GridBagConstraints();
-		gbc_dataInizio.fill = GridBagConstraints.BOTH;
-		gbc_dataInizio.insets = new Insets(0, 0, 5, 5);
-		gbc_dataInizio.gridx = 2;
-		gbc_dataInizio.gridy = 2;
-		panel_3.add(dataInizio, gbc_dataInizio);
-
 		JLabel ProvaInserimentoInizio = new JLabel(" ");
 		ProvaInserimentoInizio.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_ProvaInserimentoInizio = new GridBagConstraints();
@@ -109,32 +93,33 @@ public class RichiediFerie extends JPanel {
 		gbc_ProvaInserimentoInizio.gridx = 2;
 		gbc_ProvaInserimentoInizio.gridy = 3;
 		panel_3.add(ProvaInserimentoInizio, gbc_ProvaInserimentoInizio);
-
-		JLabel lblNewLabel_1_1 = new JLabel("Scegli il giorno di fine ferie:");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_1.gridx = 1;
-		gbc_lblNewLabel_1_1.gridy = 4;
-		panel_3.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
-
-		JDateChooser dataFine = new JDateChooser();
-		dataFine.setDateFormatString("dd-MM-yyyy");
-		GridBagConstraints gbc_dataFine = new GridBagConstraints();
-		gbc_dataFine.insets = new Insets(0, 0, 5, 5);
-		gbc_dataFine.fill = GridBagConstraints.BOTH;
-		gbc_dataFine.gridx = 2;
-		gbc_dataFine.gridy = 4;
-		panel_3.add(dataFine, gbc_dataFine);
+				
+						JLabel lblNewLabel_1 = new JLabel("Scegli il giorno di inizio ferie:");
+						lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+						lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+						GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+						gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
+						gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+						gbc_lblNewLabel_1.gridx = 1;
+						gbc_lblNewLabel_1.gridy = 4;
+						panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+				JDateChooser dataInizio = new JDateChooser();
+				dataInizio.getCalendarButton().setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				dataInizio.setDateFormatString("dd-MM-yyyy");
+				GridBagConstraints gbc_dataInizio = new GridBagConstraints();
+				gbc_dataInizio.fill = GridBagConstraints.BOTH;
+				gbc_dataInizio.insets = new Insets(0, 0, 5, 5);
+				gbc_dataInizio.gridx = 2;
+				gbc_dataInizio.gridy = 4;
+				panel_3.add(dataInizio, gbc_dataInizio);
 
 		JLabel ProvaInserimentoFine = new JLabel(" ");
 		ProvaInserimentoFine.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		GridBagConstraints gbc_ProvaInserimentoFine = new GridBagConstraints();
 		gbc_ProvaInserimentoFine.insets = new Insets(0, 0, 5, 5);
 		gbc_ProvaInserimentoFine.gridx = 2;
-		gbc_ProvaInserimentoFine.gridy = 5;
+		gbc_ProvaInserimentoFine.gridy = 6;
 		panel_3.add(ProvaInserimentoFine, gbc_ProvaInserimentoFine);
 
 		JButton btnNewButton = new JButton("Richiedi");
@@ -142,15 +127,12 @@ public class RichiediFerie extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				Date dataInseritaInizio = dataInizio.getDate();
-				DateFormat cambioFormatoDataI = DateFormat.getDateInstance(DateFormat.SHORT);
-				String dataI = cambioFormatoDataI.format(dataInseritaInizio);
-				// ProvaInserimentoInizio.setText(dataI); //PROVA DATA di inizio OTTENUTA
-				// ATTRAVERSO AGGIORNAMENTO DI LABEL
-				Date dataInseritaFine = dataFine.getDate();
-				DateFormat cambioFormatoDataF = DateFormat.getDateInstance(DateFormat.SHORT);
-				String dataF = cambioFormatoDataF.format(dataInseritaFine);
-				// ProvaInserimentoFine.setText(dataF); //PROVA DATA di fine OTTENUTA ATTRAVERSO
-				// AGGIORNAMENTO DI LABEL
+
+				try {
+					RichiediFerieControl.check(dataInseritaInizio);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 
 			}
 		});
@@ -158,7 +140,7 @@ public class RichiediFerie extends JPanel {
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton.gridx = 2;
-		gbc_btnNewButton.gridy = 6;
+		gbc_btnNewButton.gridy = 7;
 		panel_3.add(btnNewButton, gbc_btnNewButton);
 	}
 
