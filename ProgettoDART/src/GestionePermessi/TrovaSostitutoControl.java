@@ -8,7 +8,7 @@ import BoundaryDBMS.DBMS;
 
 public class TrovaSostitutoControl {
 
-	public void cercaSostituto(int fascia, LocalDate d, String servizio) {
+	public boolean cercaSostituto(int fascia, LocalDate d, String servizio) {
 		String[] oraInizio = {"00:00:00", "08:00:00", "16:00:00"};
 		String[] oraFine = {"08:00:00", "16:00:00", "24:00:00"};
 		DBMS dbms = new DBMS();
@@ -109,10 +109,14 @@ public class TrovaSostitutoControl {
 				}
 			}
 			matricoleDaDeletare = dbms.retriveImpiegatoForTurnoForFascia(d.minusDays(1), fascia+1);
-			for(int i = 0; i < matricole.size(); i++) {
-				for(int y = 0; y < matricoleDaDeletare.size(); y++) {
-					if(matricole.get(i).equals(matricoleDaDeletare.get(y))) {
-						matricole.remove(i);
+			
+			System.out.println(matricole);
+			
+			for(int i = 0; i < matricoleDaDeletare.size(); i++) {
+				for(int y = 0; y < matricole.size(); y++) {
+					if(matricole.get(y).equals(matricoleDaDeletare.get(i))) {
+						matricole.remove(y);
+						break;
 					}
 				}
 			}
@@ -163,12 +167,20 @@ public class TrovaSostitutoControl {
 				}
 			}
 		}
+		System.out.println(matricole);
 		Iterator<String> mtr = matricole.iterator();
 		if(mtr.hasNext()) {
-			dbms.insertTurno(mtr.next(), d.toString(), oraInizio[fascia], oraFine[fascia], fascia, servizio);
+			String a = mtr.next();
+			System.out.println(a);
+			dbms.insertTurno(a, d.toString(), oraInizio[fascia], oraFine[fascia], fascia, servizio);
 			System.out.println("Impiegato sostituito");
-		} else System.out.println("Impiegato idoneo non trovato");
-		dbms.closeConnection();
+			dbms.closeConnection();
+			return true;
+		} else {
+			System.out.println("Impiegato idoneo non trovato");
+			dbms.closeConnection();
+			return false;
+		}
 	}
 	
 }

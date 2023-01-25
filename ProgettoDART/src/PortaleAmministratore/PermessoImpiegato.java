@@ -12,6 +12,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -269,7 +270,12 @@ public class PermessoImpiegato extends JPanel {
 						oraF = ora[oraFine.getSelectedIndex()];
 					}
 					
-					RichiediPermessoImpiegatoControl.checkDati(matricola, motivazioneSelezionata, dataInseritaInizio, dataInseritaFine, oraI, oraF, checkBoxGiornate);
+					try {
+						RichiediPermessoImpiegatoControl.checkDati(matricola, motivazioneSelezionata, dataInseritaInizio, dataInseritaFine, oraI, oraF, checkBoxGiornate);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 				}else {
 					OKPopUp pop =new OKPopUp("Matricola inesistente!");

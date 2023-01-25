@@ -434,6 +434,7 @@ public class DBMS implements DbInterface {
 		ArrayList<String> matricola = new ArrayList<String>();
 		try {
 			statement = connect.prepareStatement(sql3);
+			rs = statement.executeQuery();
 			while(rs.next()) {
 				m = rs.getString("i_matricola");
 				matricola.add(new String(m));
@@ -485,7 +486,7 @@ public class DBMS implements DbInterface {
 		}
 	
 	public ArrayList<String> retriveImpiegatoForTurnoForFascia(LocalDate data, int fascia) {
-		String sql3 = "SELECT ref_i_matricola FROM Turno WHERE giornata_lavoro = '"+data.toString()+"'"+" fascia='"+fascia+"'";
+		String sql3 = "SELECT ref_i_matricola FROM Turno WHERE giornata_lavoro = '"+data.toString()+"'"+" AND fascia_oraria = "+fascia;
 		String m;
 		ArrayList<String> matricola = new ArrayList<String>();
 		try {
@@ -523,7 +524,7 @@ public class DBMS implements DbInterface {
 	}
 	
 	public ArrayList<String> retriveImpiegatoFromRichiestaForGiorno(LocalDate data) {
-		String sql3 = "SELECT ref_matricola FROM Richiesta WHERE giornata_lavoro = '"+data.toString()+"'";
+		String sql3 = "SELECT ref_matricola FROM Richiesta WHERE data_inizio <=  '"+data.toString()+"' and data_fine >=  '"+data.toString()+"'";
 		String m;
 		ArrayList<String> matricola = new ArrayList<String>();
 		try {

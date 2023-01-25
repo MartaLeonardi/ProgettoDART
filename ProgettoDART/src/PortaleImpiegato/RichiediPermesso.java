@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -260,7 +261,12 @@ public class RichiediPermesso extends JPanel {
 					oraF = ora[oraFine.getSelectedIndex()];
 				}
 				
-				RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,checkBoxGiornate);
+				try {
+					RichiediPermessoControl.checkDati(motivazioneSelezionata,dataInseritaInizio,dataInseritaFine,oraI,oraF,checkBoxGiornate);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});

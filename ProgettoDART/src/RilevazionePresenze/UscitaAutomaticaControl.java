@@ -18,10 +18,10 @@ public class UscitaAutomaticaControl {
 	
 	public void uscitaAuto() {
 		System.out.println("test5");
-		//LocalDate dataOdierna = LocalDate.now();
-		//LocalTime tempoAttuale = LocalTime.now();
 		LocalDate dataOdierna = LocalDate.now();
-		LocalTime tempoAttuale = LocalTime.of(16,10,00);
+		LocalTime tempoAttuale = LocalTime.now();
+		//LocalDate dataOdierna = LocalDate.now();
+		//LocalTime tempoAttuale = LocalTime.of(16,10,00);
 		System.out.println(tempoAttuale);
 		LocalTime tempo = LocalTime.of(tempoAttuale.getHour(), tempoAttuale.getMinute(), tempoAttuale.getSecond());
 		System.out.println(tempo);
