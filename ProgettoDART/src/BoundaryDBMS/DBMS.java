@@ -591,6 +591,18 @@ public class DBMS implements DbInterface {
 			}
 	}
 	
+	public void updateTurnoPresenza(LocalDate data, String matricola) {
+		String sql3 = "UPDATE Turno SET entrata = true WHERE ref_i_matricola = '"+matricola+"' AND giornata_lavoro ='"+data.toString()+"'";
+		try {
+			statement = connect.prepareStatement(sql3);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			}
+	}
+	
 }
 
 	
