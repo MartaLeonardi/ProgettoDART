@@ -56,7 +56,7 @@ public class RichiediPermessoImpiegatoControl {
 				
 			if(dataInizio.before(dataFine) || dataInizio.equals(dataFine)) {	//controllo data inizio minore data fine
 					
-					
+				int mod=2; //Indica se e' un permesso di entrata posticipata o uscita anticipata	
 				String dInizio = simpleDateFormat.format(dataInizio);
 				String dFine = simpleDateFormat.format(dataFine);
 				
@@ -126,19 +126,21 @@ public class RichiediPermessoImpiegatoControl {
 							if(checkTurno(matricola, dFine)) {
 								
 							//RICAVO LA FASCIA DEL TURNO PER VERIFICARE SE CONCEDERE PERMESSO SOLO SE PRESENTE UNA TURNAZIONE IN QUELLE ORE
+								String servizio = getServizio(matricola, dInizio);
 							String fascia = getFasciaOraria(matricola,dInizio);
 							int nuovaOraInizio=0, nuovaOraFine=0;
 							
-							if(fascia.equals(0)) {
+							if(fascia.equals("0")) {
 								nuovaOraInizio=0; nuovaOraFine=8;
 								if(oraInizio==0 && oraFine<=8 || oraInizio>=0 && oraFine==8) {
 									
 									if(oraInizio==0 && oraFine<=8) {
 										
 										nuovaOraInizio=oraFine;
-										
+										mod=1;
 									}else {
 										nuovaOraFine=oraInizio;
+										mod=0;
 									}
 									
 								}
@@ -149,16 +151,17 @@ public class RichiediPermessoImpiegatoControl {
 								}
 								
 							}
-							else if (fascia.equals(1)) {
+							if (fascia.equals("1")) {
 								nuovaOraInizio=8; nuovaOraFine=16;
 								if(oraInizio==8 && oraFine<=16 || oraInizio>=8 && oraFine==16) {
 									
 									if(oraInizio==8 && oraFine<=16) {
 										
 										nuovaOraInizio=oraFine;
-										
+										mod=1;
 									}else {
 										nuovaOraFine=oraInizio;
+										mod=0;
 									}
 								}
 								else {
@@ -167,7 +170,7 @@ public class RichiediPermessoImpiegatoControl {
 									pop.setVisible(true);
 								}
 							}
-							else if(fascia.equals(2)) {
+							if(fascia.equals("2")) {
 								nuovaOraInizio=16; nuovaOraFine=24;
 								if(oraInizio==16 && oraFine<=24 || oraInizio>=16 && oraFine==24) {
 									
@@ -175,9 +178,10 @@ public class RichiediPermessoImpiegatoControl {
 										
 										nuovaOraInizio=oraFine;
 										nuovaOraFine=00;
-										
+										mod=1;
 									}else {
 										nuovaOraFine=oraInizio;
+										mod=0;
 									}
 								}
 								else {
@@ -195,6 +199,7 @@ public class RichiediPermessoImpiegatoControl {
 							dbms.closeConnection();
 							
 							//trova sostituto per range di ore--> ore straordinare da impiegato prima o dopo
+							TrovaSostitutoControl.cercaSostitutoPerOreStraordinarie(Integer.parseInt(fascia), LocalDate.parse(dInizio), servizio, oraI, oraF, mod);
 							
 							//INSERIMENTO DELLA RICHIESTA NEL DATABASE
 							DBMS database=new DBMS();
