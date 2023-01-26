@@ -580,7 +580,7 @@ public class DBMS implements DbInterface {
 	}
 	
 	public void updateTurnoFine(LocalDate data, String matricola, String oraFine) {
-		String sql3 = "UPDATE Turno SET fine_turno = '"+oraFine+"' WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro ='"+data.toString()+"'";
+		String sql3 = "UPDATE Turno SET fine_turno = '"+oraFine+":00:00' WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro ='"+data.toString()+"'";
 		try {
 			statement = connect.prepareStatement(sql3);
 			statement.executeUpdate();
@@ -592,7 +592,7 @@ public class DBMS implements DbInterface {
 	}
 	
 	public void updateTurnoInizio(LocalDate data, String matricola, String oraInizio) {
-		String sql3 = "UPDATE Turno SET inizio_turno = '"+oraInizio+"' WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro ='"+data.toString()+"'";
+		String sql3 = "UPDATE Turno SET inizio_turno = '"+oraInizio+":00:00' WHERE ref_i_matricola='"+matricola+"' AND giornata_lavoro ='"+data.toString()+"'";
 		try {
 			statement = connect.prepareStatement(sql3);
 			statement.executeUpdate();
