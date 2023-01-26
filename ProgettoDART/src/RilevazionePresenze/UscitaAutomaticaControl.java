@@ -17,7 +17,6 @@ public class UscitaAutomaticaControl {
 	
 	
 	public void uscitaAuto() {
-		System.out.println("test5");
 		LocalDate dataOdierna = LocalDate.now();
 		LocalTime tempoAttuale = LocalTime.now();
 		//LocalDate dataOdierna = LocalDate.now();
@@ -28,7 +27,7 @@ public class UscitaAutomaticaControl {
 		System.out.println(dataOdierna);
 		DBMS db = new DBMS();
 		
-		LocalTime tempoSomma = LocalTime.of(0, 15, 0);
+		LocalTime tempoSomma = LocalTime.of(0, 20, 0);
 		System.out.println(tempoSomma);
 		
 		String sql = ("select ref_i_matricola from Turno where giornata_lavoro = '"+Date.valueOf(dataOdierna.toString())+"'  and "
