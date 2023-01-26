@@ -180,44 +180,90 @@ public class TrovaSostitutoControl {
 		}
 	}
 	
-	public void cercaSostitutoPerOreStraordinarie(int fascia, LocalDate d, String servizio, String oraFine) throws SQLException {
-		String oraInizio = "00:00:00";
+	public void cercaSostitutoPerOreStraordinarie(int fascia, LocalDate d, String servizio, String oraInizio, String oraFine) throws SQLException {
+		String[] turnoInizio = {"00:00:00", "08:00:00", "16:00:00"};
+		String[] turnoFine = {"08:00:00", "16:00:00", "24:00:00"};
+		int mod=2;	//Indica se si tratta di un permesso in entrata o uscita (0, 1); Si assegna valore senza significato
 		DBMS dbms = new DBMS();
 		String sql=null;
 		ResultSet result;
 		ArrayList<String> matricole = new ArrayList<String>();
+		//Controllo modalita'
+		for(int indice = 0; indice <=2; indice++) {
+			if(oraInizio.equals(turnoInizio[indice])) {
+				mod=0;
+				return;
+			}
+		}
+		for(int indice = 0; indice <=2; indice++) {
+			if(oraFine.equals(turnoFine[indice])) {
+				mod=1;
+				return;
+			}
+		}
 		//Controllo dei turni
-		if(fascia==0) {
-			sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.minusDays(1).toString()+"' AND fascia_oraria = "+2;
-			result = dbms.query(sql);
-			while(result.next()) {
-				matricole.add(result.getString("ref_i_matricola"));
+		if(mod==0) {
+			if(fascia==0) {
+				sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.minusDays(1).toString()+"' AND fascia_oraria = "+2;
+				result = dbms.query(sql);
+				while(result.next()) {
+					matricole.add(result.getString("ref_i_matricola"));
+				}
+				if(!matricole.isEmpty()) {
+					dbms.insertTurno(matricole.get(0), d.toString(), turnoInizio[0], oraFine, fascia, servizio);
+					dbms.updateTurnoPresenzaEntrata(d, matricole.get(0));	
+				}			
 			}
-			if(!matricole.isEmpty()) {
-				dbms.insertTurno(matricole.get(0), d.toString(), oraInizio, oraFine, fascia, servizio);
-				dbms.updateTurnoPresenza(d, matricole.get(0));	
+			if(fascia==1) {
+				sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+0;
+				result = dbms.query(sql);
+				while(result.next()) {
+					matricole.add(result.getString("ref_i_matricola"));
+				}
+				if(!matricole.isEmpty())
+					dbms.updateTurnoFine(d, matricole.get(0), oraFine);
 			}
-				
+			if(fascia==2) {
+				sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+1;
+				result = dbms.query(sql);
+				while(result.next()) {
+					matricole.add(result.getString("ref_i_matricola"));
+				}
+				if(!matricole.isEmpty())
+					dbms.updateTurnoFine(d, matricole.get(0), oraFine);
+			}
 		}
-		if(fascia==1) {
-			sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+0;
-			result = dbms.query(sql);
-			while(result.next()) {
-				matricole.add(result.getString("ref_i_matricola"));
+		if(mod==1) {
+			if(fascia==0) {
+				sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+1;
+				result = dbms.query(sql);
+				while(result.next()) {
+					matricole.add(result.getString("ref_i_matricola"));
+				}
+				if(!matricole.isEmpty())
+					dbms.updateTurnoInizio(d, matricole.get(0), oraInizio);		
 			}
-			if(!matricole.isEmpty())
-			dbms.updateTurno(d, matricole.get(0), oraFine);
-		}
-		if(fascia==2) {
-			sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+1;
-			result = dbms.query(sql);
-			while(result.next()) {
-				matricole.add(result.getString("ref_i_matricola"));
+			if(fascia==1) {
+				sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.toString()+"' AND fascia_oraria = "+2;
+				result = dbms.query(sql);
+				while(result.next()) {
+					matricole.add(result.getString("ref_i_matricola"));
+				}
+				if(!matricole.isEmpty())
+					dbms.updateTurnoInizio(d, matricole.get(0), oraInizio);
 			}
-			if(!matricole.isEmpty())
-			dbms.updateTurno(d, matricole.get(0), oraFine);
+			if(fascia==2) {
+				sql = "SELECT ref_i_matricola FROM Turno WHERE servizio = '"+servizio+"' AND giornata_lavoro = '"+d.plusDays(1).toString()+"' AND fascia_oraria = "+0;
+				result = dbms.query(sql);
+				while(result.next()) {
+					matricole.add(result.getString("ref_i_matricola"));
+				}
+				if(!matricole.isEmpty()) {
+					dbms.insertTurno(matricole.get(0), d.toString(), oraFine, turnoFine[2], fascia, servizio);
+					dbms.updateTurnoPresenzaEntrata(d, matricole.get(0));	
+				}
+			}
 		}
 		dbms.closeConnection();
 	}
-	
 }
