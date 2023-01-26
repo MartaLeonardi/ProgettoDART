@@ -259,7 +259,7 @@ public class TrovaSostitutoControl {
 					matricole.add(result.getString("ref_i_matricola"));
 				}
 				if(!matricole.isEmpty()) {
-					dbms.insertTurno(matricole.get(0), d.toString(), oraFine, turnoFine[2], fascia, servizio);
+					dbms.insertTurno(matricole.get(0), d.toString(), oraInizio, turnoFine[2], fascia, servizio);
 					dbms.updateTurnoPresenzaEntrata(d, matricole.get(0));	
 				}
 			}
