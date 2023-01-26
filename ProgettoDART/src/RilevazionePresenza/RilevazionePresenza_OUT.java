@@ -123,10 +123,8 @@ public class RilevazionePresenza_OUT extends JPanel {
 
 				System.out.println("test");
 				if (rivPreControl.checkDati(matricola, nome, cognome)) {
-					if (rivPreControl.checkPresenzaOut(matricola)) {
-						rivPreControl.updateUscita(matricola);
-						rivPreControl.conteggioOre(matricola);
-					}
+					rivPreControl.checkPresenzaOut(matricola);
+
 				}
 
 				matricolaTextField.setText("");
