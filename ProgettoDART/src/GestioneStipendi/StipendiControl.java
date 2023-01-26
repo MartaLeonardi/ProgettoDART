@@ -22,41 +22,41 @@ public class StipendiControl {
 		
 		DBMS db = new DBMS();
 		
-		String sql = "select count(*) from Impiegato";
+		//String sql = "select count(*) from Impiegato";
 		
-		ResultSet rs = db.query(sql);
-		String numImpiegati = "";
-		try {
-			if(rs.next()) {
-				numImpiegati = rs.getString(1);
-			}
-		} catch (SQLException e) {
+		//ResultSet rs = db.query(sql);
+		//String numImpiegati = "";
+		//try {
+			//if(rs.next()) {
+				//numImpiegati = rs.getString(1);
+			//}
+		//} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
 		
-		String sql2 = "select * from Stipendio";
+		String sql2 = "select * from Stipendio order by dataPagamento";
 		
 		ResultSet rs2 = db.query(sql2);
 		
+		
+		
+		//System.out.println(numImpiegati);
+		
+		
 		try {
-			rs2.first();
+			while(rs2.next()) {
+				
+				try {
+					dtm.addRow(new Object[] { rs2.getString(1), rs2.getDate(2), rs2.getInt(3)});
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		System.out.println(numImpiegati);
-		
-		for(int i = 1; i <= Integer.parseInt(numImpiegati); i++) {
-			
-			try {
-				dtm.addRow(new Object[] { rs2.getString(1), rs2.getDate(2), rs2.getInt(3)});
-				rs2.next();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		
 		return table;

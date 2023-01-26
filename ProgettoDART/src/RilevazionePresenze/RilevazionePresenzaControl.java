@@ -88,7 +88,7 @@ public class RilevazionePresenzaControl {
 				
 				t1 = LocalTime.parse(inizio_turno.toString());
 				//LocalTime actualTime =  LocalTime.now();  //PRENDE IL TEMPO ATTUALE
-				LocalTime actualTime = LocalTime.of(00, 5); //TEMPO DI TESTING
+				LocalTime actualTime = LocalTime.now(); //TEMPO DI TESTING
 				if((actualTime.isAfter(t1) || actualTime.equals(t1)) && (actualTime.isBefore(t1.plusMinutes(10)) || actualTime.equals(t1.plusMinutes(10)))) {
 					System.out.println("VERO");
 					
@@ -167,8 +167,8 @@ public class RilevazionePresenzaControl {
 				fascia = rs.getInt(3);
 				
 				t1 = LocalTime.parse(fine_turno.toString());
-				//LocalTime actualTime =  LocalTime.now();  //PRENDE IL TEMPO ATTUALE
-				LocalTime actualTime = LocalTime.of(8, 01); //TEMPO SETTATO PER TESTING
+				LocalTime actualTime =  LocalTime.now();  //PRENDE IL TEMPO ATTUALE
+				//LocalTime actualTime = LocalTime.of(8, 01); //TEMPO SETTATO PER TESTING
 				if((actualTime.isAfter(t1) || actualTime.equals(t1)) && (actualTime.isBefore(t1.plusMinutes(10)) || actualTime.equals(t1.plusMinutes(10)))) {
 					System.out.println("VERO");
 					

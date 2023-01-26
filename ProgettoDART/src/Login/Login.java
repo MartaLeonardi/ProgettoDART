@@ -172,9 +172,6 @@ public class Login extends JFrame {
 		});
 
 		JButton btnNewButton = new JButton("Recupera Password");
-		btnNewButton.setBackground(new Color(240, 240, 240));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBorder(null);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				crd.show(contentPane, "RecuperaPassword");

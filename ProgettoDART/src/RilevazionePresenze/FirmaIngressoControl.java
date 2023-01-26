@@ -40,8 +40,8 @@ public boolean checkPresenzaIn(String matricola) {
 				fascia = rs.getInt(3);
 				
 				t1 = LocalTime.parse(inizio_turno.toString());
-				//LocalTime actualTime =  LocalTime.now();  //PRENDE IL TEMPO ATTUALE
-				LocalTime actualTime = LocalTime.of(8, 11); //TEMPO DI TESTING
+				LocalTime actualTime =  LocalTime.now();  //PRENDE IL TEMPO ATTUALE
+				//LocalTime actualTime = LocalTime.of(8, 11); //TEMPO DI TESTING
 				if((actualTime.isAfter(t1.plusMinutes(10)))) {
 					System.out.println("VERO");
 					datab.insertRitardo(matricola, d.toString()); //IN AUTOMATICO PRENDE IL RITARDO
