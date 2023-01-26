@@ -10,11 +10,15 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import GestioneStipendi.StipendioControl;
+import Login.Utente;
+
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,8 +32,13 @@ public class VisualizzaStipendio extends JPanel {
 	 * Create the panel.
 	 */
 	public VisualizzaStipendio() {
+		Utente utente = Utente.getInstance();
+		String matricola=utente.getMatricola();
+		
 		setBounds(100, 100, 1280, 800);
 		setLayout(new BorderLayout(0, 0));
+		
+		StipendioControl stipendioControl = new StipendioControl();
 
 		JLabel LogoImg = new JLabel("");
 		LogoImg.setHorizontalAlignment(SwingConstants.CENTER);
@@ -69,10 +78,17 @@ public class VisualizzaStipendio extends JPanel {
 		gbc_scrollPane.gridy = 0;
 		panel.add(scrollPane, gbc_scrollPane);
 
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
+		//table = new JTable();
+		//table.setRowSelectionAllowed(false);
+		try {
+			table = stipendioControl.createTable(matricola);
+			table.setEnabled(false);
+		}catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		/*table.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
 				new String[] { "Periodo di retribuzione (inizio)", "Periodo di retribuzione (fine)", "Importo" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, Float.class };
 
@@ -85,13 +101,13 @@ public class VisualizzaStipendio extends JPanel {
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
-		});
+		});*/
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(151);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(149);
 		table.getColumnModel().getColumn(2).setResizable(false);
-		table.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		table.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		table.getTableHeader().setReorderingAllowed(false); // Disattiva la possibilita di riordinare le colonne
 		// trascinando
 		scrollPane.setViewportView(table);
