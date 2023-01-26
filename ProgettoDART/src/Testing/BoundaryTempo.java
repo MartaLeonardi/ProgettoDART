@@ -8,7 +8,8 @@ public class BoundaryTempo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		LocalDate d = LocalDate.now();
+		LocalDate d = LocalDate.now(); 
+		//LocalDate d = LocalDate.of(2023/01/25);
 		MyTaskCalendario taskCalendario=new MyTaskCalendario();
 		MyTaskStipendio taskStipendio=new MyTaskStipendio();
 		MyTaskUscita taskUscita=new MyTaskUscita();
