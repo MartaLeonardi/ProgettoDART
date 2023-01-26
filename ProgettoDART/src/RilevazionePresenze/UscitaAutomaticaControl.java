@@ -18,6 +18,7 @@ public class UscitaAutomaticaControl {
 	
 	public void uscitaAuto() {
 		LocalDate dataOdierna = LocalDate.now();
+		LocalDate dataIeri = dataOdierna.minusDays(1);
 		LocalTime tempoAttuale = LocalTime.now();
 		//LocalDate dataOdierna = LocalDate.now();
 		//LocalTime tempoAttuale = LocalTime.of(16,10,00);
@@ -29,10 +30,15 @@ public class UscitaAutomaticaControl {
 		
 		LocalTime tempoSomma = LocalTime.of(0, 20, 0);
 		System.out.println(tempoSomma);
-		
-		String sql = ("select ref_i_matricola from Turno where giornata_lavoro = '"+Date.valueOf(dataOdierna.toString())+"'  and "
+		String sql = "";
+		if(!(tempoAttuale.getHour() == 0)) {
+		sql = ("select ref_i_matricola from Turno where giornata_lavoro = '"+Date.valueOf(dataOdierna.toString())+"'  and "
 				+ "	fine_turno <= '"+Time.valueOf(tempo.toString()+":00")+"' and fine_turno + '"+Time.valueOf(tempoSomma.toString()+":00")+"' > '"+Time.valueOf(tempo.toString()+":00")+"' and entrata = true and uscita is null");
-		
+		}
+		else {
+			sql = ("select ref_i_matricola from Turno where giornata_lavoro = '"+Date.valueOf(dataIeri.toString())+"'  and "
+					+ "	fine_turno <= '"+Time.valueOf(tempo.toString()+":00")+"' and fine_turno + '"+Time.valueOf(tempoSomma.toString()+":00")+"' > '"+Time.valueOf(tempo.toString()+":00")+"' and entrata = true and uscita is null");
+		}
 		System.out.println("test1");
 		
 		ResultSet rs = db.query(sql);
