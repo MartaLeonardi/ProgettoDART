@@ -12,7 +12,7 @@ public class MyTaskUscita extends TimerTask {
 		// TODO Auto-generated method stub
 		UscitaAutomaticaControl uac = new UscitaAutomaticaControl();
 		LocalTime time = LocalTime.now();
-		if(((time.getHour()%2)==0 && time.getMinute()==15)) {
+		if(((LocalTime.now().getHour()%2)==0 && LocalTime.now().getMinute()==15)) {
 			System.out.println("Uscita calcolata");
 			uac.uscitaAuto();
 		} else {System.out.println("Uscita non calcolata");}

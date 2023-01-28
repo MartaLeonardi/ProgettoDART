@@ -23,7 +23,7 @@ public class UscitaAutomaticaControl {
 		//LocalDate dataOdierna = LocalDate.now();
 		//LocalTime tempoAttuale = LocalTime.of(16,10,00);
 		System.out.println(tempoAttuale);
-		LocalTime tempo = LocalTime.of(tempoAttuale.getHour(), tempoAttuale.getMinute(), tempoAttuale.getSecond());
+		LocalTime tempo = LocalTime.of(tempoAttuale.getHour(), tempoAttuale.getMinute(), 00);
 		System.out.println(tempo);
 		System.out.println(dataOdierna);
 		DBMS db = new DBMS();
@@ -31,30 +31,33 @@ public class UscitaAutomaticaControl {
 		LocalTime tempoSomma = LocalTime.of(0, 20, 0);
 		System.out.println(tempoSomma);
 		String sql = "";
+		int t = 0;
 		if(!(tempoAttuale.getHour() == 0)) {
 		sql = ("select ref_i_matricola from Turno where giornata_lavoro = '"+Date.valueOf(dataOdierna.toString())+"'  and "
 				+ "	fine_turno <= '"+Time.valueOf(tempo.toString()+":00")+"' and fine_turno + '"+Time.valueOf(tempoSomma.toString()+":00")+"' > '"+Time.valueOf(tempo.toString()+":00")+"' and entrata = true and uscita is null");
+			t = 1;
 		}
 		else {
 			sql = ("select ref_i_matricola from Turno where giornata_lavoro = '"+Date.valueOf(dataIeri.toString())+"'  and "
-					+ "	fine_turno <= '"+Time.valueOf(tempo.toString()+":00")+"' and fine_turno + '"+Time.valueOf(tempoSomma.toString()+":00")+"' > '"+Time.valueOf(tempo.toString()+":00")+"' and entrata = true and uscita is null");
-		}
+					+ "	fine_turno = '00:00:00' and entrata = true and uscita is null");
+		t=2;
+			}
 		System.out.println("test1");
 		
 		ResultSet rs = db.query(sql);
 		
 		System.out.println("test2");
 		ArrayList<String> matricola = new ArrayList<>();
-		
+		System.out.println(matricola);
 		try {
-			if(rs.next()) {
 				rs.first();
 				do {
 					System.out.println("test3");
 					matricola.add(rs.getString(1));
+					System.out.println(matricola);
 				}while(rs.next());
 				
-			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +65,13 @@ public class UscitaAutomaticaControl {
 		
 		//INVIO EMAIL PER MATRICOLA CHE NON HANNO FIRMATO L'USCITA
 		
-		db.updateUscitaAuto(dataOdierna, tempo);
+		if(t==1) {
+			db.updateUscitaAuto(dataOdierna, tempo);
+		}
+		else {
+			db.updateUscitaAuto(dataIeri, tempo);
+		}
+		
 		
 		db.closeConnection();
 	}

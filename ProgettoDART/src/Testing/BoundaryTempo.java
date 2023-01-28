@@ -14,10 +14,12 @@ public class BoundaryTempo {
 		MyTaskStipendio taskStipendio=new MyTaskStipendio();
 		MyTaskUscita taskUscita=new MyTaskUscita();
 		Timer timer1=new Timer();
+		Timer timer2=new Timer();
+		Timer timer3=new Timer();
 		System.out.print("Inizio \n");
 		timer1.schedule(taskCalendario, Date.valueOf(d), 86400000);
-		timer1.schedule(taskStipendio, Date.valueOf(d), 86400000);
-		timer1.schedule(taskUscita, 900000);
+		timer2.schedule(taskStipendio, Date.valueOf(d), 86400000);
+		timer3.schedule(taskUscita,Date.valueOf(d), 60000);
 	}
 
 }
